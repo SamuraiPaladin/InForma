@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InForma", "InForma\InForma.csproj", "{CD561B72-C51A-4818-81A0-33CD931D9733}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{FAB3F4BB-3F9B-4509-943E-A0BB4E64B511}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{FAB3F4BB-3F9B-4509-943E-A0BB4E64B511}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{85429E7A-301B-4847-9515-4E407DC787A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Service\Services.csproj", "{85429E7A-301B-4847-9515-4E407DC787A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{23CFFA9E-0D18-4397-A408-61159A002135}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{23CFFA9E-0D18-4397-A408-61159A002135}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

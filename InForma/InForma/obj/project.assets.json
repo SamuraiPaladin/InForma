@@ -2008,14 +2008,14 @@
           "bin/placeholder/Model.dll": {}
         }
       },
-      "Service/1.0.0": {
+      "Services/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.0",
         "compile": {
-          "bin/placeholder/Service.dll": {}
+          "bin/placeholder/Services.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Service.dll": {}
+          "bin/placeholder/Services.dll": {}
         }
       },
       "Test/1.0.0": {
@@ -6744,10 +6744,10 @@
       "path": "../Model/Model.csproj",
       "msbuildProject": "../Model/Model.csproj"
     },
-    "Service/1.0.0": {
+    "Services/1.0.0": {
       "type": "project",
-      "path": "../Service/Service.csproj",
-      "msbuildProject": "../Service/Service.csproj"
+      "path": "../Service/Services.csproj",
+      "msbuildProject": "../Service/Services.csproj"
     },
     "Test/1.0.0": {
       "type": "project",
@@ -6760,7 +6760,7 @@
       "Microsoft.Extensions.Logging.Debug >= 3.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.0.0",
       "Model >= 1.0.0",
-      "Service >= 1.0.0",
+      "Services >= 1.0.0",
       "Test >= 1.0.0",
       "bootstrap >= 4.3.1",
       "jQuery >= 3.4.1"
@@ -6799,8 +6799,8 @@
             "C:\\Projetos\\InForma\\InForma\\Model\\Model.csproj": {
               "projectPath": "C:\\Projetos\\InForma\\InForma\\Model\\Model.csproj"
             },
-            "C:\\Projetos\\InForma\\InForma\\Service\\Service.csproj": {
-              "projectPath": "C:\\Projetos\\InForma\\InForma\\Service\\Service.csproj"
+            "C:\\Projetos\\InForma\\InForma\\Service\\Services.csproj": {
+              "projectPath": "C:\\Projetos\\InForma\\InForma\\Service\\Services.csproj"
             },
             "C:\\Projetos\\InForma\\InForma\\Test\\Test.csproj": {
               "projectPath": "C:\\Projetos\\InForma\\InForma\\Test\\Test.csproj"

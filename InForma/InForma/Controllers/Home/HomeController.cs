@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using InForma.Models;
 
-namespace InForma.Controllers
+namespace InForma.Controllers.Home
 {
     public class HomeController : Controller
     {
@@ -19,21 +19,6 @@ namespace InForma.Controllers
         }
 
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        public IActionResult Unidade()
-        {
-            return View();
-        }
-
-        public IActionResult Login()
         {
             return View();
         }

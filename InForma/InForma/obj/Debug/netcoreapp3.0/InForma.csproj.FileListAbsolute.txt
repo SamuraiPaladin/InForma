@@ -253,10 +253,8 @@ C:\Projetos\InForma\InForma\InForma\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.Te
 C:\Projetos\InForma\InForma\InForma\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\Projetos\InForma\InForma\InForma\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
 C:\Projetos\InForma\InForma\InForma\bin\Debug\netcoreapp3.0\Model.dll
-C:\Projetos\InForma\InForma\InForma\bin\Debug\netcoreapp3.0\Service.dll
 C:\Projetos\InForma\InForma\InForma\bin\Debug\netcoreapp3.0\Test.dll
 C:\Projetos\InForma\InForma\InForma\bin\Debug\netcoreapp3.0\Model.pdb
-C:\Projetos\InForma\InForma\InForma\bin\Debug\netcoreapp3.0\Service.pdb
 C:\Projetos\InForma\InForma\InForma\bin\Debug\netcoreapp3.0\Test.pdb
 C:\Projetos\InForma\InForma\InForma\obj\Debug\netcoreapp3.0\InForma.csprojAssemblyReference.cache
 C:\Projetos\InForma\InForma\InForma\obj\Debug\netcoreapp3.0\staticwebassets\InForma.StaticWebAssets.Manifest.cache
@@ -269,7 +267,6 @@ C:\Projetos\InForma\InForma\InForma\obj\Debug\netcoreapp3.0\InForma.TagHelpers.i
 C:\Projetos\InForma\InForma\InForma\obj\Debug\netcoreapp3.0\InForma.TagHelpers.output.cache
 C:\Projetos\InForma\InForma\InForma\obj\Debug\netcoreapp3.0\InForma.RazorCoreGenerate.cache
 C:\Projetos\InForma\InForma\InForma\obj\Debug\netcoreapp3.0\Razor\Views\Home\Index.cshtml.g.cs
-C:\Projetos\InForma\InForma\InForma\obj\Debug\netcoreapp3.0\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Projetos\InForma\InForma\InForma\obj\Debug\netcoreapp3.0\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Projetos\InForma\InForma\InForma\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Projetos\InForma\InForma\InForma\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -354,5 +351,7 @@ C:\Projetos\InForma\InForma\InForma\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAna
 C:\Projetos\InForma\InForma\InForma\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Projetos\InForma\InForma\InForma\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Projetos\InForma\InForma\InForma\obj\Debug\netcoreapp3.0\InForma.MvcApplicationPartsAssemblyInfo.cache
-C:\Projetos\InForma\InForma\InForma\obj\Debug\netcoreapp3.0\Razor\Views\Home\Unidade.cshtml.g.cs
-C:\Projetos\InForma\InForma\InForma\obj\Debug\netcoreapp3.0\Razor\Views\Home\Login.cshtml.g.cs
+C:\Projetos\Informa\InForma\InForma\obj\Debug\netcoreapp3.0\Razor\Views\Login\Index.cshtml.g.cs
+C:\Projetos\Informa\InForma\InForma\obj\Debug\netcoreapp3.0\Razor\Views\Unidade\Index.cshtml.g.cs
+C:\Projetos\Informa\InForma\InForma\bin\Debug\netcoreapp3.0\Services.dll
+C:\Projetos\Informa\InForma\InForma\bin\Debug\netcoreapp3.0\Services.pdb

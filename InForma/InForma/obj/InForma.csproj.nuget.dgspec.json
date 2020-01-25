@@ -33,8 +33,8 @@
               "C:\\Projetos\\InForma\\InForma\\Model\\Model.csproj": {
                 "projectPath": "C:\\Projetos\\InForma\\InForma\\Model\\Model.csproj"
               },
-              "C:\\Projetos\\InForma\\InForma\\Service\\Service.csproj": {
-                "projectPath": "C:\\Projetos\\InForma\\InForma\\Service\\Service.csproj"
+              "C:\\Projetos\\InForma\\InForma\\Service\\Services.csproj": {
+                "projectPath": "C:\\Projetos\\InForma\\InForma\\Service\\Services.csproj"
               },
               "C:\\Projetos\\InForma\\InForma\\Test\\Test.csproj": {
                 "projectPath": "C:\\Projetos\\InForma\\InForma\\Test\\Test.csproj"
@@ -177,12 +177,12 @@
         }
       }
     },
-    "C:\\Projetos\\InForma\\InForma\\Service\\Service.csproj": {
+    "C:\\Projetos\\InForma\\InForma\\Service\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projetos\\InForma\\InForma\\Service\\Service.csproj",
-        "projectName": "Service",
-        "projectPath": "C:\\Projetos\\InForma\\InForma\\Service\\Service.csproj",
+        "projectUniqueName": "C:\\Projetos\\InForma\\InForma\\Service\\Services.csproj",
+        "projectName": "Services",
+        "projectPath": "C:\\Projetos\\InForma\\InForma\\Service\\Services.csproj",
         "packagesPath": "C:\\Users\\Rafael\\.nuget\\packages\\",
         "outputPath": "C:\\Projetos\\InForma\\InForma\\Service\\obj\\",
         "projectStyle": "PackageReference",
