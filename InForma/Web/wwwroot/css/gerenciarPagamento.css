@@ -1,0 +1,12 @@
+#pago{color:#139E26;}
+#emHaver{color:#F68300;}
+#pagoComAtraso{color:#19DF33;}
+#vencido{color:red;}
+#proximoDataVencimento{color:#DCE224;}
+#mesVigente strong{font-size: 25px;}
+#mesVigente{position: relative;top:20px;}
+
+.filtroGerenciarPagamento{
+    padding: 10px;
+    /* margin-left: 2px; */
+}
