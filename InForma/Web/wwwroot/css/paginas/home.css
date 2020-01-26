@@ -1,0 +1,24 @@
+﻿#parallaxIndex {
+    height: 200px;
+}
+
+#bemvindo {
+    color: #fff;
+}
+
+#data {
+    color: #fff;
+    margin-top: 80px;
+}
+
+#temperaturaDados {
+    margin-top: -10px;
+    color: #fff;
+    font-size: 18px;
+}
+
+#horario {
+    color: #fff;
+    font-size: 30px;
+    margin-top: 160px;
+}

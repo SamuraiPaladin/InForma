@@ -11,29 +11,196 @@
     <!-- Google Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" />
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+
 </head>
 <body>
-    @*<header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Web</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    <!-- TOP SIDE -->
+    <nav>
+        <div class="nav-wrapper" style="background-color: #af2405;">
+            <div class="row container">
+                <a href="#" data-activates="slide-out" class="button-collapse show-on-large">
+                    <i class="material-icons">menu</i>
+                </a>
+                <a href="#" style="position:relative" class="brand-logo"><img src="~/imgs/informa.png" width="200" class="img-responsive"></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">JavaScript</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- CONTENT SIDE NAVBAR -->
+    <ul id="slide-out" class="side-nav">
+        <li>
+            <div class="user-view">
+                <div class="background" style="background-color: #af2405;">
+                    <img src="~/imgs/icon-informa.png" width="80" style="position: relative; left: 180px; top: 40px;">
+                </div>
+                <a href="#!user"><img class="circle" src="~/imgs/avatar-batman.png"></a>
+                <a href="#!name"><span class="white-text name">Diego Magalhaes</span></a>
+                <a href="#!email"><span class="white-text email">Recepcionista - Unidade Osasco</span></a>
+            </div>
+        </li>
+        <li><a class="subheader">Modulos</a></li>
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a id="cadastro" class="collapsible-header waves-effect waves-blue">
+                    <i class="material-icons"
+                       style="position: relative; left: 17px;">edit</i>Cadastro<i class="material-icons right"
+                                                                                  style="margin-right:0;">arrow_drop_down</i>
+                </a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li>
+                            <a class="waves-effect waves-blue"
+                               href="cadastro/cadastro_unidade.html"><span>Unidade</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li>
+                            <a class="waves-effect waves-blue"
+                               href="cadastro/cadastro_modalidade.html"><span>Modalidade</span></a>
+                        </li>
+                        <li><a class="waves-effect waves-blue" href="#"><span>Tipo de Colaborador</span></a></li>
+                        <li><a class="waves-effect waves-blue" href="#"><span>Colaborador</span></a></li>
+                        <li><a class="waves-effect waves-blue" href="#"><span>Fornecedor</span></a></li>
+                        <li>
+                            <div class="divider"></div>
                         </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
-    </header>*@
+            </li>
+        </ul>
+        <!-- FINAL MENU CADASTRO DROPDOWN -->
+
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header waves-effect waves-blue ">
+                    <i class="material-icons"
+                       style="position: relative; left: 17px;">person_pin</i>Agenda <i class="material-icons right"
+                                                                                       style="margin-right:0;">arrow_drop_down</i>
+                </a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a class="waves-effect waves-blue" href="#"><span>Verificar tal coisa</span></a></li>
+                        <li>
+                            <div class="divider"></div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <!-- FINAL MENU AGENDA DROPDOWN -->
+
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header waves-effect waves-blue ">
+                    <i class="material-icons"
+                       style="position: relative; left: 17px;">person_pin</i>Matrícula <i class="material-icons right"
+                                                                                          style="margin-right:0;">arrow_drop_down</i>
+                </a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li>
+                            <a class="waves-effect waves-blue" href="matricula/gerenciarPagamento.html">
+                                <span>
+                                    Gerenciar
+                                    Pagamento
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="divider"></div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <!-- FINAL MENU MATRICULA DROPDOWN -->
+
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header waves-effect waves-blue ">
+                    <i class="material-icons"
+                       style="position: relative; left: 17px;">person_pin</i>Financeiro <i class="material-icons right"
+                                                                                           style="margin-right:0;">arrow_drop_down</i>
+                </a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a class="waves-effect waves-blue" href="#"><span>Verificar tal coisa</span></a></li>
+                        <li>
+                            <div class="divider"></div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <!-- FINAL MENU FINANCEIRO DROPDOWN -->
+
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header waves-effect waves-blue ">
+                    <i class="material-icons"
+                       style="position: relative; left: 17px;">person_pin</i>Estoque <i class="material-icons right"
+                                                                                        style="margin-right:0;">arrow_drop_down</i>
+                </a>
+                <div class="collapsible-body itensSubMenu">
+                    <ul>
+                        <li><a class="waves-effect waves-blue" href="#"><span>Verificar tal coisa</span></a></li>
+                        <li>
+                            <div class="divider"></div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <!-- FINAL MENU ESTOQUE DROPDOWN -->
+
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Catraca</a></li>
+        <li><a class="waves-effect" href="#!">Cadastro ??</a></li>
+
+        <div class="col s12 l12 center" style="position: relative; top:280px;">
+            <img src="~/imgs/churrosteam.png" width="100" class="img-responsive">
+        </div>
+    </ul>
+    <!-- FINAL DO SIDENAV -->
+    @*<header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Web</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>*@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -49,6 +216,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/materialize.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    @*<script src="~/js/menu.js" asp-append-version="true"></script>*@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
