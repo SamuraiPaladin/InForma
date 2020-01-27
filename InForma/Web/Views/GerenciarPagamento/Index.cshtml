@@ -1,0 +1,173 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- BREADCRUMB -->
+<nav class="clean">
+    <div class="nav-wrapper">
+        <div class="col s12">
+            <a href="../index.html" class="breadcrumb">Home</a>
+            <a class="breadcrumb">Matricula</a>
+            <a href="gerenciarPagamento.html" class="breadcrumb">Gerenciar Pagamento</a>
+        </div>
+    </div>
+</nav>
+
+<div class="col s12 l12">
+    <h5 class="flow-text">Gerenciar Pagamento</h5>
+    <br>
+
+    <div class="col s12 l8 ">
+        <form>
+            <div class="input-field">
+                <input id="buscar" type="text" class="validate">
+                <label for="buscar">Pesquisar por Mátricula ou Nome...</label>
+            </div>
+        </form>
+    </div>
+
+    <div class="col s12 l4 ">
+        <p class="" id="mesVigente"> Mês Vigente: <strong>Setembro</strong> </p>
+    </div>
+
+    <br><br>
+
+    <div class="col s12 l12">
+        <strong>Filtros de Mensalidade: </strong>
+
+        <span class="filtroGerenciarPagamento">
+            <input type="checkbox" id="1" />
+            <label for="1">Pago</label>
+        </span>
+
+        <span class="filtroGerenciarPagamento">
+            <input type="checkbox" id="2" />
+            <label for="2">Em Haver</label>
+        </span>
+
+        <span class="filtroGerenciarPagamento">
+            <input type="checkbox" id="3" />
+            <label for="3">Atrasado</label>
+        </span>
+
+        <span class="filtroGerenciarPagamento">
+            <input type="checkbox" id="4" />
+            <label for="4">Vencido</label>
+        </span>
+
+        <span class="filtroGerenciarPagamento">
+            <input type="checkbox" id="5" />
+            <label for="5">Prox. Data Vencimento</label>
+        </span>
+
+    </div>
+
+    <div class="col s12 l12">
+        <strong>Filtros de Pagamento:</strong>
+
+        <span class="filtroGerenciarPagamento">
+            <input type="checkbox" id="6" />
+            <label for="6">Crédito</label>
+        </span>
+
+        <span class="filtroGerenciarPagamento">
+            <input type="checkbox" id="7" />
+            <label for="7">Débito</label>
+        </span>
+
+        <span class="filtroGerenciarPagamento">
+            <input type="checkbox" id="8" />
+            <label for="8">Dinheiro</label>
+        </span>
+
+        <span class="filtroGerenciarPagamento">
+            <input type="checkbox" id="9" />
+            <label for="9">Boleto</label>
+        </span>
+    </div>
+
+</div>
+
+<div class="col s12 l12" id="tabelaGerenciaPagamento">
+    <table class="highlight centered tabelaPagamento">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Forma de Pagamento</th>
+                <th>Status Mensalidade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Eclair</td>
+                <td><span>Crédito</span> </td>
+                <td><strong id="pago">Pago</strong></td>
+                <td>
+                    <a href="../perfilUsuario.html" style="color:inherit">
+                        <i class="material-icons"
+                           title="Ver perfil">person_pin</i>
+                    </a>
+                </td>
+
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Jellybean</td>
+                <td><span>Dinheiro</span></td>
+                <td><strong id="emHaver"> Em Haver </strong></td>
+                <td>
+                    <a href="../perfilUsuario.html" style="color:inherit">
+                        <i class="material-icons"
+                           title="Ver perfil">person_pin</i>
+                    </a>
+                </td>
+
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Lollipop</td>
+                <td><span>Crédito</span> </td>
+                <td><strong id="pagoComAtraso"> Pago com Atraso </strong></td>
+                <td>
+                    <a href="../perfilUsuario.html" style="color:inherit">
+                        <i class="material-icons"
+                           title="Ver perfil">person_pin</i>
+                    </a>
+                </td>
+
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Lollipop</td>
+                <td><span>Crédito</span> </td>
+                <td><strong id="vencido"> Vencido </strong></td>
+                <td>
+                    <a href="../perfilUsuario.html" style="color:inherit">
+                        <i class="material-icons"
+                           title="Ver perfil">person_pin</i>
+                    </a>
+                </td>
+
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Lollipop</td>
+                <td><span>Dinheiro</span></td>
+                <td><strong id="proximoDataVencimento"> Próximo da Data de Vencimento </strong></td>
+                <td>
+                    <a href="../perfilUsuario.html" style="color:inherit">
+                        <i class="material-icons"
+                           title="Ver perfil">person_pin</i>
+                    </a>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewData["Title"] = "Professor";
+}
+
+<!-- BREADCRUMB -->
+<nav class="clean">
+    <div class="nav-wrapper">
+        <div class="col s12">
+            <a href="../index.html" class="breadcrumb">Home</a>
+            <a class="breadcrumb">Cadastro</a>
+            <a href="cadastro_professor.html" class="breadcrumb">Cadastrar Professor</a>
+        </div>
+    </div>
+</nav>
+
+<div class="col s12 l12">
+    <h4 class="flow-text">Cadastrar Professor</h4>
+    <br><br>
+
+    <form class="col s12 l12">
+        <div class="input-field col s6">
+            <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomeProfessor" type="text" class="validate">
+            <label for="nomeProfessor">Nome do Professor</label>
+        </div>
+
+        <div class="input-field col s6">
+            <input placeholder="Ex: Souza, Silva..." id="sobrenome" type="text" class="validate">
+            <label for="sobrenome">Sobrenome</label>
+        </div>
+
+        <div class="input-field col s6">
+            <input placeholder="Ex: Natação, Hidroginástica..." id="aulas" type="text" class="validate">
+            <label for="aulas">Aulas Ministradas</label>
+        </div>
+
+        <div class="col s12 l12">
+            <a class="waves-effect waves-light btn modal-trigger right" href="#modalCadastroUnidade" style="background-color: #af2405;">cadastrar</a>
+        </div>
+
+        <div id="modalCadastroUnidade" class="modal">
+            <div class="modal-content">
+                <h4 class="flow-text center">Professor Cadastrado!</h4>
+                <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"
+                   onclick="{redirect()}">sair</a>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+

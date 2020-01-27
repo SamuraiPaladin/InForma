@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "Unidade";
+}
+
+<nav class="clean">
+    <div class="nav-wrapper">
+        <div class="col s12">
+            <a href="../index.html" class="breadcrumb">Home</a>
+            <a class="breadcrumb">Cadastro</a>
+            <a href="cadastro_unidade.html" class="breadcrumb">Cadastrar Unidade</a>
+        </div>
+    </div>
+</nav>
+
+<div class="col s12 l12">
+    <h4 class="flow-text">Cadastrar Unidade</h4>
+    <br><br>
+
+    <form class="col s12 l12">
+        <div class="input-field col s6">
+            <input placeholder="Ex: Osasco, Penha, Paulista" id="nome_unidade" type="text" class="validate">
+            <label for="nome_unidade">Nome da Unidade</label>
+        </div>
+
+        <div class="input-field col s6">
+            <input placeholder="Ex: Av. Paulista..." id="endereco" type="text" class="validate">
+            <label for="endereco">Endereco</label>
+        </div>
+
+        <div class="input-field col s6">
+            <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairro" type="text" class="validate">
+            <label for="bairro">Bairro</label>
+        </div>
+
+        <div class="input-field col s6">
+            <input placeholder="Ex: 4300..." id="numero" type="text" class="validate">
+            <label for="numero">Numero</label>
+        </div>
+
+        <div class="input-field col s6">
+            <input placeholder="Ex: Unidade de natacao, Unidade de academia..." id="desc" type="text"
+                   class="validate">
+            <label for="desc">Descricao</label>
+        </div>
+
+        <div class="col s12 l12">
+            <a class="waves-effect waves-light btn modal-trigger right" href="#modalCadastroUnidade" style="background-color: #af2405;">cadastrar</a>
+        </div>
+
+        <div id="modalCadastroUnidade" class="modal">
+            <div class="modal-content">
+                <h4 class="flow-text center">Unidade Cadastrada!</h4>
+                <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"
+                   onclick="{redirect()}">sair</a>
+            </div>
+        </div>
+
+    </form>
+
+</div>

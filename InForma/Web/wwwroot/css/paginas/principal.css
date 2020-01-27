@@ -1,0 +1,38 @@
+﻿#parallaxIndex {
+    height: 200px;
+    width:100%;
+}
+
+#bemvindo {
+    color: #fff;
+}
+
+#data {
+    color: #fff;
+    margin-top: 80px;
+}
+
+#temperaturaDados {
+    margin-top: -10px;
+    color: #fff;
+    font-size: 18px;
+}
+
+#horario {
+    color: #fff;
+    font-size: 30px;
+    margin-top: 160px;
+}
+
+.consultaRapida {
+    position: relative;
+}
+
+.consultaRapida:hover .iconRapido {
+    color: #af2405;
+    -webkit-transition: 0.3s ease-in;
+    -moz-transition: 0.3s ease-in;
+    -o-transition: 0.3s ease-in;
+    transition: 0.3s ease-in;
+    top: -14px;
+}

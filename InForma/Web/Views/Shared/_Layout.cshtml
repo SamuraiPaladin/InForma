@@ -5,47 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@ViewData["Title"] - inForma</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     <!--Import materialize.css-->
     <link rel="stylesheet" href="~/css/materialize.min.css">
     <!-- Google Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" />
-
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
-
+    <link rel="stylesheet" href="~/css/public.css" />
 
 </head>
 <body>
     <!-- TOP SIDE -->
     <nav>
         <div class="nav-wrapper" style="background-color: #af2405;">
-            <div class="row container">
-                <a href="#" data-activates="slide-out" class="button-collapse show-on-large">
-                    <i class="material-icons">menu</i>
-                </a>
-                <a href="#" style="position:relative" class="brand-logo"><img src="~/imgs/informa.png" width="200" class="img-responsive"></a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="badges.html">Components</a></li>
-                    <li><a href="collapsible.html">JavaScript</a></li>
-                </ul>
-            </div>
+            <ul class="left hide-on-med-and-down">
+                <li>
+                    <a href="#" data-activates="slide-out" class="button-collapse show-on-large">
+                        <i class="material-icons">menu</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" style="position:relative" class="brand-logo"><img src="~/imgs/informa.png" width="200" class="img-responsive"></a>
+                </li>
+            </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="badges.html">Components</a></li>
+                <li><a href="collapsible.html">JavaScript</a></li>
+            </ul>
         </div>
     </nav>
 
-
     <!-- CONTENT SIDE NAVBAR -->
-    <ul id="slide-out" class="side-nav">
+    @*<ul id="slide-out" class="side-nav">
         <li>
             <div class="user-view">
                 <div class="background" style="background-color: #af2405;">
@@ -83,10 +75,9 @@
                     </ul>
                 </div>
             </li>
-        </ul>
-        <!-- FINAL MENU CADASTRO DROPDOWN -->
-
-        <ul class="collapsible collapsible-accordion">
+        </ul>*@
+    <!-- FINAL MENU CADASTRO DROPDOWN -->
+    @*<ul class="collapsible collapsible-accordion">
             <li>
                 <a class="collapsible-header waves-effect waves-blue ">
                     <i class="material-icons"
@@ -102,10 +93,9 @@
                     </ul>
                 </div>
             </li>
-        </ul>
-        <!-- FINAL MENU AGENDA DROPDOWN -->
-
-        <ul class="collapsible collapsible-accordion">
+        </ul>*@
+    <!-- FINAL MENU AGENDA DROPDOWN -->
+    @*<ul class="collapsible collapsible-accordion">
             <li>
                 <a class="collapsible-header waves-effect waves-blue ">
                     <i class="material-icons"
@@ -128,10 +118,9 @@
                     </ul>
                 </div>
             </li>
-        </ul>
-        <!-- FINAL MENU MATRICULA DROPDOWN -->
-
-        <ul class="collapsible collapsible-accordion">
+        </ul>*@
+    <!-- FINAL MENU MATRICULA DROPDOWN -->
+    @*<ul class="collapsible collapsible-accordion">
             <li>
                 <a class="collapsible-header waves-effect waves-blue ">
                     <i class="material-icons"
@@ -147,10 +136,9 @@
                     </ul>
                 </div>
             </li>
-        </ul>
-        <!-- FINAL MENU FINANCEIRO DROPDOWN -->
-
-        <ul class="collapsible collapsible-accordion">
+        </ul>*@
+    <!-- FINAL MENU FINANCEIRO DROPDOWN -->
+    @*<ul class="collapsible collapsible-accordion">
             <li>
                 <a class="collapsible-header waves-effect waves-blue ">
                     <i class="material-icons"
@@ -166,19 +154,18 @@
                     </ul>
                 </div>
             </li>
-        </ul>
-        <!-- FINAL MENU ESTOQUE DROPDOWN -->
+        </ul>*@
+    <!-- FINAL MENU ESTOQUE DROPDOWN -->
+    @*<li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="subheader">Catraca</a></li>
+            <li><a class="waves-effect" href="#!">Cadastro ??</a></li>
 
-        <li>
-            <div class="divider"></div>
-        </li>
-        <li><a class="subheader">Catraca</a></li>
-        <li><a class="waves-effect" href="#!">Cadastro ??</a></li>
-
-        <div class="col s12 l12 center" style="position: relative; top:280px;">
-            <img src="~/imgs/churrosteam.png" width="100" class="img-responsive">
-        </div>
-    </ul>
+            <div class="col s12 l12 center" style="position: relative; top:280px;">
+                <img src="~/imgs/churrosteam.png" width="100" class="img-responsive">
+            </div>
+        </ul>*@
     <!-- FINAL DO SIDENAV -->
     @*<header>
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -201,7 +188,7 @@
                 </div>
             </nav>
         </header>*@
-    <div class="container">
+    <div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -209,11 +196,11 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - inForma
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
     <script src="~/js/materialize.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @*<script src="~/js/menu.js" asp-append-version="true"></script>*@
