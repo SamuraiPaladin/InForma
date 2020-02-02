@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">*@
     <title>@ViewData["Title"] - inForma</title>
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     <!--Import materialize.css-->
     <link rel="stylesheet" href="~/css/materialize.min.css">
     <!-- Google Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/public.css" />
+    @*<link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/public.css" />*@
 
 </head>
 <body>
@@ -35,6 +35,136 @@
             </ul>
         </div>
     </nav>
+
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view">
+                <div class="background" style="background-color: #af2405;">
+                    <img src="~/imgs/icon-informa.png" width="80" style="position: relative; left: 180px; top: 40px;">
+                </div>
+                <a href="#!user"><img class="circle" src="~/imgs/avatar-batman.png"></a>
+                <a href="#!name"><span class="white-text name">Diego Magalhaes</span></a>
+                <a href="#!email"><span class="white-text email">Recepcionista - Unidade Osasco</span></a>
+            </div>
+        </li>
+        @*<li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+        <li><a href="#!">Second Link</a></li>
+        <li><div class="divider"></div></li>*@
+        <li><a class="subheader">Modulos</a></li>
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header waves-effect waves-blue ">
+                    <i class="material-icons"
+                       style="position: relative; left: 17px;">edit</i>Cadastro<i class="material-icons right"
+                                                                                  style="margin-right:0;">arrow_drop_down</i>
+                </a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li>
+                            <a class="waves-effect waves-blue"
+                               href="cadastro/cadastro_unidade.html"><span>Unidade</span></a>
+                        </li>
+                        <li>
+                            <a class="waves-effect waves-blue"
+                               href="cadastro/cadastro_modalidade.html"><span>Modalidade</span></a>
+                        </li>
+                        <li><a class="waves-effect waves-blue" href="#"><span>Tipo de Colaborador</span></a></li>
+                        <li><a class="waves-effect waves-blue" href="#"><span>Colaborador</span></a></li>
+                        <li><a class="waves-effect waves-blue" href="#"><span>Fornecedor</span></a></li>
+                        <li>
+                            <div class="divider"></div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header waves-effect waves-blue ">
+                    <i class="material-icons"
+                       style="position: relative; left: 17px;">person_pin</i>Agenda <i class="material-icons right"
+                                                                                       style="margin-right:0;">arrow_drop_down</i>
+                </a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a class="waves-effect waves-blue" href="#"><span>Verificar tal coisa</span></a></li>
+                        <li>
+                            <div class="divider"></div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header waves-effect waves-blue ">
+                    <i class="material-icons"
+                       style="position: relative; left: 17px;">person_pin</i>Matrícula <i class="material-icons right"
+                                                                                          style="margin-right:0;">arrow_drop_down</i>
+                </a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li>
+                            <a class="waves-effect waves-blue" href="matricula/gerenciarPagamento.html">
+                                <span>
+                                    Gerenciar
+                                    Pagamento
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="divider"></div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header waves-effect waves-blue ">
+                    <i class="material-icons"
+                       style="position: relative; left: 17px;">person_pin</i>Financeiro <i class="material-icons right"
+                                                                                           style="margin-right:0;">arrow_drop_down</i>
+                </a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a class="waves-effect waves-blue" href="#"><span>Verificar tal coisa</span></a></li>
+                        <li>
+                            <div class="divider"></div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header waves-effect waves-blue ">
+                    <i class="material-icons"
+                       style="position: relative; left: 17px;">person_pin</i>Estoque <i class="material-icons right"
+                                                                                        style="margin-right:0;">arrow_drop_down</i>
+                </a>
+                <div class="collapsible-body itensSubMenu">
+                    <ul>
+                        <li><a class="waves-effect waves-blue" href="#"><span>Verificar tal coisa</span></a></li>
+                        <li>
+                            <div class="divider"></div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Catraca</a></li>
+        <li><a class="waves-effect" href="#!">Cadastro ??</a></li>
+
+        <div class="col s12 l12 center" style="position: relative; top:280px;">
+            <img src="imgs/churrosteam.png" width="100" class="img-responsive">
+        </div>
+    </ul>
 
     <!-- CONTENT SIDE NAVBAR -->
     @*<ul id="slide-out" class="side-nav">

@@ -2,131 +2,97 @@
 @{
     ViewData["Title"] = "Principal";
 }
-<link href="~/css/paginas/principal.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="~/css/paginas/principal.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="parallax-container" id="parallaxIndex">
+        <div class="parallax"><img src="imgs/img-parallaxx.jfif"></div>
+        <div class="row container">
+            <div class="col s12 l6">
+                <h5 id="bemvindo">Bem vindo, <strong>Diego</strong> ;)</h5>
+                <h5 id="data"> </h5>
+                <p id="temperaturaDados">
+                    <span>Osasco - SP </span><br>
+                    <i class="wi wi-day-sunny"></i>
+                    23<i class="wi wi-celsius"></i>
+                </p>
+            </div>
+            <div class="col s12 l6">
+                <span class="right" id="horario"><i class="wi wi-time-1"></i> <span id="horarioAtual"></span> </span>
+            </div>
+        </div>
+    </div>
 
-<div class="parallax-container" id="parallaxIndex">
-    <div class="parallax" ><img src="imgs/img-parallaxx.jfif"></div>
+    <!-- CONTEUDO DA PAGINA EM SI -->
     <div class="row container">
-        <div class="col s12 l6">
-            <h5 id="bemvindo">Bem vindo, <strong>Diego</strong> ;)</h5>
-            <h5 id="data"> </h5>
-            <p id="temperaturaDados">
-                <span>Osasco - SP </span><br>
-                <i class="wi wi-day-sunny"></i>
-                23<i class="wi wi-celsius"></i>
-            </p>
+        <div class="col s12 l12">
+            <br>
+            <h5 class="center">CONSULTA RÁPIDA</h5>
+            <div class="divider"></div>
+            <br>
         </div>
-        <div class="col s12 l6">
-            <span class="right" id="horario"><i class="wi wi-time-1"></i> <span id="horarioAtual"></span> </span>
+        <div class="col s12 l4 consultaRapida center">
+            <i class="material-icons iconRapido large">attach_money</i>
+            <h5>Alunos Inadimplentes</h5>
+            <p>texto texto texto texto texteo texto</p>
         </div>
-    </div>
-</div>
+        <div class="col s12 l4 consultaRapida center">
+            <i class="material-icons iconRapido large">person_outline</i>
+            <h5>Ultimos Alunos</h5>
+            <p>texto texto texto texto texteo texto</p>
+        </div>
+        <div class="col s12 l4 consultaRapida center">
+            <i class="material-icons iconRapido large">drag_indicator</i>
+            <a href="" style="color: inherit;"> <h5>Estoque</h5> </a>
+            <p>texto texto texto texto texteo texto</p>
+        </div>
 
-<!-- CONTEUDO DA PAGINA EM SI -->
-<div class="row container">
-    <div class="col s12 l12">
-        <br>
-        <h5 class="center">CONSULTA RÁPIDA</h5>
-        <div class="divider"></div>
-        <br>
-    </div>
-    <div class="col s12 l4 consultaRapida center">
-        <i class="material-icons iconRapido large">attach_money</i>
-        <h5>Alunos Inadimplentes</h5>
-        <p>texto texto texto texto texteo texto</p>
-    </div>
-    <div class="col s12 l4 consultaRapida center">
-        <i class="material-icons iconRapido large">person_outline</i>
-        <h5>Ultimos Alunos</h5>
-        <p>texto texto texto texto texteo texto</p>
-    </div>
-    <div class="col s12 l4 consultaRapida center">
-        <i class="material-icons iconRapido large">drag_indicator</i>
-        <a href="" style="color: inherit;"> <h5>Estoque</h5> </a>
-        <p>texto texto texto texto texteo texto</p>
-    </div>
+        <div class="col s12 l12">
+            <br>
+            <h5 class="center">AULAS DE HOJE</h5>
+            <div class="divider"></div>
+            <br>
+            <table class="centered highlight">
+                <thead>
+                    <tr>
+                        <th>Horário</th>
+                        <th>Aula</th>
+                        <th>Professor</th>
+                    </tr>
+                </thead>
 
-    <div class="col s12 l12">
-        <br>
-        <h5 class="center">AULAS DE HOJE</h5>
-        <div class="divider"></div>
-        <br>
-        <table class="centered highlight">
-            <thead>
-                <tr>
-                    <th>Horário</th>
-                    <th>Aula</th>
-                    <th>Professor</th>
-                </tr>
-            </thead>
+                <tbody>
+                    <tr>
+                        <td>09:30</td>
+                        <td><i class="material-icons" title="Natação"> pool </i></td>
+                        <td>Renata</td>
+                    </tr>
+                    <tr>
+                        <td>12:30</td>
+                        <td><i class="material-icons" title="Musculação"> fitness_center </i></td>
+                        <td>Ricardo</td>
+                    </tr>
+                    <tr>
+                        <td>15:30</td>
+                        <td><i class="material-icons" title="Karate"> sports_kabaddi </i></td>
+                        <td>Diego</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-            <tbody>
-                <tr>
-                    <td>09:30</td>
-                    <td><i class="material-icons" title="Natação"> pool </i></td>
-                    <td>Renata</td>
-                </tr>
-                <tr>
-                    <td>12:30</td>
-                    <td><i class="material-icons" title="Musculação"> fitness_center </i></td>
-                    <td>Ricardo</td>
-                </tr>
-                <tr>
-                    <td>15:30</td>
-                    <td><i class="material-icons" title="Karate"> sports_kabaddi </i></td>
-                    <td>Diego</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 
-</div>
 
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
-<!--JavaScript at end of body for optimized loading-->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
-<script src="js/main.js"></script>
-<script>
-
-        function checkTime(i) {
-            if (i < 10) {
-                i = "0" + i;
-            }
-            return i;
-        }
-
-        function startTime() {
-            var today = new Date();
-            var h = today.getHours();
-            var m = today.getMinutes();
-            var s = today.getSeconds();
-            // add a zero in front of numbers<10
-            m = checkTime(m);
-            s = checkTime(s);
-            document.getElementById('horarioAtual').innerHTML = h + ":" + m + ":" + s;
-            t = setTimeout(function () {
-                startTime()
-            }, 500);
-        }
-        startTime();
-
-        function verificarData() {
-            var dateObj = new Date();
-            var month = dateObj.getUTCMonth() + 1; //months from 1-12
-            var day = dateObj.getUTCDate();
-            var year = dateObj.getUTCFullYear();
-            var meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Setembro", "Dezembro"];
-            var dias = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"];
-
-            var dayNome = dias[dateObj.getDay()];
-            month = meses[dateObj.getMonth()];
-
-            newdate = dayNome + ", " + day + " de " + month;
-            document.getElementById('data').innerHTML = newdate;
-        }
-        verificarData();
-
-</script>
-
+    <script src="js/main.js"></script>
+    <script src="~/js/tempo.js"></script> 
+    <script src="~/js/site.js"></script>
+</body>
+</html>
