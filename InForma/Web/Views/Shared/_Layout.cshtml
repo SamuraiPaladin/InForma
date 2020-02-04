@@ -2,16 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    @*<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">*@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@ViewData["Title"] - inForma</title>
-    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
-    <!--Import materialize.css-->
     <link rel="stylesheet" href="~/css/materialize.min.css">
     <!-- Google Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    @*<link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/public.css" />*@
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/public.css" />
 
 </head>
 <body>
@@ -319,7 +317,7 @@
             </nav>
         </header>*@
     <div>
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3" style="padding:10px">
             @RenderBody()
         </main>
     </div>
@@ -330,10 +328,9 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
     <script src="~/js/materialize.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @*<script src="~/js/menu.js" asp-append-version="true"></script>*@
+    <script src="~/js/menu.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
