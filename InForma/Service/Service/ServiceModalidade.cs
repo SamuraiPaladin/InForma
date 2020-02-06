@@ -10,16 +10,25 @@ namespace Service.Service
 {
     public class ServiceModalidade : IServiceRepository<Modalidade>
     {
-        //service modalidade
-        private readonly ModalidadeDAO modalidadeDAO;
-        public ServiceModalidade()
+
+        private readonly IDAO<Modalidade> dAO;
+
+        public ServiceModalidade(IDAO<Modalidade> dAO)
         {
-            modalidadeDAO = new ModalidadeDAO();
+            this.dAO = dAO;
         }
+
         public bool Adicionar(Modalidade entidade)
         {
-            modalidadeDAO.VerificarSeJaExisteNoBanco(entidade);
-            throw new NotImplementedException();
+            if (VerificaSeJaExisteNobBancoDeDadosServico(entidade))
+                return false;
+            else
+                return dAO.Adicionar(entidade);
+        }
+
+        private bool VerificaSeJaExisteNobBancoDeDadosServico(Modalidade entidade)
+        {
+            return dAO.VerificarSeJaExisteNoBanco(entidade);
         }
 
         public string Atualizar(Modalidade entidade)
