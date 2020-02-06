@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Infra.Contexto;
 using Infra.DB;
 using Infra.IDAO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,6 +27,8 @@ namespace Web
         {
             services.AddControllersWithViews();
             services.AddScoped<IServiceRepository<Modalidade>, ServiceModalidade>();
+            services.AddScoped<IDAO<Modalidade>, ModalidadeDAO>();
+            services.AddDbContext<DataContext>(options => options.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Projetos\\TCC\\InForma\\InForma\\Infra\\BANCO\\inForma.mdf;Integrated Security=True"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

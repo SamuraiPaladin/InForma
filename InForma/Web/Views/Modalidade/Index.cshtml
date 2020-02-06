@@ -61,9 +61,13 @@
                      success: function (dados) {
                          switch (dados) {
                              case "Preenchimento obrigatório":
-                                M.toast({ html: dados,classes: 'rounded orange'});
+                                 M.toast({ html: dados, classes: 'rounded orange'});
                              break;
-
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green' });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
                              default:
                          }
                 }

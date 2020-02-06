@@ -11,7 +11,6 @@ namespace Web.Controllers
     public class ModalidadeController : Controller
     {
         private readonly IServiceRepository<Modalidade> _service;
-
         public ModalidadeController(IServiceRepository<Modalidade> service)
         {
             _service = service;
@@ -25,9 +24,8 @@ namespace Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(modalidade.Descricao) || string.IsNullOrWhiteSpace(modalidade.TipoModalidade))
                 return Json("Preenchimento obrigatório");
-
-            _service.Adicionar(modalidade);
-            return Json("Funcionou");
+            else
+                return Json(_service.Adicionar(modalidade));
         }
 
     }
