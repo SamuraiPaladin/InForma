@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Infra.IDAO
-{
+{   //Interface DAO
     public interface IDAO<T> where T: class
     {
         bool Adicionar(T entidade);

@@ -9,6 +9,7 @@ using System.Text;
 
 namespace Infra.DB
 {
+    //Modalidade
     public class ModalidadeDAO : IDAO<Modalidade>
     {
         private readonly DataContext _context;
