@@ -7,6 +7,7 @@ namespace Infra.Contexto
 {
     public class DataContext: DbContext
     {
+        //datacontext
         public DbSet<Model.Entity.Modalidade> Modalidades { get; set; }
         public DataContext(DbContextOptions<DataContext> options)
         : base(options)

@@ -10,7 +10,7 @@ namespace Service.Service
 {
     public class ServiceModalidade : IServiceRepository<Modalidade>
     {
-
+        //service modalidade
         private readonly ModalidadeDAO modalidadeDAO;
         public ServiceModalidade()
         {

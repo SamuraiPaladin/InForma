@@ -8,6 +8,7 @@ using System.Text;
 
 namespace Infra.DB
 {
+    //Modalidade
     public class ModalidadeDAO : IDAO<Modalidade>
     {
         public bool Adicionar(Modalidade entidade)
