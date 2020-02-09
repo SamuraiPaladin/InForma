@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\Infra.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{1FEE7313-0BFE-4D9F-BB08-E942598959E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{A38D7FB8-9C1E-4403-AC89-6599EDAD94E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Web.csproj", "{A38D7FB8-9C1E-4403-AC89-6599EDAD94E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extra", "Extra", "{5A2BD683-866A-4850-A303-7B64FECBB7A5}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Users\david\Documents\script.sql = ..\..\..\..\Users\david\Documents\script.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
