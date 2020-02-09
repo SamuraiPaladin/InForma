@@ -11,15 +11,6 @@ namespace Model.Entity
         public Modalidade()
         {
         }
-
-        public Modalidade(int id, string descricao, string tipoModalidade, bool ativo)
-        {
-            Id = id;
-            Descricao = descricao;
-            TipoModalidade = tipoModalidade;
-            Ativo = ativo;
-        }
-
         public int Id { get; set; }
         [Required(ErrorMessage = "Preenchimento obrigatório campo Descrição")]
         public string Descricao { get; set; }

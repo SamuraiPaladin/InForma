@@ -55,7 +55,7 @@ namespace Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Modalidade}/{action=Index}/{id?}");
+                    pattern: "{controller=Modalidade}/{action=Cadastrar}/{id?}");
             });
         }
     }

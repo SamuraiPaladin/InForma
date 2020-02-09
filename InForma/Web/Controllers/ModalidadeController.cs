@@ -18,15 +18,38 @@ namespace Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(_service.ListaCompleta());
         }
         public JsonResult Adicionar(Modalidade modalidade)
         {
-            if (string.IsNullOrWhiteSpace(modalidade.Descricao) || string.IsNullOrWhiteSpace(modalidade.TipoModalidade))
+            if (VerificaSeTemCampoVazioOuNulo(modalidade))
                 return Json("Preenchimento obrigatório");
             else
                 return Json(_service.Adicionar(modalidade));
         }
 
+        private static bool VerificaSeTemCampoVazioOuNulo(Modalidade modalidade)
+        {
+            return string.IsNullOrWhiteSpace(modalidade.Descricao) || string.IsNullOrWhiteSpace(modalidade.TipoModalidade);
+        }
+
+        public JsonResult Editar(Modalidade modalidade, Modalidade modalidadeEditar)
+        {
+            if (VerificaSeTemCampoVazioOuNulo(modalidadeEditar))
+                return Json("Preenchimento obrigatório");
+            else
+                return Json(_service.Atualizar(modalidade, modalidadeEditar));
+        }
+        public JsonResult Deletar(Modalidade modalidade)
+        {
+            if (VerificaSeTemCampoVazioOuNulo(modalidade))
+                return Json("Preenchimento obrigatório");
+            else
+                return Json(_service.Deletar(modalidade));
+        }
+        public IActionResult Cadastrar()
+        {
+            return View();
+        }
     }
 }

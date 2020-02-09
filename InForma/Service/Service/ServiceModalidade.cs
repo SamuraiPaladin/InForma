@@ -31,24 +31,22 @@ namespace Service.Service
             return dAO.VerificarSeJaExisteNoBanco(entidade);
         }
 
-        public string Atualizar(Modalidade entidade)
+        public bool Atualizar(Modalidade entidade, Modalidade entidadeEditar)
         {
-            throw new NotImplementedException();
+            if (VerificaSeJaExisteNobBancoDeDadosServico(entidadeEditar))
+                return false;
+            else
+                return dAO.Atualizar(entidade, entidadeEditar);
         }
 
-        public Modalidade BuscaPorId(int id)
+        public bool Deletar(Modalidade entidade)
         {
-            throw new NotImplementedException();
-        }
-
-        public string Deletar(Modalidade entidade)
-        {
-            throw new NotImplementedException();
+            return dAO.Deletar(entidade);
         }
 
         public IList<Modalidade> ListaCompleta()
         {
-            throw new NotImplementedException();
+            return dAO.ListaCompleta();
         }
     }
 }

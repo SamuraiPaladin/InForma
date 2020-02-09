@@ -22,33 +22,35 @@ namespace Infra.DB
         public bool Adicionar(Modalidade entidade)
         {
             _context.Modalidades.Add(entidade);
+            return SalvarAlteracoes(entidade);
+        }
+
+        public bool Atualizar(Modalidade entidade, Modalidade entidadeEditar)
+        {
+            _context.Modalidades.Update(entidadeEditar);
+            return SalvarAlteracoes(entidadeEditar);
+        }
+
+        private bool SalvarAlteracoes(Modalidade entidadeEditar)
+        {
             _context.SaveChanges();
-            return entidade.Id > 0 ? true : false;
+            return entidadeEditar.Id > 0 ? true : false;
         }
 
-        public string Atualizar(Modalidade entidade)
+        public bool Deletar(Modalidade entidade)
         {
-            throw new NotImplementedException();
-        }
-
-        public Modalidade BuscaPorId(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Deletar(Modalidade entidade)
-        {
-            throw new NotImplementedException();
+            _context.Modalidades.Remove(entidade);
+            return SalvarAlteracoes(entidade);
         }
 
         public IList<Modalidade> ListaCompleta()
         {
-            throw new NotImplementedException();
+            return _context.Modalidades.OrderBy(x=> x.TipoModalidade).ToList();
         }
 
         public bool VerificarSeJaExisteNoBanco(Modalidade entidade)
         {
-            var quantidadeDeRegistros = _context.Modalidades.Where(x => x.Descricao == entidade.Descricao && x.TipoModalidade == entidade.TipoModalidade).ToList();
+            var quantidadeDeRegistros = _context.Modalidades.Where(x => x.TipoModalidade == entidade.TipoModalidade).ToList();
             return quantidadeDeRegistros.Count() > 0 ? true : false;
         }
     }

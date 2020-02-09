@@ -8,8 +8,7 @@ namespace Service.IService
     {
         bool Adicionar(T entidade);
         IList<T> ListaCompleta();
-        T BuscaPorId(int id);
-        string Atualizar(T entidade);
-        string Deletar(T entidade);
+        bool Atualizar(T entidade, T entidadeEditar);
+        bool Deletar(T entidade);
     }
 }
