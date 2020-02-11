@@ -28,11 +28,13 @@ namespace Web
             services.AddControllersWithViews();
             services.AddScoped<IServiceRepository<Modalidade>, ServiceModalidade>();
             services.AddScoped<IServiceRepository<Funcao>, ServiceFuncao>();
-
+            services.AddScoped<IServiceUnidade<Unidade>, ServiceUnidade>();
 
             services.AddScoped<IDAO<Modalidade>, ModalidadeDAO>();
             services.AddScoped<IDAO<Funcao>, FuncaoDAO>();
-            
+            services.AddScoped<IDAO<Unidade>, UnidadeDAO>();
+
+
             services.AddDbContext<DataContext>(options => options.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Projetos\\TCC\\InForma\\InForma\\Infra\\BANCO\\inForma.mdf;Integrated Security=True"));
         }
 
@@ -60,7 +62,7 @@ namespace Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Funcao}/{action=Cadastrar}/{id?}");
+                    pattern: "{controller=Unidade}/{action=Index}/{id?}");
             });
         }
     }

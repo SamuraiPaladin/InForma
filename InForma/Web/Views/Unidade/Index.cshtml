@@ -1,4 +1,4 @@
-﻿
+﻿@model IList<Model.Entity.Unidade>;
 @{
     ViewData["Title"] = "Unidade";
 }
@@ -6,60 +6,298 @@
 <nav class="clean">
     <div class="nav-wrapper">
         <div class="col s12">
-            <a href="../index.html" class="breadcrumb">Home</a>
-            <a class="breadcrumb">Cadastro</a>
-            <a href="cadastro_unidade.html" class="breadcrumb">Cadastrar Unidade</a>
+            <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+            <a href="@Url.Action("Index", "Unidade")" class="breadcrumb">Unidade</a>
         </div>
     </div>
 </nav>
 
-<div class="col s12 l12">
-    <h4 class="flow-text">Cadastrar Unidade</h4>
-    <br><br>
+@if (Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Endereço</th>
+                <th>Número</th>
+                <th>CEP</th>
+                <th>Telefone</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Descricao</td>
+                    <td>@item.Endereco</td>
+                    <td>@item.Numero</td>
+                    <td>@item.CEP</td>
+                    <td>@item.Telefone</td>
+                    <td>@item.Bairro</td>
+                    <td>@item.Cidade</td>
+                    <td>@item.Estado</td>
+                    <td>
+                        <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.Id', '@item.Descricao', '@item.Endereco',
+        '@item.Numero', '@item.CEP','@item.Telefone', '@item.Bairro', '@item.Cidade', '@item.Estado', 'Editar')"><i class="material-icons">create</i></a>
+                        <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.Id', '@item.Descricao', '@item.Endereco',
+        '@item.Numero', '@item.CEP','@item.Telefone', '@item.Bairro', '@item.Cidade', '@item.Estado', 'Deletar')"><i class="material-icons">delete_forever</i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
-    <form class="col s12 l12">
-        <div class="input-field col s6">
-            <input placeholder="Ex: Osasco, Penha, Paulista" id="nome_unidade" type="text" class="validate">
-            <label for="nome_unidade">Nome da Unidade</label>
-        </div>
 
-        <div class="input-field col s6">
-            <input placeholder="Ex: Av. Paulista..." id="endereco" type="text" class="validate">
-            <label for="endereco">Endereco</label>
-        </div>
-
-        <div class="input-field col s6">
-            <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairro" type="text" class="validate">
-            <label for="bairro">Bairro</label>
-        </div>
-
-        <div class="input-field col s6">
-            <input placeholder="Ex: 4300..." id="numero" type="text" class="validate">
-            <label for="numero">Numero</label>
-        </div>
-
-        <div class="input-field col s6">
-            <input placeholder="Ex: Unidade de natacao, Unidade de academia..." id="desc" type="text"
-                   class="validate">
-            <label for="desc">Descricao</label>
+<div id="modalEditar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Editar Função</h4>
         </div>
 
         <div class="col s12 l12">
-            <a class="waves-effect waves-light btn modal-trigger right" href="#modalCadastroUnidade" style="background-color: #af2405;">cadastrar</a>
+            <form class="col s12 l12" id="formularioEditar">
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Osasco, Penha, Paulista" id="descricaoEditar" type="text" class="validate">
+                    <label for="descricaoEditar">Nome da Unidade</label>
+                </div>
+
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 46361345, 84512574..." id="telefoneEditar" type="text" class="validate">
+                    <label for="telefoneEditar">Telefone</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 08568520..." onblur="PesquisaCEP()" id="cepEditar" type="text" class="validate">
+                    <label for="cepEditar">CEP</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Av. Paulista..." id="enderecoEditar" type="text" class="validate">
+                    <label for="enderecoEditar">Endereco</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 4300..." id="numeroEditar" type="text" class="validate">
+                    <label for="numeroEditar">Numero</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairroEditar" type="text" class="validate">
+                    <label for="bairroEditar">Bairro</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Poá, Suzano..." id="cidadeEditar" type="text" class="validate">
+                    <label for="cidadeEditar">Cidade</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: SP, MG..." id="estadoEditar" type="text" class="validate">
+                    <label for="estadoEditar">Estado</label>
+                </div>
+
+                <div id="modalCadastroUnidade" class="modal">
+                    <div class="modal-content">
+                        <h4 class="flow-text center">Unidade Cadastrada!</h4>
+                        <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                    </div>
+                </div>
+                <input id="idEditar" style="display: none;" />
+            </form>
         </div>
 
-        <div id="modalCadastroUnidade" class="modal">
-            <div class="modal-content">
-                <h4 class="flow-text center">Unidade Cadastrada!</h4>
-                <p class="center">Clique em "SAIR" para voltar a página principal.</p>
 
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"
-                   onclick="{redirect()}">sair</a>
-            </div>
-        </div>
-
-    </form>
-
+    </div>
+    <div class="modal-footer">
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
+    </div>
 </div>
+
+<div id="modalDeletar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Deletar Função</h4>
+        </div>
+        <div class="col s12 l12">
+            <form class="col s12 l12" id="formularioDeletar">
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Osasco, Penha, Paulista" id="descricaoDeletar" type="text" class="validate" readonly>
+                    <label for="descricaoDeletar">Nome da Unidade</label>
+                </div>
+
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 46361345, 84512574..." id="telefoneDeletar" type="text" class="validate" readonly>
+                    <label for="telefoneDeletar">Telefone</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 08568520..." onblur="PesquisaCEP()" id="cepDeletar" type="text" class="validate" readonly>
+                    <label for="cepDeletar">CEP</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Av. Paulista..." id="enderecoDeletar" type="text" class="validate" readonly>
+                    <label for="enderecoDeletar">Endereco</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 4300..." id="numeroDeletar" type="text" class="validate" readonly>
+                    <label for="numeroDeletar">Numero</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairroDeletar" type="text" class="validate" readonly>
+                    <label for="bairroDeletar">Bairro</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Poá, Suzano..." id="cidadeDeletar" type="text" class="validate" readonly>
+                    <label for="cidadeDeletar">Cidade</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: SP, MG..." id="estadoDeletar" type="text" class="validate" readonly>
+                    <label for="estadoDeletar">Estado</label>
+                </div>
+
+                <div id="modalCadastroUnidade" class="modal">
+                    <div class="modal-content">
+                        <h4 class="flow-text center">Unidade Cadastrada!</h4>
+                        <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                    </div>
+                </div>
+                <input id="idEditar" style="display: none;" />
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        let valorId;
+        let valorDescricao;
+        let valorEndereco;
+        let valorNumero;
+        let valorCep;
+        let valorTelefone;
+        let valorBairro;
+        let valorCidade;
+        let valorEstado;
+
+        function EditarModal(id, descricao, endereco, numero, cep, telefone, bairro, cidade, estado, model) {
+            valorId = id;
+            valorDescricao = descricao;
+            valorEndereco = endereco;
+            valorNumero = numero;
+            valorCep = cep;
+            valorTelefone = telefone;
+            valorBairro = bairro;
+            valorCidade = cidade;
+            valorEstado = estado;
+            document.getElementById("descricao" + model).value = descricao;
+            document.getElementById("endereco" + model).value = endereco;
+            document.getElementById("numero" + model).value = numero;
+            document.getElementById("cep" + model).value = cep;
+            document.getElementById("telefone" + model).value = telefone;
+            document.getElementById("bairro" + model).value = bairro;
+            document.getElementById("cidade" + model).value = cidade;
+            document.getElementById("estado" + model).value = estado;
+            document.getElementById("id" + model).value = id;
+        }
+        function Deletar() {
+            var unidade = {
+                Id: valorId, Descricao: valorDescricao, Endereco: valorEndereco, Numero: valorNumero, CEP: valorCep, Telefone: valorTelefone, Bairro: valorBairro
+                , Cidade: valorCidade, Estado: valorEstado};
+            $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Deletar","Unidade")",
+                     data: { unidade: unidade},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Deletado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             default:
+                         }
+                }
+            });
+        });
+        }
+
+
+
+        function Editar() {
+            var unidade = {
+                Id: valorId, Descricao: valorDescricao, Endereco: valorEndereco, Numero: valorNumero, CEP: valorCep, Telefone: valorTelefone, Bairro: valorBairro
+                , Cidade: valorCidade, Estado: valorEstado};
+            var unidadeEditar = {
+                Id: document.getElementById("idEditar").value, Descricao: document.getElementById("descricaoEditar").value, Endereco: document.getElementById("enderecoEditar").value, Numero: document.getElementById("numeroEditar").value,
+                CEP: document.getElementById("cepEditar").value, Telefone: document.getElementById("telefoneEditar").value, Bairro: document.getElementById("bairroEditar").value
+                , Cidade: document.getElementById("cidadeEditar").value, Estado: document.getElementById("estadoEditar").value};
+            $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Editar","Unidade")",
+                     data: { unidade: unidade, unidadeEditar: unidadeEditar },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Editado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+        }
+        function PesquisaCEP() {
+            let cep = document.getElementById('cepEditar').value;
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("BuscaCep","Unidade")",
+                     data: { cep: cep },
+                     success: function (dados) {
+                         document.getElementById('bairroEditar').value = dados.bairro;
+                         document.getElementById('enderecoEditar').value = dados.endereco ;
+                         document.getElementById('cidadeEditar').value = dados.cidade ;
+                         document.getElementById('estadoEditar').value = dados.estado ;
+                         }
+                })
+            });
+        }
+        $(document).ready(function(){
+          $('.modal').modal();
+        });
+    </script>
+}

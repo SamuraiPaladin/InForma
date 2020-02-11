@@ -26,7 +26,7 @@ namespace Web.Controllers
 
         private static bool VerificaSeTemCampoVazioOuNulo(Modalidade modalidade)
         {
-            return string.IsNullOrWhiteSpace(modalidade.Descricao) || string.IsNullOrWhiteSpace(modalidade.TipoModalidade);
+            return string.IsNullOrWhiteSpace(modalidade.Descricao.Trim()) || string.IsNullOrWhiteSpace(modalidade.TipoModalidade.Trim());
         }
 
         public JsonResult Editar(Modalidade modalidade, Modalidade modalidadeEditar)

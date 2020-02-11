@@ -30,7 +30,7 @@ namespace Web.Controllers
 
         private static bool VerificaSeTemCampoVazioOuNulo(Funcao funcao)
         {
-            return string.IsNullOrWhiteSpace(funcao.Descricao) || string.IsNullOrWhiteSpace(funcao.TipoFuncao);
+            return string.IsNullOrWhiteSpace(funcao.Descricao.Trim()) || string.IsNullOrWhiteSpace(funcao.TipoFuncao.Trim());
         }
 
         public JsonResult Editar(Funcao funcao, Funcao funcaoEditar)
