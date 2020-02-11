@@ -32,9 +32,7 @@ namespace Web
 
             services.AddScoped<IDAO<Modalidade>, ModalidadeDAO>();
             services.AddScoped<IDAO<Funcao>, FuncaoDAO>();
-            services.AddScoped<IDAO<Unidade>, UnidadeDAO>();
-
-
+            
             services.AddDbContext<DataContext>(options => options.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Projetos\\TCC\\InForma\\InForma\\Infra\\BANCO\\inForma.mdf;Integrated Security=True"));
         }
 
