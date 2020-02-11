@@ -23,13 +23,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" style="position:relative" class="brand-logo"><img src="~/imgs/informa.png" width="200" class="img-responsive"></a>
+                    <a asp-controller="Principal" asp-action="Index" style="position:relative" class="brand-logo"><img src="~/imgs/informa.png" width="200" class="img-responsive"></a>
                 </li>
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">JavaScript</a></li>
+                <li><a asp-controller="Principal" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Unidade" asp-action="Cadastrar">Unidade</a></li>
+                <li><a asp-controller="Modalidade" asp-action="Cadastrar">Modalidade</a></li>
             </ul>
         </div>
     </nav>
@@ -59,16 +59,14 @@
                 <div class="collapsible-body">
                     <ul>
                         <li>
-                            <a class="waves-effect waves-blue"
-                               href="cadastro/cadastro_unidade.html"><span>Unidade</span></a>
+                            <a class="waves-effect waves-blue" asp-controller="Unidade" asp-action="Cadastrar"><span>Unidade</span></a>
                         </li>
                         <li>
-                            <a class="waves-effect waves-blue"
-                               href="cadastro/cadastro_modalidade.html"><span>Modalidade</span></a>
+                            <a class="waves-effect waves-blue" asp-controller="Modalidade" asp-action="Cadastrar"><span>Modalidade</span></a>
                         </li>
-                        <li><a class="waves-effect waves-blue" href="#"><span>Tipo de Colaborador</span></a></li>
-                        <li><a class="waves-effect waves-blue" href="#"><span>Colaborador</span></a></li>
-                        <li><a class="waves-effect waves-blue" href="#"><span>Fornecedor</span></a></li>
+                        <li><a class="waves-effect waves-blue" asp-controller="Funcao" asp-action="Cadastrar"><span>Tipo de Colaborador</span></a></li>
+                        <li><a class="waves-effect waves-blue" asp-controller="Funcao" asp-action="Cadastrar"><span>Colaborador</span></a></li>
+                        <li><a class="waves-effect waves-blue" asp-controller="Funcao" asp-action="Cadastrar"><span>Fornecedor</span></a></li>
                         <li>
                             <div class="divider"></div>
                         </li>

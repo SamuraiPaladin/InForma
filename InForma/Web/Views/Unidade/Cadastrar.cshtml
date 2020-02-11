@@ -3,19 +3,25 @@
     ViewData["Title"] = "Cadastrar";
 }
 
-<nav class="clean">
-    <div class="nav-wrapper">
-        <div class="col s12">
-            <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
-            <a href="@Url.Action("Index", "Unidade")" class="breadcrumb">Unidade</a>
-            <a href="@Url.Action("Cadastrar", "Unidade")" class="breadcrumb">Cadastrar Unidade</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="~/css/paginas/principal.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="clean">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                <a href="@Url.Action("Index", "Unidade")" class="breadcrumb">Unidade</a>
+                <a href="@Url.Action("Cadastrar", "Unidade")" class="breadcrumb">Cadastrar Unidade</a>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<div class="col s12 l12">
-    <h4 class="flow-text">Cadastrar Unidade</h4>
-    <br><br>
+    <div class="col s12 l12">
+        <h4 class="flow-text">Cadastrar Unidade</h4>
+        <br><br>
 
         <form class="col s12 l12">
             <div class="input-field col s6">
@@ -77,10 +83,10 @@
 
         </form>
 
-</div>
+    </div>
 
-@section scripts{
-    <script>
+    @section scripts{
+        <script>
         function PesquisaCEP() {
             let cep = document.getElementById('cep').value;
              $(function () {
@@ -90,10 +96,10 @@
                      url: "@Url.Action("BuscaCep","Unidade")",
                      data: { cep: cep },
                      success: function (dados) {
-                         document.getElementById('bairro').value = dados.bairro; 
-                         document.getElementById('endereco').value = dados.endereco ; 
-                         document.getElementById('cidade').value = dados.cidade ; 
-                         document.getElementById('estado').value = dados.estado ; 
+                         document.getElementById('bairro').value = dados.bairro;
+                         document.getElementById('endereco').value = dados.endereco ;
+                         document.getElementById('cidade').value = dados.cidade ;
+                         document.getElementById('estado').value = dados.estado ;
                          }
                 })
             });
@@ -125,5 +131,15 @@
             });
         });
     }
-    </script>
-}
+        </script>
+    }
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script src="~/js/main.js"></script>
+    <script src="~/js/tempo.js"></script>
+    <script src="~/js/site.js"></script>
+</body>
+</html>
