@@ -1,4 +1,4 @@
-﻿
+﻿@model IList<Model.Entity.Modalidade>
 @{
     ViewData["Title"] = "Modalidade";
 }
@@ -7,49 +7,103 @@
 <div class="breadcrumbs">
     <div class="clean">
         <div class="">
-            <a href="../index.html" class=""><font color=#000000>Home</font></a> >
-            <a class=""><font color=#000000>Cadastro</font></a> >
-            <a href="cadastro_modalidade.html" class=""><font color=#000000>Modalidade</font></a>
+            <a href="@Url.Action("Index","Principal")"><font color=#000000>Principal</font></a> >
+            <a href="@Url.Action("Index","Modalidade")"><font color=#000000>Modalidade</font></a> >
         </div>
     </div>
 </div>
 
 <div class="clean"></div>
 <div class="col s12 l12">
-    <h4 class="flow-text">Cadastrar Modalidade</h4>
+    <h4 class="flow-text">Modalidade</h4>
     <br><br>
-
-    <form class="col s12 l12" id="formularioAdicionar">
-        <div class="input-field col s6">
-            <input placeholder="Ex:Natação, Hidroginastica, Musculação, Judô..." id="modalidade" type="text" class="validate">
-            <label for="modalidade">Nome da Modalidade</label>
-        </div>
-
-        <div class="input-field col s6">
-            <input placeholder="Ex: Esporte..." id="descricao" type="text" class="validate" >
-            <label for="desc">Descrição</label>
+    @if (Model.Count > 0)
+    {
+        <table class="highlight striped tabela">
+            <thead>
+                <tr>
+                    <th>Modalidade</th>
+                    <th>Descrição</th>
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <tr>
+                        <td>@item.TipoModalidade</td>
+                        <td>@item.Descricao</td>
+                        <td>
+                            <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.TipoModalidade', '@item.Descricao', '@item.Id','Editar')"><i class="material-icons">create</i></a>
+                            <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.TipoModalidade', '@item.Descricao', '@item.Id','Deletar')"><i class="material-icons">delete_forever</i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    }
+</div>
+<div id="modalEditar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Editar Modalidade</h4>
         </div>
 
         <div class="col s12 l12">
-            <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">cadastrar</a>
+            <form class="col s12 l12" id="formularioEditar">
+                <div class="input-field col s6">
+                    <input placeholder="Ex:Natação, Hidroginastica, Musculação, Judô..." id="modalidadeEditar" type="text" class="validate">
+                    <label for="modalidadeEditar">Nome da Modalidade</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Esporte..." id="descricaoEditar" type="text" class="validate">
+                    <label for="descricaoEditar">Descrição</label>
+                </div>
+                <input id="idEditar" style="display: none;" />
+            </form>
         </div>
 
-        @*<div id="modalCadastrar" class="modal">
-                <div class="modal-content">
-                    <h4 class="flow-text center">Modalidade Cadastrada!</h4>
-                    <p class="center">Clique em "SAIR" para voltar a página principal.</p>
 
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"
-                       onclick="{redirect()}">sair</a>
-                </div>
-            </div>*@
-    </form>
+    </div>
+    <div class="modal-footer">
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
+    </div>
 </div>
+
+
+<div id="modalDeletar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Deletar Modalidade</h4>
+        </div>
+        <div class="col s12 l12">
+            <form class="col s12 l12" id="formularioDeletar">
+                <div class="input-field col s6">
+                    <input placeholder="Ex:Natação, Hidroginastica, Musculação, Judô..." readonly id="modalidadeDeletar" type="text" class="validate">
+                    <label for="modalidadeDeletar">Nome da Modalidade</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Esporte..." id="descricaoDeletar" type="text" class="validate" readonly>
+                    <label for="descricaoDeletar">Descrição</label>
+                </div>
+                <input id="idDeletar" style="display: none;" />
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
+    </div>
+</div>
+
 
 @section scripts{
     <script>
+
+        var valorModalidade;
+        var valorDescricao;
+        var valorId;
         function Adicionar() {
             var modalidade = { TipoModalidade: document.getElementById("modalidade").value, Descricao: document.getElementById("descricao").value, Ativo: true };
              $(function () {
@@ -61,10 +115,10 @@
                      success: function (dados) {
                          switch (dados) {
                              case "Preenchimento obrigatório":
-                                 M.toast({ html: dados, classes: 'rounded orange'});
+                                 M.toast({ html: dados, classes: 'rounded orange' });
                              break;
                              case true:
-                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green' });
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
                                  break;
                              case false:
                                  M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
@@ -73,7 +127,74 @@
                 }
             });
         });
-    }
-
+        }
+        function EditarModal(modalidade, descricao, id, model) {
+            valorModalidade = modalidade;
+            valorDescricao = descricao;
+            valorId = id;
+            if (model === 'Editar') {
+                document.getElementById("modalidadeEditar").value = modalidade;
+                document.getElementById("descricaoEditar").value = descricao;
+                document.getElementById("idEditar").value = id;
+            } else {
+                document.getElementById("modalidadeDeletar").value = modalidade;
+                document.getElementById("descricaoDeletar").value = descricao;
+                document.getElementById("idDeletar").value = id;
+            }
+        }
+        function Editar(modalidade, descricao) {
+            var modalidade = { TipoModalidade: valorModalidade, Descricao: valorDescricao };
+            var modalidadeEditar = { TipoModalidade: document.getElementById("modalidadeEditar").value, Descricao: document.getElementById("descricaoEditar").value, Ativo: true, Id : document.getElementById("idEditar").value };
+            $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Editar","Modalidade")",
+                     data: { modalidade: modalidade, modalidadeEditar: modalidadeEditar },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Editado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+        }
+        function Deletar() {
+            var modalidade = { TipoModalidade: document.getElementById("modalidadeDeletar").value, Descricao: document.getElementById("descricaoDeletar").value, Ativo: true, Id: document.getElementById("idDeletar").value };
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Deletar","Modalidade")",
+                     data: { modalidade: modalidade },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Deletado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             default:
+                         }
+                }
+            });
+        });
+        }
+        $(document).ready(function(){
+          $('.modal').modal();
+        });
+        $(document).ready(function() {
+    $('.tabela').DataTable();
+} );
     </script>
+
 }

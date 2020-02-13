@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="~/css/paginas/principal.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- BREADCRUMB -->
+    <div class="breadcrumbs">
+        <div class="clean">
+            <div class="">
+                <a href="@Url.Action("Index","Principal")"><font color=#000000>Principal</font></a> >
+                <a href="@Url.Action("Index","Funcao")"><font color=#000000>Função</font></a> >
+                <a href="@Url.Action("Cadastrar","Funcao")" class=""><font color=#000000>Cadastro</font></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="clean"></div>
+    <div class="col s12 l12">
+        <h4 class="flow-text">Cadastrar Função</h4>
+        <br><br>
+
+        <form class="col s12 l12" id="formularioAdicionar">
+            <div class="input-field col s6">
+                <input placeholder="Ex:Recepcionista, contadora..." id="funcao" type="text" class="validate">
+                <label for="funcao">Nome da Função</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input placeholder="Ex: Limpeza das piscinas, manutenção" id="descricao" type="text" class="validate">
+                <label for="desc">Descrição</label>
+            </div>
+
+            <div class="col s12 l12">
+                <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">cadastrar</a>
+            </div>
+        </form>
+    </div>
+
+    @section scripts{
+        <script>
+        function Adicionar() {
+            var funcao = { TipoFuncao: document.getElementById("funcao").value, Descricao: document.getElementById("descricao").value, Ativo: true };
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Adicionar","Funcao")",
+                     data: { funcao: funcao },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+    }
+
+        </script>
+    }
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script src="~/js/main.js"></script>
+    <script src="~/js/tempo.js"></script>
+    <script src="~/js/site.js"></script>
+</body>
+</html>
+
+

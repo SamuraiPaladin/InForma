@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="~/css/paginas/principal.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="clean">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                <a href="@Url.Action("Index", "Unidade")" class="breadcrumb">Unidade</a>
+                <a href="@Url.Action("Cadastrar", "Unidade")" class="breadcrumb">Cadastrar Unidade</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="col s12 l12">
+        <h4 class="flow-text">Cadastrar Unidade</h4>
+        <br><br>
+
+        <form class="col s12 l12">
+            <div class="input-field col s6">
+                <input placeholder="Ex: Osasco, Penha, Paulista" id="descricao" type="text" class="validate">
+                <label for="descricao">Nome da Unidade</label>
+            </div>
+
+
+            <div class="input-field col s6">
+                <input placeholder="Ex: 46361345, 84512574..." id="telefone" type="text" class="validate">
+                <label for="telefone">Telefone</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input placeholder="Ex: 08568520..." onblur="PesquisaCEP()" id="cep" type="text" class="validate">
+                <label for="cep">CEP</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input placeholder="Ex: Av. Paulista..." id="endereco" type="text" class="validate">
+                <label for="endereco">Endereco</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input placeholder="Ex: 4300..." id="numero" type="text" class="validate">
+                <label for="numero">Numero</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairro" type="text" class="validate">
+                <label for="bairro">Bairro</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input placeholder="Ex: Poá, Suzano..." id="cidade" type="text" class="validate">
+                <label for="cidade">Cidade</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input placeholder="Ex: SP, MG..." id="estado" type="text" class="validate">
+                <label for="estado">Estado</label>
+            </div>
+
+            <div class="col s12 l12">
+                <a class="waves-effect waves-light btn modal-trigger right" onclick="Adicionar()" style="background-color: #af2405;">cadastrar</a>
+            </div>
+
+            <div id="modalCadastroUnidade" class="modal">
+                <div class="modal-content">
+                    <h4 class="flow-text center">Unidade Cadastrada!</h4>
+                    <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"
+                       onclick="{redirect()}">sair</a>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+    @section scripts{
+        <script>
+        function PesquisaCEP() {
+            let cep = document.getElementById('cep').value;
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("BuscaCep","Unidade")",
+                     data: { cep: cep },
+                     success: function (dados) {
+                         document.getElementById('bairro').value = dados.bairro;
+                         document.getElementById('endereco').value = dados.endereco ;
+                         document.getElementById('cidade').value = dados.cidade ;
+                         document.getElementById('estado').value = dados.estado ;
+                         }
+                })
+            });
+        }
+
+        function Adicionar() {
+            var unidade = {
+                Descricao: document.getElementById("descricao").value, Endereco: document.getElementById("endereco").value, Numero: document.getElementById("numero").value, CEP: document.getElementById("cep").value,
+                Telefone: document.getElementById("telefone").value, Bairro: document.getElementById("bairro").value, Cidade: document.getElementById("cidade").value, Estado: document.getElementById("estado").value};
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Adicionar","Unidade")",
+                     data: { unidade: unidade},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+    }
+        </script>
+    }
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script src="~/js/main.js"></script>
+    <script src="~/js/tempo.js"></script>
+    <script src="~/js/site.js"></script>
+</body>
+</html>

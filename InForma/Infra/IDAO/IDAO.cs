@@ -8,9 +8,8 @@ namespace Infra.IDAO
     {
         bool Adicionar(T entidade);
         IList<T> ListaCompleta();
-        T BuscaPorId(int id);
-        string Atualizar(T entidade);
-        string Deletar(T entidade);
+        bool Atualizar(T entidade, T entidadeEditar);
+        bool Deletar(T entidade);
         bool VerificarSeJaExisteNoBanco(T entidade);
     }
 }
