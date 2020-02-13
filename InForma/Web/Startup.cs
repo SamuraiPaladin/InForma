@@ -35,7 +35,7 @@ namespace Web
             services.AddScoped<IDAO<Unidade>, UnidadeDAO>();
 
 
-            services.AddDbContext<DataContext>(options => options.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Projetos\\TCC\\InForma\\InForma\\Infra\\BANCO\\inForma.mdf;Integrated Security=True"));
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BANCO_DE_DADOS")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
