@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using OpenQA.Selenium;
 
 namespace Test
 {
@@ -8,7 +9,7 @@ namespace Test
         [Fact]
         public void Test1()
         {
-
+            Utilities.OpenChrome();
         }
     }
 }
