@@ -1,9 +1,5 @@
 ﻿using Model.Entity;
-using Service.IService;
 using Service.Service;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Test

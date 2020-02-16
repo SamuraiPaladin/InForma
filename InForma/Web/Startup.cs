@@ -34,8 +34,9 @@ namespace Web
             services.AddScoped<IDAO<Funcao>, FuncaoDAO>();
             services.AddScoped<IDAO<Unidade>, UnidadeDAO>();
 
+            services.AddDbContext<DataContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("BANCO_DE_DADOS")));
 
-            services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BANCO_DE_DADOS")));
+            //services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BANCO_DE_DADOS")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
