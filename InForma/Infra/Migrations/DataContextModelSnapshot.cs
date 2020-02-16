@@ -64,6 +64,47 @@ namespace Infra.Migrations
                     b.ToTable("Modalidades");
                 });
 
+            modelBuilder.Entity("Model.Entity.Turma", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DiaDaSemana")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HorarioFinal")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HorarioInicial")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ModalidadeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Professor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tipo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UnidadeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ModalidadeId");
+
+                    b.HasIndex("UnidadeId");
+
+                    b.ToTable("Turmas");
+                });
+
             modelBuilder.Entity("Model.Entity.Unidade", b =>
                 {
                     b.Property<int>("Id")
@@ -98,6 +139,21 @@ namespace Infra.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Unidades");
+                });
+
+            modelBuilder.Entity("Model.Entity.Turma", b =>
+                {
+                    b.HasOne("Model.Entity.Modalidade", "Modalidade")
+                        .WithMany()
+                        .HasForeignKey("ModalidadeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Model.Entity.Unidade", "Unidade")
+                        .WithMany()
+                        .HasForeignKey("UnidadeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

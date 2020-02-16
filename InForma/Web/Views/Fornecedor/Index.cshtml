@@ -3,49 +3,183 @@
     ViewData["Title"] = "Fornecedor";
 }
 
+<head>
+    <style>
+        nav.clean {
+            background: none;
+            box-shadow: none;
+        }
+
+            nav.clean .breadcrumb {
+                color: black;
+            }
+
+                nav.clean .breadcrumb:before {
+                    color: rgba(0, 0, 0, 0.7);
+                }
+
+        .breadcrumb {
+            color: black;
+            font-size: 15px;
+        }
+
+        .btn-flat {
+            background-color: #af2405;
+            color: #fff
+        }
+
+        .btn {
+            background-color: #af2405;
+        }
+
+            .btn:hover {
+                background-color: #7c1a04;
+            }
+
+        /* INPUT COLOR */
+        .input-field input:focus + label {
+            color: #af2405 !important;
+        }
+
+        .row .input-field input:focus {
+            border-bottom: 1px solid #af2405 !important;
+            box-shadow: 0 1px 0 0 #af2405 !important
+        }
+    </style>
+
+</head>
+
 <!-- BREADCRUMB -->
-<nav class="clean">
+<nav class="clean container">
     <div class="nav-wrapper">
         <div class="col s12">
-            <a href="../index.html" class="breadcrumb">Home</a>
-            <a class="breadcrumb">Cadastro</a>
-            <a href="cadastro_fornecedor.html" class="breadcrumb">Cadastrar Fornecedor</a>
+            <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+            <a href="#" class="breadcrumb">Cadastro</a>
+            <a href="@Url.Action("Index", "Fornecedor")" class="breadcrumb"><strong>Fornecedor</strong></a>
         </div>
     </div>
 </nav>
 
-<div class="col s12 l12">
-    <h4 class="flow-text">Cadastrar Fornecedor</h4>
-    <br><br>
+<div class="row container">
+    <div class="col s12 l12">
+        <a class="btn modal-trigger right" href="#cadastrarFornecedor">Cadastrar Fornecedor</a>
+    </div>
+</div>
 
-    <form class="col s12 l12">
-        <div class="input-field col s6">
-            <input placeholder="Ex: Ýpê, PoolThings..." id="nomefunc" type="text" class="validate">
-            <label for="nomefunc">Nome do Fornecedor</label>
-        </div>
+<div class="row container">
+    <div class="col s12 l12">
 
-        <div class="input-field col s6">
-            <input placeholder="Ex: Diego, Nathalia..." id="cargo" type="text" class="validate">
-            <label for="cargo">Responsável</label>
-        </div>
-
-        <div class="col s12 l12">
-            <a class="waves-effect waves-light btn modal-trigger right" href="#modalCadastroUnidade" style="background-color: #af2405;">cadastrar</a>
-        </div>
-
-        <div id="modalCadastroUnidade" class="modal">
+        <div id="cadastrarFornecedor" class="modal">
             <div class="modal-content">
-                <h4 class="flow-text center">Fornecedor Cadastrado!</h4>
-                <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+                <div class="modal-header">
+                    <h4>Cadastrar Fornecedor</h4>
+                </div>
+
+
+                <div class="col s12 l12">
+                    <form class="col s12 l12">
+                        <div class="input-field col s6">
+                            <input placeholder="Ex: Ýpê, PoolThings..." id="nomefunc" type="text" class="validate">
+                            <label for="nomefunc">Nome do Fornecedor</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input placeholder="Ex: Diego, Nathalia..." id="cargo" type="text" class="validate">
+                            <label for="cargo">Responsável</label>
+                        </div>
+
+                    </form>
+                </div>
 
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"
-                   onclick="{redirect()}">sair</a>
+                <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="">Cadastrar</a>
             </div>
         </div>
 
-    </form>
+        <table class="table centered highlight ">
+            <thead>
+                <tr>
+                    <th>Fornecedor</th>
+                    <th>Tipo</th>
+                    <th>Descricao</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ype</td>
+                    <td>Produto de Limpeza</td>
+                    <td>bla bla bla</td>
+                    <td>
+                        <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                        <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"><i class="material-icons">delete_forever</i></a>
+                    </td>
+                </tr>
 
+            </tbody>
+        </table>
+
+        <div id="modalEditar" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Cadastrar Fornecedor</h4>
+                </div>
+
+
+                <div class="col s12 l12">
+                    <form class="col s12 l12">
+                        <div class="input-field col s6">
+                            <input placeholder="Ex: Ýpê, PoolThings..." id="nomefunc" type="text" class="validate">
+                            <label for="nomefunc">Nome do Fornecedor</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input placeholder="Ex: Diego, Nathalia..." id="cargo" type="text" class="validate">
+                            <label for="cargo">Responsável</label>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="">Cadastrar</a>
+            </div>
+        </div>
+
+        <div id="modalDeletar" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Cadastrar Fornecedor</h4>
+                </div>
+
+
+                <div class="col s12 l12">
+                    <form class="col s12 l12">
+                        <div class="input-field col s6">
+                            <input placeholder="Ex: Ýpê, PoolThings..." id="nomefunc" type="text" class="validate" disabled>
+                            <label for="nomefunc">Nome do Fornecedor</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input placeholder="Ex: Diego, Nathalia..." id="cargo" type="text" class="validate" disabled>
+                            <label for="cargo">Responsável</label>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="">Cadastrar</a>
+            </div>
+        </div>
+
+    </div>
 </div>
+
+@section scripts{
+    <script src="js/main.js"></script>
+}
 
