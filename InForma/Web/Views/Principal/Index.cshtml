@@ -6,8 +6,21 @@
 <html lang="en">
 <head>
     <link href="~/css/paginas/principal.css" rel="stylesheet" />
+    <link href="~/lib/weather-icons-master/css/weather-icons.min.css" rel="stylesheet" />
+
+    <style>
+        #parallaxIndex {
+            height: 200px;
+            width: 100%;
+            margin-top: -30px;
+            position: relative;
+            top: -25px;
+        }
+    </style>
 </head>
 <body>
+
+
     <div class="parallax-container" id="parallaxIndex">
         <div class="parallax"><img src="imgs/img-parallaxx.jfif"></div>
         <div class="row container">
@@ -88,11 +101,11 @@
 
 
     <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/materialize.min.js"></script>
 
     <script src="js/main.js"></script>
-    <script src="~/js/tempo.js"></script> 
+    <script src="~/js/tempo.js"></script>
     <script src="~/js/site.js"></script>
 </body>
 </html>

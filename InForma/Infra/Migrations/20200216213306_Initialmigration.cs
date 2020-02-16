@@ -2,7 +2,7 @@
 
 namespace Infra.Migrations
 {
-    public partial class Teste : Migration
+    public partial class Initialmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,12 +55,57 @@ namespace Infra.Migrations
                 {
                     table.PrimaryKey("PK_Unidades", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Turmas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UnidadeId = table.Column<int>(nullable: false),
+                    ModalidadeId = table.Column<int>(nullable: false),
+                    Descricao = table.Column<string>(nullable: false),
+                    Professor = table.Column<string>(nullable: true),
+                    Tipo = table.Column<string>(nullable: true),
+                    DiaDaSemana = table.Column<string>(nullable: true),
+                    HorarioInicial = table.Column<string>(nullable: true),
+                    HorarioFinal = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Turmas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Turmas_Modalidades_ModalidadeId",
+                        column: x => x.ModalidadeId,
+                        principalTable: "Modalidades",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Turmas_Unidades_UnidadeId",
+                        column: x => x.UnidadeId,
+                        principalTable: "Unidades",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Turmas_ModalidadeId",
+                table: "Turmas",
+                column: "ModalidadeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Turmas_UnidadeId",
+                table: "Turmas",
+                column: "UnidadeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Funcoes");
+
+            migrationBuilder.DropTable(
+                name: "Turmas");
 
             migrationBuilder.DropTable(
                 name: "Modalidades");
