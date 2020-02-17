@@ -11,14 +11,11 @@ namespace Web.Controllers
 {
     public class TurmaController : Controller
     {
-        private readonly IServiceRepository<Turma> _service;
-        //private readonly IServiceRepository<Unidade> _unidadeService;
-        //private readonly IServiceRepository<Modalidade> _modalidadeService;
-        public TurmaController(IServiceRepository<Turma> service)
+        private readonly IServiceTurma<Turma> _service;
+      
+        public TurmaController(IServiceTurma<Turma> service)
         {
             _service = service;
-            //_unidadeService = unidadeService;
-            //_modalidadeService = unidadeService;
         }
 
         public IActionResult Index()
@@ -54,9 +51,9 @@ namespace Web.Controllers
         }
         public IActionResult Cadastrar()
         {
-            //var turmas = _service.ListaCompleta();
-            //var viewModel = new TurmaFormViewModel { Unidade = _service };
-            return View();
+            var viewModel = _service.ListaUnidadeEModalidade();
+
+            return View(viewModel);
         }
     }
 }

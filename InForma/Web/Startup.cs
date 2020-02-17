@@ -29,7 +29,7 @@ namespace Web
             services.AddScoped<IServiceRepository<Modalidade>, ServiceModalidade>();
             services.AddScoped<IServiceRepository<Funcao>, ServiceFuncao>();
             services.AddScoped<IServiceUnidade<Unidade>, ServiceUnidade>();
-            services.AddScoped<IServiceRepository<Turma>, ServiceTurma>();
+            services.AddScoped<IServiceTurma<Turma>, ServiceTurma>();
 
             services.AddScoped<IDAO<Modalidade>, ModalidadeDAO>();
             services.AddScoped<IDAO<Funcao>, FuncaoDAO>();

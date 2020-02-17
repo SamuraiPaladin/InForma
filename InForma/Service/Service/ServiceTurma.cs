@@ -2,6 +2,7 @@
 using Infra.DB;
 using Infra.IDAO;
 using Model.Entity;
+using Model.ViewModels;
 using Service.IService;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Text;
 
 namespace Service.Service
 {
-    public class ServiceTurma : IServiceRepository<Turma>
+    public class ServiceTurma : IServiceTurma<Turma>
     {
 
         private readonly IDAO<Turma> dAO;
@@ -25,7 +26,7 @@ namespace Service.Service
 
         public bool Adicionar(Turma entidade)
         {
-            entidade.Modalidade.TipoModalidade = entidade.Modalidade.Descricao;
+            //entidade.Modalidade.TipoModalidade = entidade.Modalidade.Descricao;
             if (VerificaSeJaExisteNobBancoDeDadosServico(entidade))
                 return false;
             else
@@ -52,7 +53,28 @@ namespace Service.Service
 
         public IList<Turma> ListaCompleta()
         {
-            return dAO.ListaCompleta();
+            return (IList<Turma>)TurmaFormViewModel(true).Turmas;
         }
+
+        public TurmaFormViewModel ListaUnidadeEModalidade()
+        {
+            return TurmaFormViewModel(false);
+        }
+
+        public TurmaFormViewModel TurmaFormViewModel(bool isListComplete)
+        {
+            IList<Turma> turmas = new List<Turma>(); 
+            if (isListComplete)
+            {
+                turmas = dAO.ListaCompleta();
+            }
+
+            var unidades = dAOUnidade.ListaCompleta();
+            var modalidades = dAOModalidade.ListaCompleta();
+
+            return new TurmaFormViewModel() { Unidades = unidades, Modalidades = modalidades, Turmas = turmas };
+
+        }
+
     }
 }

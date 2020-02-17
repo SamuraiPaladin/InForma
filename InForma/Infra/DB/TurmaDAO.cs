@@ -45,21 +45,21 @@ namespace Infra.DB
 
         public IList<Turma> ListaCompleta()
         {
-            var unidades = _context.Unidades.OrderBy(x => x.Descricao);
-            var modalidades = _context.Modalidades.OrderBy(x => x.Descricao);
-            
-            var viewModel = new TurmaFormViewModel() { Unidades = unidades.ToList(), Modalidades = modalidades.ToList(), };
-            //return viewModel;//_context.Turmas.OrderBy(x => x.Descricao).ToList();
-            var turmas = _context.Turmas.OrderBy(x => x.Descricao).ToList();
-            viewModel.Turmas = _context.Turmas.OrderBy(x => x.Descricao).ToList();
-            return viewModel.Turmas.OrderBy(x => x.Descricao).ToList();
+            //var turmas = _context.Turmas.OrderBy(x => x.Descricao);
+            //var unidades = _context.Unidades.OrderBy(x => x.Descricao);
+            //var modalidades = _context.Modalidades.OrderBy(x => x.Descricao);
+
+            //var viewModel = new TurmaFormViewModel() { Unidades = unidades.ToList(), Modalidades = modalidades.ToList(), Turmas = turmas.ToList() };
+
+            //return viewModel.Turmas.OrderBy(x => x.Descricao).ToList();
+            return _context.Turmas.OrderBy(x => x.Descricao).ToList();
         }
 
         public bool VerificarSeJaExisteNoBanco(Turma entidade)
         {
             var quantidadeDeRegistros = _context.Turmas.Where(x => x.Descricao == entidade.Descricao).ToList();
 
-            return quantidadeDeRegistros.Count() > 0 /*&& quantidadeUnidades.Count() > 0*/ ? true : false;
+            return quantidadeDeRegistros.Count() > 0 ? true : false;
         }
     }
 }
