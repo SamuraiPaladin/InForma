@@ -45,13 +45,6 @@ namespace Infra.DB
 
         public IList<Turma> ListaCompleta()
         {
-            //var turmas = _context.Turmas.OrderBy(x => x.Descricao);
-            //var unidades = _context.Unidades.OrderBy(x => x.Descricao);
-            //var modalidades = _context.Modalidades.OrderBy(x => x.Descricao);
-
-            //var viewModel = new TurmaFormViewModel() { Unidades = unidades.ToList(), Modalidades = modalidades.ToList(), Turmas = turmas.ToList() };
-
-            //return viewModel.Turmas.OrderBy(x => x.Descricao).ToList();
             return _context.Turmas.OrderBy(x => x.Descricao).ToList();
         }
 
