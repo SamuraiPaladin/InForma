@@ -29,13 +29,16 @@ namespace Web
             services.AddScoped<IServiceRepository<Modalidade>, ServiceModalidade>();
             services.AddScoped<IServiceRepository<Funcao>, ServiceFuncao>();
             services.AddScoped<IServiceUnidade<Unidade>, ServiceUnidade>();
+            services.AddScoped<IServiceTurma<Turma>, ServiceTurma>();
 
             services.AddScoped<IDAO<Modalidade>, ModalidadeDAO>();
             services.AddScoped<IDAO<Funcao>, FuncaoDAO>();
             services.AddScoped<IDAO<Unidade>, UnidadeDAO>();
+            services.AddScoped<IDAO<Turma>, TurmaDAO>();
 
+            services.AddDbContext<DataContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("BANCO_DE_DADOS")));
 
-            services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BANCO_DE_DADOS")));
+            //services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BANCO_DE_DADOS")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

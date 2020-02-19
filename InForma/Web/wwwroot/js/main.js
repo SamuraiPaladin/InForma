@@ -1,15 +1,13 @@
-// MENU SIDENAV
-$(".button-collapse").sideNav();
 
 // PARALLAX
 $(document).ready(function () {
-  $('.parallax').parallax();
+    $('.parallax').parallax();
 });
 
 //MODAL
 $(document).ready(function () {
-  // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-  $('.modal').modal();
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
 });
 
 $(document).ready(function () {
@@ -19,4 +17,12 @@ $(document).ready(function () {
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems, {});
+});
+
+$(document).ready(function () {
+    $('.sidenav').sidenav();
+});
+
+$(document).ready(function () {
+    $('.collapsible').collapsible();
 });

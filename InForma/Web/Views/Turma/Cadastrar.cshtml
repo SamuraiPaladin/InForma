@@ -1,0 +1,75 @@
+﻿@model Model.ViewModels.TurmaFormViewModel
+
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+
+<h4>Cadastrar Turma</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Adicionar">
+            @*<div asp-validation-summary="All" class="text-danger"></div>*@ @*faz a validação de todos os campos ficar em uma unica div*@
+            <div class="form-group">
+                <label asp-for="Turma.Descricao" class="control-label"></label>
+                <input asp-for="Turma.Descricao" class="form-control" />
+                <span asp-validation-for="Turma.Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Turma.Professor" class="control-label"></label>
+                <input asp-for="Turma.Professor" class="form-control" />
+                <span asp-validation-for="Turma.Professor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Turma.Tipo" class="control-label"></label>
+                <input asp-for="Turma.Tipo" class="form-control" />
+                <span asp-validation-for="Turma.Tipo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Turma.DiaDaSemana" class="control-label"></label>
+                <select style="display:block" asp-for="Turma.DiaDaSemana" class="form-control">
+                    <option>Segunda</option>
+                    <option>Terça</option>
+                    <option>Quarta</option>
+                    <option>Quinta</option>
+                    <option>Sábado</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Turma.HorarioInicial" class="control-label"></label>
+                <input asp-for="Turma.HorarioInicial" class="form-control" />
+                <span asp-validation-for="Turma.HorarioInicial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Turma.HorarioFinal" class="control-label"></label>
+                <input asp-for="Turma.HorarioFinal" class="form-control" />
+                <span asp-validation-for="Turma.HorarioFinal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Turma.Unidade" class="control-label"></label>
+                <select style="display:block" asp-for="Turma.UnidadeId" asp-items="@(new SelectList(Model.Unidades, "Id", "Descricao"))" class="form-control">
+                </select>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label asp-for="Turma.Modalidade" class="control-label"></label>
+                <select style="display:block" asp-for="Turma.ModalidadeId" asp-items="@(new SelectList(Model.Modalidades, "Id", "Descricao"))" class="form-control">
+                </select>
+            </div>
+            @*@Html.DropDownList("Modalidades", new SelectList(Model.Modalidades, "Id", "Descricao"), "Select Gender", new { @class = "form-control" })*@
+            <hr />
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" value="Create" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
