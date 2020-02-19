@@ -2,6 +2,7 @@
 using Infra.DB;
 using Infra.IDAO;
 using Model.Entity;
+using Model.Enums;
 using Model.ViewModels;
 using Service.IService;
 using System;
@@ -26,7 +27,6 @@ namespace Service.Service
 
         public bool Adicionar(Turma entidade)
         {
-            //entidade.Modalidade.TipoModalidade = entidade.Modalidade.Descricao;
             if (VerificaSeJaExisteNobBancoDeDadosServico(entidade))
                 return false;
             else
@@ -72,7 +72,7 @@ namespace Service.Service
             var unidades = dAOUnidade.ListaCompleta();
             var modalidades = dAOModalidade.ListaCompleta();
 
-            return new TurmaFormViewModel() { Unidades = unidades, Modalidades = modalidades, Turmas = turmas };
+            return new TurmaFormViewModel() { Unidades = unidades, Modalidades = modalidades, Turmas = turmas, DiasDaSemana = Enum.GetValues(typeof(EnumDays.DaysOfWeek)) };
 
         }
 
