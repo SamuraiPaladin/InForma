@@ -14,7 +14,8 @@ namespace Model.Entity
         public int ModalidadeId { get; set; }
         [Required(ErrorMessage = "Preenchimento obrigatório campo Descrição")]
         public string Descricao { get; set; }
-        public string Professor { get; set; }
+        public int ColaboradorId { get; set; }
+        public Colaborador Colaborador { get; set; }
         public string Tipo { get; set; }
         public string DiaDaSemana { get; set; }
         public string HorarioInicial { get; set; }
