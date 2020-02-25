@@ -34,7 +34,6 @@
             .btn:hover {
                 background-color: #7c1a04;
             }
-
         /* INPUT COLOR */
         .input-field input:focus + label {
             color: #af2405 !important;
@@ -57,13 +56,11 @@
         </div>
     </div>
 </nav>
-
 <div class="row container">
     <div class="col s12 l12">
         <a class="btn waves-effect waves-light modal-trigger right" href="#cadastrarModalidade">Cadastrar Modalidade</a>
     </div>
 </div>
-
 <div id="cadastrarModalidade" class="modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -75,7 +72,6 @@
                     <input placeholder="Ex:Natação, Hidroginastica, Musculação, Judô..." id="modalidade" type="text" class="validate" maxlength="20">
                     <label for="modalidade">Nome da Modalidade</label>
                 </div>
-
                 <div class="input-field col s6">
                     <input placeholder="Ex: Esporte..." id="descricao" type="text" class="validate" maxlength="50">
                     <label for="descricao">Descrição</label>
@@ -87,7 +83,6 @@
         <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
     </div>
 </div>
-
 <div class="row container">
     <div class="col s12 l12">
         @if (Model.Count > 0)
@@ -117,21 +112,17 @@
         }
     </div>
 </div>
-
-
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
             <h4>Editar 'tal' </h4>
         </div>
-
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioEditar">
                 <div class="input-field col s6">
                     <input placeholder="Ex:Natação, Hidroginastica, Musculação, Judô..." id="modalidadeEditar" type="text" class="validate">
                     <label for="modalidadeEditar">Nome da Modalidade</label>
                 </div>
-
                 <div class="input-field col s6">
                     <input placeholder="Ex: Esporte..." id="descricaoEditar" type="text" class="validate">
                     <label for="descricaoEditar">Descrição</label>
@@ -139,15 +130,11 @@
                 <input id="idEditar" style="display: none;" />
             </form>
         </div>
-
-
     </div>
     <div class="modal-footer">
         <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
     </div>
 </div>
-
-
 <div id="modalDeletar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -159,7 +146,6 @@
                     <input placeholder="Ex:Natação, Hidroginastica, Musculação, Judô..." readonly id="modalidadeDeletar" type="text" class="validate" disabled>
                     <label for="modalidadeDeletar">Nome da Modalidade</label>
                 </div>
-
                 <div class="input-field col s6">
                     <input placeholder="Ex: Esporte..." id="descricaoDeletar" type="text" class="validate" readonly disabled>
                     <label for="descricaoDeletar">Descrição</label>
@@ -172,13 +158,9 @@
         <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
     </div>
 </div>
-
-
 @section scripts{
     <script src="js/main.js"></script>
-
     <script>
-
         var valorModalidade;
         var valorDescricao;
         var valorId;
@@ -245,7 +227,6 @@
             });
         });
         }
-
                 function Adicionar() {
             var modalidade = { TipoModalidade: document.getElementById("modalidade").value, Descricao: document.getElementById("descricao").value, Ativo: true };
              $(function () {
@@ -270,7 +251,6 @@
             });
         });
         }
-
         function Deletar() {
             var modalidade = { TipoModalidade: document.getElementById("modalidadeDeletar").value, Descricao: document.getElementById("descricaoDeletar").value, Ativo: true, Id: document.getElementById("idDeletar").value };
              $(function () {
@@ -300,5 +280,4 @@
     $('.tabela').DataTable();
 } );
     </script>
-
 }

@@ -35,7 +35,6 @@
             .btn:hover {
                 background-color: #7c1a04;
             }
-
         /* INPUT COLOR */
         .input-field input:focus + label {
             color: #af2405 !important;
@@ -326,7 +325,6 @@
         let valorBairro;
         let valorCidade;
         let valorEstado;
-
         function EditarModal(id, descricao, endereco, numero, cep, telefone, bairro, cidade, estado, model) {
             valorId = id;
             valorDescricao = descricao;
@@ -371,9 +369,6 @@
             });
         });
         }
-
-
-
         function Editar() {
             var unidade = {
                 Id: valorId, Descricao: valorDescricao, Endereco: valorEndereco, Numero: valorNumero, CEP: valorCep, Telefone: valorTelefone, Bairro: valorBairro
@@ -421,7 +416,6 @@
                 })
             });
         }
-
                 function PesquisaCEP() {
             let cep = document.getElementById('cep').value;
              $(function () {
@@ -439,7 +433,6 @@
                 })
             });
         }
-
                 function Adicionar() {
             var unidade = {
                 Descricao: document.getElementById("descricao").value, Endereco: document.getElementById("endereco").value, Numero: document.getElementById("numero").value, CEP: document.getElementById("cep").value,
@@ -466,8 +459,6 @@
             });
         });
         }
-
-
         $(document).ready(function(){
           $('.modal').modal();
         });
