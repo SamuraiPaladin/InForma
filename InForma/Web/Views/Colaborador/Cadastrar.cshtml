@@ -1,0 +1,60 @@
+﻿@model Model.ViewModels.ColaboradorFormViewModel
+
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<h1>Cadastrar</h1>
+
+<h4>Colaborador</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Adicionar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Colaborador.Nome" class="control-label"></label>
+                <input asp-for="Colaborador.Nome" class="form-control" />
+                <span asp-validation-for="Colaborador.Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Colaborador.DataNascimento" class="control-label"></label>
+                <input asp-for="Colaborador.DataNascimento" class="form-control" />
+                <span asp-validation-for="Colaborador.DataNascimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Colaborador.CPF" class="control-label"></label>
+                <input asp-for="Colaborador.CPF" class="form-control" />
+                <span asp-validation-for="Colaborador.CPF" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Colaborador.RG" class="control-label"></label>
+                <input asp-for="Colaborador.RG" class="form-control" />
+                <span asp-validation-for="Colaborador.RG" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Colaborador.Endereço" class="control-label"></label>
+                <input asp-for="Colaborador.Endereço" class="form-control" />
+                <span asp-validation-for="Colaborador.Endereço" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Colaborador.Telefone" class="control-label"></label>
+                <input asp-for="Colaborador.Telefone" class="form-control" />
+                <span asp-validation-for="Colaborador.Telefone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Colaborador.Funcao" class="control-label"></label>
+                <select style="display:block" asp-for="Colaborador.FuncaoId" class="form-control" asp-items="@(new SelectList(Model.Funcoes, "Id", "TipoFuncao"))" ></select>
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

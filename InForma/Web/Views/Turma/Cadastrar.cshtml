@@ -18,9 +18,9 @@
                 <span asp-validation-for="Turma.Descricao" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Turma.Professor" class="control-label"></label>
-                <input asp-for="Turma.Professor" class="form-control" />
-                <span asp-validation-for="Turma.Professor" class="text-danger"></span>
+                <label asp-for="Turma.Colaborador" class="control-label"></label>
+                <select style="display:block" asp-for="Turma.ColaboradorId" asp-items="@(new SelectList(Model.Professores, "Id", "Nome"))" class="form-control">
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Turma.Tipo" class="control-label"></label>
@@ -29,12 +29,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Turma.DiaDaSemana" class="control-label"></label>
-                <select style="display:block" asp-for="Turma.DiaDaSemana" class="form-control">
-                    <option>Segunda</option>
-                    <option>Terça</option>
-                    <option>Quarta</option>
-                    <option>Quinta</option>
-                    <option>Sábado</option>
+                <select style="display:block" asp-for="Turma.DiaDaSemana" asp-items="@(new SelectList(Model.DiasDaSemana))" class="form-control">
                 </select>
             </div>
             <div class="form-group">
@@ -55,10 +50,9 @@
             <hr />
             <div class="form-group">
                 <label asp-for="Turma.Modalidade" class="control-label"></label>
-                <select style="display:block" asp-for="Turma.ModalidadeId" asp-items="@(new SelectList(Model.Modalidades, "Id", "Descricao"))" class="form-control">
+                <select style="display:block" asp-for="Turma.ModalidadeId" asp-items="@(new SelectList(Model.Modalidades, "Id", "TipoModalidade"))" class="form-control">
                 </select>
             </div>
-            @*@Html.DropDownList("Modalidades", new SelectList(Model.Modalidades, "Id", "Descricao"), "Select Gender", new { @class = "form-control" })*@
             <hr />
             <div class="form-group">
                 <input type="submit" class="btn btn-default" value="Create" />

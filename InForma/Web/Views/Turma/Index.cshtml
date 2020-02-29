@@ -16,7 +16,7 @@
                 @Html.DisplayName("Descrição Turma")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Professor)
+                @Html.DisplayNameFor(model => model.Colaborador)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Tipo)
@@ -46,7 +46,7 @@
                 @Html.DisplayFor(modelItem => item.Descricao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Professor)
+                @Html.DisplayFor(modelItem => item.Colaborador.Nome)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tipo)
