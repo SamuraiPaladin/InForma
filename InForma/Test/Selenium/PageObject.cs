@@ -14,7 +14,7 @@ namespace Test
             {
                 int count = 0;
                 Boolean clicked = false;
-                if (count < 3 || clicked.Equals(false))
+                while (clicked.Equals(false))
                 {
                     try
                     {
@@ -24,66 +24,174 @@ namespace Test
                     }
                     catch (Exception e)
                     {
-                        e.ToString();
-                        System.Diagnostics.Debug.WriteLine("Erro:" + e.Message);
                         count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
 
             }
 
-            public static void CadastroList()
+            public class Cadastro
             {
-                int count = 0;
-                Boolean clicked = false;
-                if (count < 3 || clicked.Equals(false))
+                public static void CadastroList()
                 {
-                    try
+                    int count = 0;
+                    Boolean clicked = false;
+                    while (clicked.Equals(false))
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/ul/ul[1]/li/a"));
-                        Element.Click();
-                        clicked = true;
+                        try
+                        {
+                            IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[3]/ul/li/div[1]"));
+                            Element.Click();
+                            clicked = true;
+                        }
+                        catch (Exception e)
+                        {
+                            count = count + 1;
+                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                        }
                     }
-                    catch (Exception e)
+
+                }
+
+                public static void CadastroUnidadeLink()
+                {
+                    int count = 0;
+                    Boolean clicked = false;
+                    if (count < 3 || clicked.Equals(false))
                     {
-                        e.ToString();
-                        System.Diagnostics.Debug.WriteLine("Erro:" + e.Message);
-                        count = count + 1;
+                        try
+                        {
+                            IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[3]/ul/li/div[2]/ul/li[1]/a"));
+                            Element.Click();
+                            clicked = true;
+                        }
+                        catch (Exception e)
+                        {
+                            count = count + 1;
+                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                        }
+                    }
+                }
+
+                public static void CadastroModalidadeLink()
+                {
+                    int count = 0;
+                    Boolean clicked = false;
+                    if (count < 3 || clicked.Equals(false))
+                    {
+                        try
+                        {
+                            IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[3]/ul/li/div[2]/ul/li[2]/a"));
+                            Element.Click();
+                            clicked = true;
+                        }
+                        catch (Exception e)
+                        {
+                            count = count + 1;
+                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                        }
+                    }
+                }
+
+                public static void CadastroCargosLink()
+                {
+                    int count = 0;
+                    Boolean clicked = false;
+                    if (count < 3 || clicked.Equals(false))
+                    {
+                        try
+                        {
+                            IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[3]/ul/li/div[2]/ul/li[3]/a"));
+                            Element.Click();
+                            clicked = true;
+                        }
+                        catch (Exception e)
+                        {
+                            count = count + 1;
+                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                        }
+                    }
+                }
+
+                public static void CadastroColaboradoresLink()
+                {
+                    int count = 0;
+                    Boolean clicked = false;
+                    if (count < 3 || clicked.Equals(false))
+                    {
+                        try
+                        {
+                            IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[3]/ul/li/div[2]/ul/li[4]/a"));
+                            Element.Click();
+                            clicked = true;
+                        }
+                        catch (Exception e)
+                        {
+                            count = count + 1;
+                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                        }
+                    }
+                }
+
+                public static void CadastroFornecedoresLink()
+                {
+                    int count = 0;
+                    Boolean clicked = false;
+                    if (count < 3 || clicked.Equals(false))
+                    {
+                        try
+                        {
+                            IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[3]/ul/li/div[2]/ul/li[5]/a"));
+                            Element.Click();
+                            clicked = true;
+                        }
+                        catch (Exception e)
+                        {
+                            count = count + 1;
+                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                        }
                     }
                 }
 
             }
 
-            public static void CadastroUnidadeLink()
+            public class Financeiro
             {
-                int count = 0;
-                Boolean clicked = false;
-                if (count < 3 || clicked.Equals(false))
+                public static void FinanceiroList()
                 {
-                    try
+                    int count = 0;
+                    Boolean clicked = false;
+                    while (clicked.Equals(false))
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/ul/ul[1]/li/div/ul/li[1]/a"));
-                        Element.Click();
-                        clicked = true;
+                        try
+                        {
+                            IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[3]/ul/li/div[2]"));
+                            Element.Click();
+                            clicked = true;
+                        }
+                        catch (Exception e)
+                        {
+                            count = count + 1;
+                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        e.ToString();
-                        System.Diagnostics.Debug.WriteLine("Erro:" + e.Message);
-                        count = count + 1;
-                    }
+
                 }
+            }
+
+            public class Estoque
+            {
 
             }
         }
-
         public static class RegisterUnitScreen
         {
             public static void NomeUnidadeTextBox(string Unidade)
             {
                 int count = 0;
                 string Text = "";
-                if (count < 3 || Text.Equals(Unidade))
+                while (Text.Equals(Unidade))
                 {
                     try
                     {
@@ -93,9 +201,8 @@ namespace Test
                     }
                     catch (Exception e)
                     {
-                        e.ToString();
-                        System.Diagnostics.Debug.WriteLine("Erro:" + e.Message);
                         count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
                 Assert.Contains(Unidade, Text);
@@ -105,7 +212,7 @@ namespace Test
             {
                 int count = 0;
                 string Text = "";
-                if (count < 3 || Text.Equals(Unidade))
+                while (Text.Equals(Unidade))
                 {
                     try
                     {
@@ -115,9 +222,8 @@ namespace Test
                     }
                     catch (Exception e)
                     {
-                        e.ToString();
-                        System.Diagnostics.Debug.WriteLine("Erro:" + e.Message);
                         count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
                 Assert.Contains(Unidade, Text);
@@ -127,7 +233,7 @@ namespace Test
             {
                 int count = 0;
                 string Text = "";
-                if (count < 3 || Text.Equals(Unidade))
+                while (Text.Equals(Unidade))
                 {
                     try
                     {
@@ -137,9 +243,8 @@ namespace Test
                     }
                     catch (Exception e)
                     {
-                        e.ToString();
-                        System.Diagnostics.Debug.WriteLine("Erro:" + e.Message);
                         count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
                 Assert.Contains(Unidade, Text);
@@ -149,7 +254,7 @@ namespace Test
             {
                 int count = 0;
                 string Text = "";
-                if (count < 3 || Text.Equals(Unidade))
+                while (Text.Equals(Unidade))
                 {
                     try
                     {
@@ -165,9 +270,8 @@ namespace Test
                     }
                     catch (Exception e)
                     {
-                        e.ToString();
-                        System.Diagnostics.Debug.WriteLine("Erro:" + e.Message);
                         count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
                 Assert.Contains(Unidade, Text);
@@ -177,7 +281,7 @@ namespace Test
             {
                 int count = 0;
                 string Text = "";
-                if (count < 3 || Text.Equals(Unidade))
+                while (Text.Equals(Unidade))
                 {
                     try
                     {
@@ -194,9 +298,8 @@ namespace Test
                     }
                     catch (Exception e)
                     {
-                        e.ToString();
-                        System.Diagnostics.Debug.WriteLine("Erro:" + e.Message);
                         count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
                 Assert.Contains(Unidade, Text);
@@ -206,7 +309,7 @@ namespace Test
             {
                 int count = 0;
                 string Text = "";
-                if (count < 3 || Text.Equals(Unidade))
+                while (Text.Equals(Unidade))
                 {
                     try
                     {
@@ -223,9 +326,8 @@ namespace Test
                     }
                     catch (Exception e)
                     {
-                        e.ToString();
-                        System.Diagnostics.Debug.WriteLine("Erro:" + e.Message);
                         count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
                 Assert.Contains(Unidade, Text);
@@ -235,7 +337,7 @@ namespace Test
             {
                 int count = 0;
                 string Text = "";
-                if (count < 3 || Text.Equals(Unidade))
+                while (Text.Equals(Unidade))
                 {
                     try
                     {
@@ -252,9 +354,8 @@ namespace Test
                     }
                     catch (Exception e)
                     {
-                        e.ToString();
-                        System.Diagnostics.Debug.WriteLine("Erro:" + e.Message);
                         count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
                 Assert.Contains(Unidade, Text);
@@ -264,7 +365,7 @@ namespace Test
             {
                 int count = 0;
                 string Text = "";
-                if (count < 3 || Text.Equals(Unidade))
+                while (Text.Equals(Unidade))
                 {
                     try
                     {
@@ -281,9 +382,8 @@ namespace Test
                     }
                     catch (Exception e)
                     {
-                        e.ToString();
-                        System.Diagnostics.Debug.WriteLine("Erro:" + e.Message);
                         count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
                 Assert.Contains(Unidade, Text);
