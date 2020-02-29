@@ -50,7 +50,7 @@
             <hr />
             <div class="form-group">
                 <label asp-for="Turma.Modalidade" class="control-label"></label>
-                <select style="display:block" asp-for="Turma.ModalidadeId" asp-items="@(new SelectList(Model.Modalidades, "Id", "Descricao"))" class="form-control">
+                <select style="display:block" asp-for="Turma.ModalidadeId" asp-items="@(new SelectList(Model.Modalidades, "Id", "TipoModalidade"))" class="form-control">
                 </select>
             </div>
             <hr />

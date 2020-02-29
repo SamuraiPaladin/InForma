@@ -30,11 +30,13 @@ namespace Web
             services.AddScoped<IServiceRepository<Funcao>, ServiceFuncao>();
             services.AddScoped<IServiceUnidade<Unidade>, ServiceUnidade>();
             services.AddScoped<IServiceTurma<Turma>, ServiceTurma>();
+            services.AddScoped<IServiceColaborador<Colaborador>, ServiceColaborador>();
 
             services.AddScoped<IDAO<Modalidade>, ModalidadeDAO>();
             services.AddScoped<IDAO<Funcao>, FuncaoDAO>();
             services.AddScoped<IDAO<Unidade>, UnidadeDAO>();
             services.AddScoped<IDAO<Turma>, TurmaDAO>();
+            services.AddScoped<IDAO<Colaborador>, ColaboradorDAO>();
 
             services.AddDbContext<DataContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("BANCO_DE_DADOS")));
 
@@ -65,7 +67,7 @@ namespace Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Principal}/{action=Index}/{id?}");
+                    pattern: "{controller=Turma}/{action=Cadastrar}/{id?}");
             });
         }
     }
