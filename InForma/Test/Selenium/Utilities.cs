@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using Test;
+using Xceed.Wpf.Toolkit;
 using Xunit;
 
 /// <summary>

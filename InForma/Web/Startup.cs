@@ -67,7 +67,7 @@ namespace Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Turma}/{action=Cadastrar}/{id?}");
+                    pattern: "{controller=Principal}/{action=Index}/{id?}");
             });
         }
     }

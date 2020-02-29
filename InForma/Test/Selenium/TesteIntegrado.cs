@@ -15,10 +15,10 @@ namespace Test
             Assert.Contains("Principal - inForma", Utilities.driver.Title);
 
             PageObject.MainScreen.GridIcone();
-           
-            PageObject.MainScreen.CadastroList();
+
+            PageObject.MainScreen.Cadastro.CadastroList();
             
-            PageObject.MainScreen.CadastroUnidadeLink();
+            PageObject.MainScreen.Cadastro.CadastroUnidadeLink();
 
             Assert.Contains("Cadastrar - inForma", Utilities.driver.Title);
 
