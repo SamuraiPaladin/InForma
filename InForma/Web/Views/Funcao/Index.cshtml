@@ -34,7 +34,6 @@
             .btn:hover {
                 background-color: #7c1a04;
             }
-
         /* INPUT COLOR */
         .input-field input:focus + label {
             color: #af2405 !important;
@@ -178,7 +177,6 @@
 @section scripts{
     <script src="~/js/main.js"></script>
     <script>
-
         var valorFuncao;
         var valorDescricao;
         var valorId;
@@ -245,7 +243,6 @@
             });
         });
         }
-
         function Adicionar() {
             var funcao = { TipoFuncao: document.getElementById("funcao").value, Descricao: document.getElementById("descricao").value, Ativo: true };
              $(function () {
@@ -270,7 +267,6 @@
             });
         });
         }
-
         function Deletar() {
             var funcao = { TipoFuncao: document.getElementById("funcaoDeletar").value, Descricao: document.getElementById("descricaoDeletar").value, Ativo: true, Id: document.getElementById("idDeletar").value };
              $(function () {
@@ -293,8 +289,6 @@
             });
         });
         }
-
     </script>
 
 }
-
