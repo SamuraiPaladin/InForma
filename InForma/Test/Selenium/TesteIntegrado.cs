@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 
 namespace Test
 {
-    public class TesteIntegrado
+    public class TesteIntegradoUnidade
     {
         [Fact]
         public void CriarUnidade()
@@ -14,13 +14,9 @@ namespace Test
 
             Assert.Contains("Principal - inForma", Utilities.driver.Title);
 
-            PageObject.MainScreen.GridIcone();
+            Utilities.AcessoGrid("Cadastro","Unidade");
 
-            PageObject.MainScreen.Cadastro.CadastroList();
-            
-            PageObject.MainScreen.Cadastro.CadastroUnidadeLink();
-
-            Assert.Contains("Cadastrar - inForma", Utilities.driver.Title);
+            Assert.Contains("Unidade - inForma", Utilities.driver.Title);
 
             PageObject.RegisterUnitScreen.NomeUnidadeTextBox("São Paulo");
 
