@@ -56,9 +56,9 @@ namespace Service.Service
             return dAO.Deletar(entidade);
         }
 
-        public IList<Turma> ListaCompleta()
+        public List<Turma> ListaCompleta()
         {
-            return (IList<Turma>)ReturnTurmaFormViewModel(true).Turmas;
+            return ReturnTurmaFormViewModel(true).Turmas;
         }
 
         public TurmaFormViewModel ListaUnidadeEModalidade()
@@ -68,23 +68,23 @@ namespace Service.Service
 
         public TurmaFormViewModel ReturnTurmaFormViewModel(bool isListComplete)
         {
-            IList<Turma> turmas = new List<Turma>();
+            List<Turma> turmas = new List<Turma>();
 
             if (isListComplete)
             {
-                turmas = dAO.ListaCompleta();
+                turmas = dAO.ListaCompleta().ToList();
             }
 
-            var unidades = dAOUnidade.ListaCompleta();
-            var modalidades = dAOModalidade.ListaCompleta();
+            var unidades = dAOUnidade.ListaCompleta().ToList();
+            var modalidades = dAOModalidade.ListaCompleta().ToList();
 
             //filtro para pegar somente os professores de colaboradores
-            var professores = from c in dAOColaborador.ListaCompleta().ToList()
+            var professores = (from c in dAOColaborador.ListaCompleta().ToList()
                         join f in dAOFuncao.ListaCompleta() on c.FuncaoId equals f.Id
                         where f.TipoFuncao.ToUpper().Contains("PROFESSOR") || f.TipoFuncao.ToUpper().Contains("PROF")
-                        select c;
+                        select c).ToList();
 
-            return new TurmaFormViewModel() { Unidades = unidades, Modalidades = modalidades, Professores = professores.ToList(), Turmas = turmas, DiasDaSemana = Enum.GetValues(typeof(EnumDays.DaysOfWeek)) };
+            return new TurmaFormViewModel() { Unidades = unidades, Modalidades = modalidades, Professores = professores, Turmas = turmas, DiasDaSemana = Enum.GetValues(typeof(EnumDays.DaysOfWeek)) };
 
         }
 
