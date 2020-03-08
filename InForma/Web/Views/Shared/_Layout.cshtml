@@ -10,6 +10,21 @@
     <link rel="stylesheet" href="~/css/materialize.min.css">
     <link rel="stylesheet" href="~/css/site.css">
 
+    <style>
+        /* SCROLLBAR */
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+}
+    </style>
 
 </head>
 <body>
@@ -59,19 +74,22 @@
                     <div class="collapsible-body">
                         <ul>
                             <li>
-                                <a class="waves-effect waves-blue" asp-controller="Unidade" asp-action="Index"><span class="insideLink">Unidade</span></a>
+                                <a class="" asp-controller="Unidade" asp-action="Index"><span class="insideLink">Unidade</span></a>
                             </li>
                             <li>
-                                <a class="waves-effect waves-blue" asp-controller="Modalidade" asp-action="Index"><span class="insideLink">Modalidade</span></a>
+                                <a class="" asp-controller="Modalidade" asp-action="Index"><span class="insideLink">Modalidade</span></a>
                             </li>
                             <li>
-                                <a class="waves-effect waves-blue" asp-controller="Funcao" asp-action="Index"><span class="insideLink">Cargos</span></a>
+                                <a class="" asp-controller="Funcao" asp-action="Index"><span class="insideLink">Função</span></a>
                             </li>
                             <li>
-                                <a class="waves-effect waves-blue" asp-controller="Colaborador" asp-action="Index"><span class="insideLink">Colaborador</span></a>
+                                <a class="" asp-controller="Colaborador" asp-action="Index"><span class="insideLink">Colaborador</span></a>
                             </li>
                             <li>
-                                <a class="waves-effect waves-blue" asp-controller="Fornecedor" asp-action="Index"><span class="insideLink">Fornecedor</span></a>
+                                <a class="" asp-controller="Aluno" asp-action="Index"><span class="insideLink">Aluno</span></a>
+                            </li>
+                            <li>
+                                <a class="" asp-controller="Fornecedor" asp-action="Index"><span class="insideLink">Fornecedor</span></a>
                             </li>
                             <li>
                                 <a class="waves-effect waves-blue" asp-controller="Turma" asp-action="Index"><span class="insideLink">Turma</span></a>
@@ -95,7 +113,7 @@
                     <div class="collapsible-body">
                         <ul>
                             <li>
-                                <a class="waves-effect waves-blue" href="matricula/gerenciarPagamento.html"><span class="insideLink">Gerenciar Pagamento</span></a>
+                                <a class="" href="matricula/gerenciarPagamento.html"><span class="insideLink">Gerenciar Pagamento</span></a>
                             </li>
 
                         </ul>
@@ -117,7 +135,7 @@
                     <div class="collapsible-body">
                         <ul>
                             <li>
-                                <a class="waves-effect waves-blue"><span class="insideLink">Link</span></a>
+                                <a class=""><span class="insideLink">Link</span></a>
                             </li>
                         </ul>
 
@@ -129,8 +147,8 @@
             <div class="divider"></div>
         </li>
 
-        <li><a class="subheader">Subheader</a></li>
-        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+        <li><a class="subheader">Outro submenu</a></li>
+        
     </ul>
 
 
