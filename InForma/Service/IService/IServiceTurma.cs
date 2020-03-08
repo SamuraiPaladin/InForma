@@ -8,8 +8,8 @@ namespace Service.IService
     public interface IServiceTurma<T> where T: class
     {
         bool Adicionar(T entidade);
-        List<T> ListaCompleta();
-        TurmaFormViewModel ListaUnidadeEModalidade();
+        List<TurmaFormViewModel> ListaCompleta();
+        List<TurmaFormViewModel> ListaUnidadeEModalidade();
         bool Atualizar(T entidade, T entidadeEditar);
         bool Deletar(T entidade);
     }

@@ -56,27 +56,27 @@ namespace Service.Service
             return dAO.Deletar(entidade);
         }
 
-        public List<Turma> ListaCompleta()
+        public List<TurmaFormViewModel> ListaCompleta()
         {
-            return ReturnTurmaFormViewModel(true).Turmas;
+            return ReturnTurmaFormViewModel(true);
         }
 
-        public TurmaFormViewModel ListaUnidadeEModalidade()
+        public List<TurmaFormViewModel> ListaUnidadeEModalidade()
         {
             return ReturnTurmaFormViewModel(false);
         }
 
-        public TurmaFormViewModel ReturnTurmaFormViewModel(bool isListComplete)
+        public List<TurmaFormViewModel> ReturnTurmaFormViewModel(bool isListComplete)
         {
             List<Turma> turmas = new List<Turma>();
+            List<TurmaFormViewModel> turmasList = new List<TurmaFormViewModel>();
+            List<Unidade> unidades = dAOUnidade.ListaCompleta().ToList();
+            List<Modalidade> modalidades = dAOModalidade.ListaCompleta().ToList();
 
             if (isListComplete)
             {
                 turmas = dAO.ListaCompleta().ToList();
             }
-
-            var unidades = dAOUnidade.ListaCompleta().ToList();
-            var modalidades = dAOModalidade.ListaCompleta().ToList();
 
             //filtro para pegar somente os professores de colaboradores
             var professores = (from c in dAOColaborador.ListaCompleta().ToList()
@@ -84,9 +84,15 @@ namespace Service.Service
                         where f.TipoFuncao.ToUpper().Contains("PROFESSOR") || f.TipoFuncao.ToUpper().Contains("PROF")
                         select c).ToList();
 
-            return new TurmaFormViewModel() { Unidades = unidades, Modalidades = modalidades, Professores = professores, Turmas = turmas, DiasDaSemana = Enum.GetValues(typeof(EnumDays.DaysOfWeek)) };
+            turmasList.Add(new TurmaFormViewModel() { Unidades = unidades,
+                Modalidades = modalidades,
+                Professores = professores, 
+                Turmas = turmas,
+                DiasDaSemana = Enum.GetValues(typeof(EnumDays.DaysOfWeek)), 
+                TipoClientes = Enum.GetValues(typeof(EnumClients.Clients)) });
+
+            return turmasList;
 
         }
-
     }
 }

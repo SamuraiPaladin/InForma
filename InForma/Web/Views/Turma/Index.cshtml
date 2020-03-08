@@ -1,77 +1,511 @@
-﻿@model IEnumerable<Model.Entity.Turma>
+﻿@model List<Model.ViewModels.TurmaFormViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Turma";
 }
 
-<h1>Index</h1>
+<head>
+    <style>
+        nav.clean {
+            background: none;
+            box-shadow: none;
+        }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayName("Descrição Turma")
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Colaborador)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tipo)
-            </th>
-            <th>
-                @Html.DisplayName("Dia Da Semana")
-            </th>
-            <th>
-                @Html.DisplayName("Horario de Inicio")
-            </th>
-            <th>
-                @Html.DisplayName("Horario Final")
-            </th>   
-            <th>
-                @Html.DisplayName("Descrição Unidade")
-            </th>            
-            <th>
-                @Html.DisplayName("Descrição Modalidade")
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Colaborador.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tipo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiaDaSemana)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HorarioInicial)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HorarioFinal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Unidade.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Modalidade.TipoModalidade)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+            nav.clean .breadcrumb {
+                color: black;
+            }
+
+                nav.clean .breadcrumb:before {
+                    color: rgba(0, 0, 0, 0.7);
+                }
+
+        .breadcrumb {
+            color: black;
+            font-size: 15px;
+        }
+
+        .btn-flat {
+            background-color: #af2405;
+            color: #fff
+        }
+
+        .btn {
+            background-color: #af2405;
+        }
+
+            .btn:hover {
+                background-color: #7c1a04;
+            }
+        /* INPUT COLOR */
+        .input-field input:focus + label {
+            color: #af2405 !important;
+        }
+
+        .row .input-field input:focus {
+            border-bottom: 1px solid #af2405 !important;
+            box-shadow: 0 1px 0 0 #af2405 !important
+        }
+    </style>
+
+</head>
+
+<nav class="clean container">
+    <div class="nav-wrapper">
+        <div class="col s12">
+            <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+            <a href="#" class="breadcrumb">Cadastro</a>
+            <a href="@Url.Action("Index", "Turma")" class="breadcrumb"><strong>Turma</strong></a>
+        </div>
+    </div>
+</nav>
+@foreach (var item in Model)
+{
+    <div class="row container">
+        <a href="#modaCadastrar" class="btn waves-effect waves-light right modal-trigger">Cadastrar Turma</a>
+
+        <div id="modaCadastrar" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Cadastrar Turma</h4>
+                </div>
+
+                <div class="col s12 l12">
+                    <form class="col s12 l12" id="formularioEditar">
+
+                        <div class="input-field col s6">
+                            <input placeholder="Ex: Turma de Karate, Turma de Natação, Turma de Ginástica" id="descricao" type="text" class="validate" maxlength="20">
+                            <label for="descricao">Nome da Turma</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <select id="nome" class="validate" asp-items="@(new SelectList(item.Professores, "Id", "Nome"))">
+                            </select>
+                            <label for="nome">Professor</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <select id="tipo" class="validate" asp-items="@(new SelectList(item.TipoClientes))">
+                            </select>
+                            <label for="tipo">Tipo</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <select id="diasdasemana" class="validate" asp-items="@(new SelectList(item.DiasDaSemana))">
+                            </select>
+                            <label for="diasdasemana">Dias da semana</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input min="08:00" max="22:00" id="horarioinicial" type="time" class="validate" maxlength="5">
+                            <label for="horarioinicial">Horario Inicial</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input min="08:00" max="22:00" id="horariofinal" type="time" class="validate" maxlength="5">
+                            <label for="horariofinal">Horario Final</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <select id="unidade" class="validate" asp-items="@(new SelectList(item.Unidades, "Id", "Descricao"))">
+                            </select>
+                            <label for="unidade">Unidade</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <select id="modalidade" class="validate" asp-items="@(new SelectList(item.Modalidades, "Id", "Descricao"))">
+                            </select>
+                            <label for="unidade">Modalidade</label>
+                        </div>
+
+                        <div id="modalCadastroTurma" class="modal">
+                            <div class="modal-content">
+                                <h4 class="flow-text center">Turma Cadastrada!</h4>
+                                <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="Adicionar()">sair</a>
+                            </div>
+                        </div>
+                        <input id="idEditar" style="display: none;" />
+                    </form>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
+            </div>
+        </div>
+
+    </div>
 }
-    </tbody>
-</table>
+
+
+@if (Model.Count > 0)
+{
+    <table class="table highlight container ">
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Professor</th>
+                <th>Tipo</th>
+                <th>Dia da semana</th>
+                <th>Horario Inicial</th>
+                <th>Horario Final</th>
+                <th>Unidade</th>
+                <th>Modalidade</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                @foreach (var turma in item.Turmas)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => turma.Descricao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => turma.Colaborador.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => turma.Tipo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => turma.DiaDaSemana)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => turma.HorarioInicial)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => turma.HorarioFinal)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => turma.Unidade.Descricao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => turma.Modalidade.Descricao)
+                        </td>
+                        <td>
+                            <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@turma.Id', '@turma.Descricao', '@turma.Colaborador.Id',
+        '@turma.Tipo', '@turma.DiaDaSemana','@turma.HorarioInicial', '@turma.HorarioFinal', '@turma.Unidade.Id', '@turma.Modalidade.Id', 'Editar')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                            <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@turma.Id', '@turma.Descricao', '@turma.Colaborador.Id',
+        '@turma.Tipo', '@turma.DiaDaSemana','@turma.HorarioInicial', '@turma.HorarioFinal', '@turma.Unidade.Id', '@turma.Modalidade.Id', 'Deletar')"><i class="material-icons">delete_forever</i></a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+
+<div id="modalEditar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Editar Turma</h4>
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="col s12 l12">
+                <form class="col s12 l12" id="formularioEditar">
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Turma de Karate, Turma de Natação, Turma de Ginástica" id="descricaoEditar" type="text" class="validate" maxlength="20">
+                        <label for="descricaoEditar">Nome da Turma</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <select id="nomeEditar" class="validate" asp-items="@(new SelectList(item.Professores, "Id", "Nome"))">
+                            <option value="" disabled selected>Selecione um novo professor</option>
+                        </select>
+                        <label for="nomeEditar">Professor</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <select id="tipoEditar" class="validate" asp-items="@(new SelectList(item.TipoClientes))">
+                            <option value="" disabled selected>Selecione um tipo de aluno</option>
+                        </select>
+                        <label for="tipoEditar">Tipo</label>
+
+                    </div>
+
+                    <div class="input-field col s6">
+                        <select id="diasdasemanaEditar" class="validate" asp-items="@(new SelectList(item.DiasDaSemana))">
+                            <option value="" disabled selected>Selecione um dia da semana</option>
+                        </select>
+                        <label for="diasdasemanaEditar">Dias da semana</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input min="08:00" max="22:00" id="horarioinicialEditar" type="time" class="validate" maxlength="5">
+                        <label for="horarioinicialEditar">Horario Inicial</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input min="08:00" max="22:00" id="horariofinalEditar" type="time" class="validate" maxlength="5">
+                        <label for="horariofinalEditar">Horario Final</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <select id="unidadeEditar" class="validate" asp-items="@(new SelectList(item.Unidades, "Id", "Descricao"))">
+                            <option value="" disabled selected>Selecione uma nova unidade</option>
+                        </select>
+                        <label for="unidadeEditar">Unidade</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <select id="modalidadeEditar" class="validate" asp-items="@(new SelectList(item.Modalidades, "Id", "Descricao"))">
+                            <option value="" disabled selected>Selecione uma nova modalidade</option>
+                        </select>
+                        <label for="unidadeEditar">Modalidade</label>
+                    </div>
+
+
+                    <div id="modalCadastroTurma" class="modal">
+                        <div class="modal-content">
+                            <h4 class="flow-text center">Turma Cadastrada!</h4>
+                            <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                        </div>
+                    </div>
+                    <input id="idEditar" style="display: none;" />
+                </form>
+            </div>
+        }
+    </div>
+    <div class="modal-footer">
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
+    </div>
+</div>
+
+<div id="modalDeletar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Tem certeza que deseja deletar a turma?</h4>
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="col s12 l12">
+                <form class="col s12 l12" id="formularioDeletar">
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Turma de Karate, Turma de Natação, Turma de Ginástica" id="descricaoDeletar" type="text" class="validate" maxlength="20">
+                        <label for="descricaoDeletar">Nome da Turma</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <select id="nomeDeletar" class="validate">
+                        </select>
+                        <label for="nomeDeletar">Professor</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <select id="tipoDeletar" class="validate">
+                        </select>
+                        <label for="tipoDeletar">Tipo</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <select id="diasdasemanaDeletar" class="validate">
+                        </select>
+                        <label for="diasdasemanaDeletar">Dias da semana</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input min="08:00" max="22:00" id="horarioinicialDeletar" type="time" class="validate" maxlength="5">
+                        <label for="horarioinicialDeletar">Horario Inicial</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input min="08:00" max="22:00" id="horariofinalDeletar" type="time" class="validate" maxlength="5">
+                        <label for="horariofinalDeletar">Horario Final</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <select id="unidadeDeletar" class="validate">
+                        </select>
+                        <label for="unidadeDeletar">Unidade</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <select id="modalidadeDeletar" class="validate">
+                        </select>
+                        <label for="unidadeDeletar">Modalidade</label>
+                    </div>
+
+                    <div id="modalCadastroTurma" class="modal">
+                        <div class="modal-content">
+                            <h4 class="flow-text center">Turma Cadastrada!</h4>
+                            <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                        </div>
+                    </div>
+                    <input id="idEditar" style="display: none;" />
+                </form>
+            </div>
+        }
+    </div>
+    <div class="modal-footer">
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
+        <a class="waves-effect waves-light btn modal-trigger " style="color:grey; background-color:inherit; border-color: inherit">Sair</a>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="js/main.js"></script>
+    <script>
+
+        let valorId;
+        let valorDescricao;
+        let valorNome;
+        let valorTipo;
+        let valorDiasDaSemana;
+        let valorHorarioInicial;
+        let valorHorarioFinal;
+        let valorUnidade;
+        let valorModalidade;
+
+        function EditarModal(id, descricao, nome, tipo, diasdasemana, horarioinicial, horariofinal, unidade, modalidade, model) {
+            valorId = id;
+            valorDescricao = descricao;
+            valorNome = nome;
+            valorTipo = tipo;
+            valorDiasDaSemana = diasdasemana;
+            valorHorarioInicial = horarioinicial;
+            valorHorarioFinal = horariofinal;
+            valorUnidade = unidade;
+            valorModalidade = modalidade;
+
+            document.getElementById("descricao" + model).value = descricao;
+            document.getElementById("nome" + model).value = nome;
+            document.getElementById("tipo" + model).value = tipo;
+            document.getElementById("diasdasemana" + model).value = diasdasemana;
+            document.getElementById("horarioinicial" + model).value = horarioinicial;
+            document.getElementById("horariofinal" + model).value = horariofinal;
+            document.getElementById("unidade" + model).value = unidade;
+            document.getElementById("modalidade" + model).value = modalidade;
+            document.getElementById("id" + model).value = id;
+        }
+        function Deletar() {
+            var turma = {
+                Id: valorId,
+                Descricao: valorDescricao,
+                ColaboradorId: valorNome,
+                Tipo: valorTipo,
+                DiaDaSemana: valorDiasDaSemana,
+                HorarioInicial: valorHorarioInicial,
+                HorarioFinal: valorHorarioFinal,
+                UnidadeId: valorUnidade,
+                ModalidadeId: valorModalidade
+            };
+            $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Deletar","Turma")",
+                     data: { turma: turma},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Deletado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             default:
+                         }
+                }
+            });
+        });
+        }
+        function Editar() {
+            var turma = {
+                Id: valorId,  Descricao: valorDescricao, Nome: valorNome, Tipo: valorTipo, DiasDaSemana: valorDiasDaSemana, HorarioInicial: valorHorarioInicial, HorarioFinal: valorHorarioFinal
+                , Unidade: valorUnidade, Modalidade: valorModalidade};
+            var turmaEditar = {
+                Id: document.getElementById("idEditar").value,
+                Descricao: document.getElementById("descricaoEditar").value,
+                ColaboradorId: document.getElementById("nomeEditar").value,
+                Tipo: document.getElementById("tipoEditar").value,
+                DiaDaSemana: document.getElementById("diasdasemanaEditar").value,
+                HorarioInicial: document.getElementById("horarioinicialEditar").value,
+                HorarioFinal: document.getElementById("horariofinalEditar").value,
+                UnidadeId: document.getElementById("unidadeEditar").value,
+                ModalidadeId: document.getElementById("modalidadeEditar").value
+            };
+            $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Editar","Turma")",
+                     data: { turma: turma, turmaEditar: turmaEditar },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                              case "Horario inválido":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Editado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+        }
+
+        function Adicionar() {
+                    var turma = {
+                        Descricao: document.getElementById("descricao").value,
+                        ColaboradorId: document.getElementById("nome").value,
+                        Tipo: document.getElementById("tipo").value,
+                        DiaDaSemana: document.getElementById("diasdasemana").value,
+                        HorarioInicial: document.getElementById("horarioinicial").value,
+                        HorarioFinal: document.getElementById("horariofinal").value,
+                        UnidadeId: document.getElementById("unidade").value,
+                        ModalidadeId: document.getElementById("modalidade").value
+            };
+            ;
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Adicionar","Turma")",
+                     data: { turma: turma},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                              case "Horario inválido":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+        }
+        $(document).ready(function(){
+          $('.modal').modal();
+        });
+    </script>
+
+}
