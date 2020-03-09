@@ -8,8 +8,8 @@ namespace Model.ViewModels
 {
     public class ColaboradorFormViewModel
     {
-        public ICollection<Colaborador> Colaboradores { get; set; }
-        public ICollection<Funcao> Funcoes { get; set; }
+        public List<Colaborador> Colaboradores { get; set; }
+        public List<Funcao> Funcoes { get; set; }
         public Colaborador Colaborador { get; set; }
     }
 }

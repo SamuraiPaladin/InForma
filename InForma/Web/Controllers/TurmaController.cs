@@ -12,7 +12,7 @@ namespace Web.Controllers
     public class TurmaController : Controller
     {
         private readonly IServiceTurma<Turma> _service;
-      
+
         public TurmaController(IServiceTurma<Turma> service)
         {
             _service = service;
@@ -27,7 +27,14 @@ namespace Web.Controllers
             if (VerificaSeTemCampoVazioOuNulo(Turma))
                 return Json("Preenchimento obrigatório");
             else
+            if (VerificaHorario(Turma))
+            {
                 return Json(_service.Adicionar(Turma));
+            }
+            else
+            {
+                return Json("Horario inválido");
+            }
         }
 
         private static bool VerificaSeTemCampoVazioOuNulo(Turma Turma)
@@ -35,12 +42,64 @@ namespace Web.Controllers
             return string.IsNullOrWhiteSpace(Turma.Descricao.Trim());
         }
 
+        private static bool VerificaHorario(Turma Turma)
+        {
+            TimeSpan horarioInicial = new TimeSpan();
+            TimeSpan horarioFinal = new TimeSpan();
+
+            if (!String.IsNullOrEmpty(Turma.HorarioInicial) && !String.IsNullOrEmpty(Turma.HorarioFinal))
+            {
+                if (Turma.DiaDaSemana != "Sabado") {
+                    var turmaHorarioInicial = Turma.HorarioInicial.Split(':');
+                    var turmaHorarioFinal = Turma.HorarioFinal.Split(':');
+
+                    if (int.Parse(turmaHorarioInicial[0]) < 8 || int.Parse(turmaHorarioInicial[0]) > 22)
+                    {
+                        return false;
+                    }
+
+                    horarioInicial = new TimeSpan(int.Parse(turmaHorarioInicial[0]), 00, 0);
+                    horarioFinal = new TimeSpan(int.Parse(turmaHorarioFinal[0]), 00, 0);
+                }
+                else 
+                {
+                    var turmaHorarioInicial = Turma.HorarioInicial.Split(':');
+                    var turmaHorarioFinal = Turma.HorarioFinal.Split(':');
+
+                    if (int.Parse(turmaHorarioInicial[0]) < 8 || int.Parse(turmaHorarioInicial[0]) > 13)
+                    {
+                        return false;
+                    }
+
+                    horarioInicial = new TimeSpan(int.Parse(turmaHorarioInicial[0]), 00, 0);
+                    horarioFinal = new TimeSpan(int.Parse(turmaHorarioFinal[0]), 00, 0);
+                }
+            }
+            else
+            {
+                horarioInicial = new TimeSpan(00, 00, 00);
+                horarioFinal = new TimeSpan(00, 00, 00);
+            }
+
+            Turma.HorarioInicial = $"{horarioInicial.Hours}:00";
+            Turma.HorarioFinal = $"{horarioFinal.Hours}:00";
+
+            return (horarioFinal - horarioInicial).Hours == 1;
+        }
+
         public JsonResult Editar(Turma Turma, Turma TurmaEditar)
         {
             if (VerificaSeTemCampoVazioOuNulo(TurmaEditar))
                 return Json("Preenchimento obrigatório");
             else
+                  if (VerificaHorario(TurmaEditar))
+            {
                 return Json(_service.Atualizar(Turma, TurmaEditar));
+            }
+            else
+            {
+                return Json("Horario inválido");
+            }
         }
         public JsonResult Deletar(Turma Turma)
         {

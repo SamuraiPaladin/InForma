@@ -9,11 +9,19 @@
 
     <style>
         #parallaxIndex {
-            height: 200px;
+            height: 220px;
             width: 100%;
             margin-top: -30px;
             position: relative;
             top: -25px;
+        }
+        #icontemperature{
+            position:relative;
+            top:-20px
+        }
+        #horario{
+            position:relative;
+            top:20px
         }
     </style>
 </head>
@@ -25,11 +33,11 @@
         <div class="row container">
             <div class="col s12 l6">
                 <h5 id="bemvindo">Bem vindo, <strong>Diego</strong> ;)</h5>
-                <h5 id="data"> </h5>
+                <h5 id="data"></h5>
                 <p id="temperaturaDados">
-                    <span>Osasco - SP </span><br>
-                    <i class="wi wi-day-sunny"></i>
-                    23<i class="wi wi-celsius"></i>
+                    <span id="locale"> </span><br>
+                    <img id="iconweather" width="60" />
+                    <span id="icontemperature"><span id="graus"></span><i class="wi wi-celsius"></i></span>
                 </p>
             </div>
             <div class="col s12 l6">
@@ -37,6 +45,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- CONTEUDO DA PAGINA EM SI -->
     <div class="row container">
@@ -103,6 +112,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/materialize.min.js"></script>
 
+    <script src="~/js/temperaturaAndLocale.js"></script>
     <script src="js/main.js"></script>
     <script src="~/js/tempo.js"></script>
     <script src="~/js/site.js"></script>

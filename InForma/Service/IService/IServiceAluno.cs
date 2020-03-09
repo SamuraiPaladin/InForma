@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Service.IService
 {   //Interface Service Repository
-    public interface IServiceTurma<T> where T: class
+    public interface IServiceAluno<T> where T: class
     {
         bool Adicionar(T entidade);
-        List<TurmaFormViewModel> ListaCompleta();
-        List<TurmaFormViewModel> ListaUnidadeEModalidade();
+        IList<T> ListaCompleta();
+        TurmaFormViewModel ListaUnidadeEModalidade();
         bool Atualizar(T entidade, T entidadeEditar);
         bool Deletar(T entidade);
     }

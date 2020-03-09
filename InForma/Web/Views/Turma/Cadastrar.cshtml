@@ -13,7 +13,7 @@
         <form asp-action="Adicionar">
             @*<div asp-validation-summary="All" class="text-danger"></div>*@ @*faz a validação de todos os campos ficar em uma unica div*@
             <div class="form-group">
-                <label asp-for="Turma.Descricao" class="control-label"></label>
+                @*<label asp-for="Turma.Descricao" class="control-label"></label>
                 <input asp-for="Turma.Descricao" class="form-control" />
                 <span asp-validation-for="Turma.Descricao" class="text-danger"></span>
             </div>
@@ -52,7 +52,7 @@
                 <label asp-for="Turma.Modalidade" class="control-label"></label>
                 <select style="display:block" asp-for="Turma.ModalidadeId" asp-items="@(new SelectList(Model.Modalidades, "Id", "TipoModalidade"))" class="form-control">
                 </select>
-            </div>
+            </div>*@
             <hr />
             <div class="form-group">
                 <input type="submit" class="btn btn-default" value="Create" />

@@ -50,7 +50,15 @@ namespace Infra.DB
 
         public bool VerificarSeJaExisteNoBanco(Turma entidade)
         {
-            var quantidadeDeRegistros = _context.Turmas.Where(x => x.Descricao == entidade.Descricao).ToList();
+            var quantidadeDeRegistros = _context.Turmas.Where(
+            x => x.Descricao == entidade.Descricao 
+            && x.Tipo == entidade.Tipo
+            && x.ColaboradorId == entidade.ColaboradorId
+            && x.HorarioInicial == entidade.HorarioInicial
+            && x.HorarioFinal == entidade.HorarioFinal
+            && x.DiaDaSemana == entidade.DiaDaSemana
+            && x.UnidadeId == entidade.UnidadeId
+            && x.ModalidadeId == entidade.ModalidadeId).ToList();
 
             return quantidadeDeRegistros.Count() > 0 ? true : false;
         }
