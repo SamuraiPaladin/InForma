@@ -52,21 +52,21 @@
         <div class="col s12">
             <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
             <a href="#" class="breadcrumb">Cadastro</a>
-            <a href="@Url.Action("Index", "Funcao")" class="breadcrumb"><strong>Cargo</strong></a>
+            <a href="@Url.Action("Index", "Funcao")" class="breadcrumb"><strong>Função</strong></a>
         </div>
     </div>
 </nav>
 
 <div class="row container">
     <div class="col s12 l12">
-        <a class="btn waves-effect waves-light modal-trigger right" href="#cadastrarCargo">Cadastrar Cargo</a>
+        <a class="btn waves-effect waves-light modal-trigger right" href="#cadastrarCargo">Cadastrar Função</a>
     </div>
 </div>
 
 <div id="cadastrarCargo" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4>Cadastrar Cargo</h4>
+            <h4>Cadastrar Função</h4>
         </div>
 
         <div class="col s12 l12">
@@ -86,6 +86,7 @@
 
     </div>
     <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
         <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
     </div>
 </div>
@@ -95,10 +96,10 @@
 
         @if (Model.Count > 0)
         {
-            <table class="highlight centered striped tabela">
+            <table class="highlight centered tabela">
                 <thead>
                     <tr>
-                        <th>Cargo</th>
+                        <th>Função</th>
                         <th>Descrição</th>
                         <th></th>
                     </tr>
@@ -123,7 +124,7 @@
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4>Editar Função</h4>
+            <h4>Editar Função 'tal'</h4>
         </div>
 
         <div class="col s12 l12">
@@ -144,6 +145,7 @@
 
     </div>
     <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
         <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
     </div>
 </div>
@@ -152,7 +154,7 @@
 <div id="modalDeletar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4>Deletar Função</h4>
+            <h4>Tem certeza que deseja deletar a Função 'tal'?</h4>
         </div>
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioDeletar">
@@ -170,6 +172,7 @@
         </div>
     </div>
     <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
         <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
     </div>
 </div>

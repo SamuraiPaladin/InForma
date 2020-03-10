@@ -7,6 +7,7 @@ using Model.ViewModels;
 using Service.IService;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Service.Service
@@ -49,9 +50,9 @@ namespace Service.Service
             return dAO.Deletar(entidade);
         }
 
-        public IList<Colaborador> ListaCompleta()
+        public List<Colaborador> ListaCompleta()
         {
-            return (IList<Colaborador>)this.ReturnColaboradorFormViewModel(true).Colaboradores;
+            return this.ReturnColaboradorFormViewModel(true).Colaboradores;
         }
 
         public ColaboradorFormViewModel ListaColaboradorEFuncao()
@@ -61,13 +62,13 @@ namespace Service.Service
 
         public ColaboradorFormViewModel ReturnColaboradorFormViewModel(bool isListComplete)
         {
-            IList<Colaborador> Colaboradores = new List<Colaborador>(); 
+            List<Colaborador> Colaboradores = new List<Colaborador>(); 
             if (isListComplete)
             {
-                Colaboradores = dAO.ListaCompleta();
+                Colaboradores = dAO.ListaCompleta().ToList();
             }
 
-            var funcoes = dAOFuncao.ListaCompleta();
+            var funcoes = dAOFuncao.ListaCompleta().ToList();
 
             return new ColaboradorFormViewModel() { Colaboradores = Colaboradores, Funcoes = funcoes };
 

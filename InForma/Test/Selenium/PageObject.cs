@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xunit;
 
@@ -166,7 +167,49 @@ namespace Test
                     {
                         try
                         {
-                            IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[3]/ul/li/div[2]"));
+                            IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[4]/ul/li/div[1]"));
+                            Element.Click();
+                            clicked = true;
+                        }
+                        catch (Exception e)
+                        {
+                            count = count + 1;
+                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                        }
+                    }
+                }
+                public static void GerenciarPagamentoLink()
+                {
+                    int count = 0;
+                    Boolean clicked = false;
+                    while (clicked.Equals(false))
+                    {
+                        try
+                        {
+                            IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[4]/ul/li/div[2]/ul/li/a"));
+                            Element.Click();
+                            clicked = true;
+                        }
+                        catch (Exception e)
+                        {
+                            count = count + 1;
+                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                        }
+                    }
+                }
+            }
+
+            public class Estoque
+            {
+                public static void EstoqueList()
+                {
+                    int count = 0;
+                    Boolean clicked = false;
+                    while (clicked.Equals(false))
+                    {
+                        try
+                        {
+                            IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[5]/ul/li/div[2]/ul/li/a"));
                             Element.Click();
                             clicked = true;
                         }
@@ -178,15 +221,30 @@ namespace Test
                     }
 
                 }
-            }
 
-            public class Estoque
-            {
-
+                public static void LinkLink()
+                {
+                    int count = 0;
+                    Boolean clicked = false;
+                    while (clicked.Equals(false))
+                    {
+                        try
+                        {
+                            IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[5]/ul/li/div[1]"));
+                            Element.Click();
+                            clicked = true;
+                        }
+                        catch (Exception e)
+                        {
+                            count = count + 1;
+                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                        }
+                    }
+                }
             }
         }
         public static class RegisterUnitScreen
-        {
+        { 
             public static void NomeUnidadeTextBox(string Unidade)
             {
                 int count = 0;
