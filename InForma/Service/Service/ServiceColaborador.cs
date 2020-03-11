@@ -50,19 +50,21 @@ namespace Service.Service
             return dAO.Deletar(entidade);
         }
 
-        public List<Colaborador> ListaCompleta()
+        public List<ColaboradorFormViewModel> ListaCompleta()
         {
-            return this.ReturnColaboradorFormViewModel(true).Colaboradores;
+            return this.ReturnColaboradorFormViewModel(true);
         }
 
-        public ColaboradorFormViewModel ListaColaboradorEFuncao()
+        public List<ColaboradorFormViewModel> ListaColaboradorEFuncao()
         {
-            return ReturnColaboradorFormViewModel(false);
+            return this.ReturnColaboradorFormViewModel(false);
         }
 
-        public ColaboradorFormViewModel ReturnColaboradorFormViewModel(bool isListComplete)
+        public List<ColaboradorFormViewModel> ReturnColaboradorFormViewModel(bool isListComplete)
         {
             List<Colaborador> Colaboradores = new List<Colaborador>(); 
+            List<ColaboradorFormViewModel> ColaboradorFormViewModel = new List<ColaboradorFormViewModel>(); 
+
             if (isListComplete)
             {
                 Colaboradores = dAO.ListaCompleta().ToList();
@@ -70,9 +72,10 @@ namespace Service.Service
 
             var funcoes = dAOFuncao.ListaCompleta().ToList();
 
-            return new ColaboradorFormViewModel() { Colaboradores = Colaboradores, Funcoes = funcoes };
+            var colaboradores = new ColaboradorFormViewModel() { Colaboradores = Colaboradores, Funcoes = funcoes };
+            ColaboradorFormViewModel.Add(colaboradores);
 
+            return ColaboradorFormViewModel;
         }
-
     }
 }

@@ -8,8 +8,8 @@ namespace Service.IService
     public interface IServiceColaborador<T> where T: class
     {
         bool Adicionar(T entidade);
-        List<T> ListaCompleta();
-        ColaboradorFormViewModel ListaColaboradorEFuncao();
+        List<ColaboradorFormViewModel> ListaCompleta();
+        List<ColaboradorFormViewModel> ListaColaboradorEFuncao();
         bool Atualizar(T entidade, T entidadeEditar);
         bool Deletar(T entidade);
     }

@@ -58,8 +58,8 @@ namespace Web.Controllers
                         return false;
                     }
 
-                    horarioInicial = new TimeSpan(int.Parse(turmaHorarioInicial[0]), 00, 0);
-                    horarioFinal = new TimeSpan(int.Parse(turmaHorarioFinal[0]), 00, 0);
+                    horarioInicial = new TimeSpan(int.Parse(turmaHorarioInicial[0]), int.Parse(turmaHorarioInicial[1]), 0);
+                    horarioFinal = new TimeSpan(int.Parse(turmaHorarioFinal[0]), int.Parse(turmaHorarioFinal[1]), 0);
                 }
                 else 
                 {
@@ -71,8 +71,8 @@ namespace Web.Controllers
                         return false;
                     }
 
-                    horarioInicial = new TimeSpan(int.Parse(turmaHorarioInicial[0]), 00, 0);
-                    horarioFinal = new TimeSpan(int.Parse(turmaHorarioFinal[0]), 00, 0);
+                    horarioInicial = new TimeSpan(int.Parse(turmaHorarioInicial[0]), int.Parse(turmaHorarioInicial[1]), 0);
+                    horarioFinal = new TimeSpan(int.Parse(turmaHorarioFinal[0]), int.Parse(turmaHorarioFinal[1]), 0);
                 }
             }
             else
@@ -81,10 +81,10 @@ namespace Web.Controllers
                 horarioFinal = new TimeSpan(00, 00, 00);
             }
 
-            Turma.HorarioInicial = $"{horarioInicial.Hours}:00";
-            Turma.HorarioFinal = $"{horarioFinal.Hours}:00";
+            Turma.HorarioInicial = $"{horarioInicial.Hours}:{horarioInicial.Minutes}";
+            Turma.HorarioFinal = $"{horarioFinal.Hours}:{horarioFinal.Minutes}";
 
-            return (horarioFinal - horarioInicial).Hours == 1;
+            return (horarioFinal - horarioInicial).Hours == 1 && (horarioFinal - horarioInicial).Minutes == 0;
         }
 
         public JsonResult Editar(Turma Turma, Turma TurmaEditar)
