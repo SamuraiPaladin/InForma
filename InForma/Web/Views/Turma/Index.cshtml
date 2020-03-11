@@ -73,7 +73,7 @@
                     <form class="col s12 l12" id="formularioEditar">
 
                         <div class="input-field col s6">
-                            <input placeholder="Ex: Turma de Karate, Turma de Natação, Turma de Ginástica" id="descricao" type="text" class="validate" maxlength="20">
+                            <input placeholder="Ex: Turma de Karate, Turma de Natação, Turma de Ginástica" id="descricao" type="text" class="validate" maxlength="25">
                             <label for="descricao">Nome da Turma</label>
                         </div>
 
@@ -211,7 +211,7 @@
             <div class="col s12 l12">
                 <form class="col s12 l12" id="formularioEditar">
                     <div class="input-field col s6">
-                        <input placeholder="Ex: Turma de Karate, Turma de Natação, Turma de Ginástica" id="descricaoEditar" type="text" class="validate" maxlength="20">
+                        <input placeholder="Ex: Turma de Karate, Turma de Natação, Turma de Ginástica" id="descricaoEditar" type="text" class="validate" maxlength="25">
                         <label for="descricaoEditar">Nome da Turma</label>
                     </div>
 
@@ -292,46 +292,46 @@
             <div class="col s12 l12">
                 <form class="col s12 l12" id="formularioDeletar">
                     <div class="input-field col s6">
-                        <input placeholder="Ex: Turma de Karate, Turma de Natação, Turma de Ginástica" id="descricaoDeletar" type="text" class="validate" maxlength="20">
+                        <input disabled placeholder="Ex: Turma de Karate, Turma de Natação, Turma de Ginástica" id="descricaoDeletar" type="text" class="validate" maxlength="25">
                         <label for="descricaoDeletar">Nome da Turma</label>
                     </div>
 
                     <div class="input-field col s6">
-                        <select id="nomeDeletar" class="validate">
+                        <select disabled id="nomeDeletar" class="validate">
                         </select>
                         <label for="nomeDeletar">Professor</label>
                     </div>
 
                     <div class="input-field col s6">
-                        <select id="tipoDeletar" class="validate">
+                        <select disabled id="tipoDeletar" class="validate">
                         </select>
                         <label for="tipoDeletar">Tipo</label>
                     </div>
 
                     <div class="input-field col s6">
-                        <select id="diasdasemanaDeletar" class="validate">
+                        <select disabled id="diasdasemanaDeletar" class="validate">
                         </select>
                         <label for="diasdasemanaDeletar">Dias da semana</label>
                     </div>
 
                     <div class="input-field col s6">
-                        <input min="08:00" max="22:00" id="horarioinicialDeletar" type="time" class="validate" maxlength="5">
+                        <input disabled min="08:00" max="22:00" id="horarioinicialDeletar" type="time" class="validate" maxlength="5">
                         <label for="horarioinicialDeletar">Horario Inicial</label>
                     </div>
 
                     <div class="input-field col s6">
-                        <input min="08:00" max="22:00" id="horariofinalDeletar" type="time" class="validate" maxlength="5">
+                        <input disabled min="08:00" max="22:00" id="horariofinalDeletar" type="time" class="validate" maxlength="5">
                         <label for="horariofinalDeletar">Horario Final</label>
                     </div>
 
                     <div class="input-field col s6">
-                        <select id="unidadeDeletar" class="validate">
+                        <select disabled id="unidadeDeletar" class="validate">
                         </select>
                         <label for="unidadeDeletar">Unidade</label>
                     </div>
 
                     <div class="input-field col s6">
-                        <select id="modalidadeDeletar" class="validate">
+                        <select disabled id="modalidadeDeletar" class="validate">
                         </select>
                         <label for="unidadeDeletar">Modalidade</label>
                     </div>
@@ -477,7 +477,6 @@
                         UnidadeId: document.getElementById("unidade").value,
                         ModalidadeId: document.getElementById("modalidade").value
             };
-            ;
              $(function () {
                  $.ajax({
                      dataType: "json",
