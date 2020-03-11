@@ -31,12 +31,14 @@ namespace Web
             services.AddScoped<IServiceUnidade<Unidade>, ServiceUnidade>();
             services.AddScoped<IServiceTurma<Turma>, ServiceTurma>();
             services.AddScoped<IServiceColaborador<Colaborador>, ServiceColaborador>();
+            services.AddScoped<IServiceAluno<Aluno>, ServiceAluno>();
 
             services.AddScoped<IDAO<Modalidade>, ModalidadeDAO>();
             services.AddScoped<IDAO<Funcao>, FuncaoDAO>();
             services.AddScoped<IDAO<Unidade>, UnidadeDAO>();
             services.AddScoped<IDAO<Turma>, TurmaDAO>();
             services.AddScoped<IDAO<Colaborador>, ColaboradorDAO>();
+            services.AddScoped<IDAO<Aluno>, AlunoDAO>();
 
             services.AddDbContext<DataContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("BANCO_DE_DADOS")));
 

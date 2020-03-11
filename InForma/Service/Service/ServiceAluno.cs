@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Service.Service
 {
-    public class ServiceAluno : IServiceRepository<Aluno>
+    public class ServiceAluno : IServiceAluno<Aluno>
     {
         private readonly IDAO<Aluno> dAO;
 
