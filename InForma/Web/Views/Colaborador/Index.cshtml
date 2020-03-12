@@ -71,135 +71,317 @@
     <div id="modalCadastrar" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h4>Cadastrar Unidade </h4>
+                <h4>Cadastrar Colaborador </h4>
             </div>
-
 
             <div class="col s12 l12">
                 <form class="col s12 l12">
+
                     <div class="input-field col s6">
-                        <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomefunc" type="text" class="validate">
-                        <label for="nomefunc">Nome do Funcionário</label>
+                        <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nome" type="text" class="validate">
+                        <label for="nome">Nome do Funcionário</label>
                     </div>
 
                     <div class="input-field col s6">
-                        <input placeholder="Ex: Souza, Silva..." id="sobrenome" type="text" class="validate">
-                        <label for="sobrenome">Sobrenome</label>
-                    </div>
-
-                    <div class="input-field col s6">
-                        <select id="cargo" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
+                        <select id="funcao" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
                         </select>
-                        <label for="cargo">Cargo</label>
+                        <label for="funcao">Cargo</label>
                     </div>
+
+                    @*<div class="input-field col s6">
+                            <input type="date" id="datadenascimento" class="validate">
+                            <label for="datadenascimento">Data de Nascimento</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input id="cpf" oninput="mascaraCPF(this)" type="text">
+                            <label for="cpf">CPF</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input id="rg" oninput="mascaraRG(this)" type="text">
+                            <label for="rg">RG</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input placeholder="Ex: 46361345, 84512574..." id="telefone" type="text" class="validate" maxlength="11">
+                            <label for="telefone">Telefone</label>
+                        </div>*@
+
+                    <div id="modalCadastroColaborador" class="modal">
+                        <div class="modal-content">
+                            <h4 class="flow-text center">Colaborador Cadastrado!</h4>
+                            <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="Adicionar()">sair</a>
+                        </div>
+                    </div>
+                    <input id="idEditar" style="display: none;" />
                 </form>
             </div>
-
-
         </div>
         <div class="modal-footer">
-            <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="">Cadastrar</a>
+            <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
         </div>
     </div>
 }
 
-    <div class="row container">
-        <div class="col s12 l12">
-
-            <table class="highlight centered tabela">
-                <thead>
+@if (Model.Count > 0)
+{
+    <table class="table highlight container ">
+        <thead>
+            <tr>
+                <th>Colaborador</th>
+                <th>Cargo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                @foreach (var colaborador in item.Colaboradores)
+                {
                     <tr>
-                        <th>Colaborador</th>
-                        <th>Cargo</th>
-                        <th></th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td>Natacao</td>
-                        <td>bla bla bla bla bla bla blas    </td>
                         <td>
-                            <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                            <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modaExcluir"><i class="material-icons">delete_forever</i></a>
+                            @Html.DisplayFor(modelItem => colaborador.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => colaborador.Funcao.TipoFuncao)
+                        </td>
+                        <td>
+                            <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@colaborador.Id', '@colaborador.Nome', '@colaborador.Funcao.Id',
+                                                                                                                                                  'Editar')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                            <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@colaborador.Id', '@colaborador.Nome', '@colaborador.Funcao.Id',
+                                                                                                                                                  'Deletar')"><i class="material-icons">delete_forever</i></a>
                         </td>
                     </tr>
-                </tbody>
+                }
+            }
+        </tbody>
+    </table>
+}
 
-            </table>
 
+<div id="modalEditar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Editar Colaborador</h4>
         </div>
-    </div>
+        @foreach (var item in Model)
+        {
+            <div class="col s12 l12">
+                <form class="col s12 l12">
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomeEditar" type="text" class="validate">
+                        <label for="nomeEditar">Nome do Funcionário</label>
+                    </div>
 
-    <div id="modalEditar" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4>Editar Colaborador 'tal'</h4>
+                    <div class="input-field col s6">
+                        <select id="funcaoEditar" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
+                            <option value="" disabled selected>Selecione uma função</option>
+                        </select>
+                        <label for="funcaoEditar">Cargo</label>
+                    </div>
+                    <div id="modalCadastroColaborador" class="modal">
+                        <div class="modal-content">
+                            <h4 class="flow-text center">Colaborador Cadastrado!</h4>
+                            <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                        </div>
+                    </div>
+                    <input id="idEditar" style="display: none;" />
+                </form>
             </div>
+        }
+    </div>
+    <div class="modal-footer">
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
+    </div>
+</div>
 
+
+<div id="modaExcluir" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Tem certeza que deseja deletar o colaborador?</h4>
+        </div>
+        @foreach (var item in Model)
+        {
 
             <div class="col s12 l12">
                 <form class="col s12 l12">
                     <div class="input-field col s6">
-                        <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomefunc" type="text" class="validate">
-                        <label for="nomefunc">Nome do Funcionário</label>
+                        <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomeDeletar" type="text" class="validate">
+                        <label for="nomeDeletar">Nome do Funcionário</label>
                     </div>
 
                     <div class="input-field col s6">
-                        <input placeholder="Ex: Souza, Silva..." id="sobrenome" type="text" class="validate">
-                        <label for="sobrenome">Sobrenome</label>
+                        <select disabled id="funcaoDeletar" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
+                        </select>
+                        <label for="funcaoDeletar">Cargo</label>
                     </div>
+                    <div id="modalCadastroColaborador" class="modal">
+                        <div class="modal-content">
+                            <h4 class="flow-text center">Colaborador Cadastrado!</h4>
+                            <p class="center">Clique em "SAIR" para voltar a página principal.</p>
 
-                    <div class="input-field col s6">
-                        <input placeholder="Ex: Analista, Recepcionista..." id="cargo" type="text" class="validate">
-                        <label for="cargo">Cargo</label>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                        </div>
                     </div>
-
+                    <input id="idEditar" style="display: none;" />
                 </form>
             </div>
+        }
 
-
-        </div>
-        <div class="modal-footer">
-            <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="">Editar</a>
-        </div>
     </div>
-
-
-    <div id="modaExcluir" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4>Tem certeza que deseja deletar o colaborador 'tal'?</h4>
-            </div>
-
-
-            <div class="col s12 l12">
-                <form class="col s12 l12">
-                    <div class="input-field col s6">
-                        <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomefunc" type="text" class="validate">
-                        <label for="nomefunc">Nome do Funcionário</label>
-                    </div>
-
-                    <div class="input-field col s6">
-                        <input placeholder="Ex: Souza, Silva..." id="sobrenome" type="text" class="validate">
-                        <label for="sobrenome">Sobrenome</label>
-                    </div>
-
-                    <div class="input-field col s6">
-                        <input placeholder="Ex: Analista, Recepcionista..." id="cargo" type="text" class="validate">
-                        <label for="cargo">Cargo</label>
-                    </div>
-
-                </form>
-            </div>
-
-
-        </div>
-        <div class="modal-footer">
-            <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="">Deletar</a>
-        </div>
+    <div class="modal-footer">
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
+        <a class="waves-effect waves-light btn modal-trigger " style="color:grey; background-color:inherit; border-color: inherit">Sair</a>
     </div>
+</div>
 
-    @section scripts{
-        <script src="js/main.js"></script>
-    }
+@section scripts{
+    <script src="js/main.js"></script>
+
+    <script type="text/javascript">
+        let valorId;
+        let valorNome;
+        let valorFuncao;
+
+        function EditarModal(id, nome, funcao, model) {
+            valorId = id;
+            valorNome = nome;
+            valorFuncao = funcao;
+
+            document.getElementById("nome" + model).value = nome;
+            document.getElementById("funcao" + model).value = funcao;
+            document.getElementById("id" + model).value = id;
+        }
+
+        function Deletar() {
+            var colaborador = {
+                Id: valorId,
+                Nome: valorNome,
+                FuncaoId: valorFuncao
+            };
+            $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Deletar","Colaborador")",
+                     data: { colaborador: colaborador},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Deletado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             default:
+                         }
+                }
+            });
+        });
+        }
+
+          function Editar() {
+            var colaborador = {
+                Id: valorId, Nome: valorNome, Funcao: valorFuncao};
+            var colaboradorEditar = {
+                Id: document.getElementById("idEditar").value,
+                Nome: document.getElementById("nomeEditar").value,
+                FuncaoId: document.getElementById("funcaoEditar").value
+            };
+            $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Editar","Colaborador")",
+                     data: { colaborador: colaborador, colaboradorEditar: colaboradorEditar },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                             case true:
+                                 M.toast({ html: 'Editado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+        }
+
+                function Adicionar() {
+                    var colaborador = {
+                        Nome: document.getElementById("nome").value,
+                        FuncaoId: document.getElementById("funcao").value,
+            };
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Adicionar","Colaborador")",
+                     data: { colaborador: colaborador},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+        }
+        $(document).ready(function(){
+          $('.modal').modal();
+        });
+
+        function mascaraCPF(i) {
+
+            var v = i.value;
+
+            if (isNaN(v[v.length - 1])) { // impede entrar outro caractere que não seja número
+                i.value = v.substring(0, v.length - 1);
+                return;
+            }
+
+            i.setAttribute("maxlength", "14");
+            if (v.length == 3 || v.length == 7) i.value += ".";
+            if (v.length == 11) i.value += "-";
+
+        }
+
+        function mascaraRG(i) {
+
+            var v = i.value;
+
+            if (isNaN(v[v.length - 1])) { // impede entrar outro caractere que não seja número
+                i.value = v.substring(0, v.length - 1);
+                return;
+            }
+
+            i.setAttribute("maxlength", "12");
+            if (v.length == 2 || v.length == 6) i.value += ".";
+            if (v.length == 10) i.value += "-";
+        }
+
+    </script>
+}

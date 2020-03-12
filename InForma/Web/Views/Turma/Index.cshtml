@@ -112,7 +112,7 @@
                         </div>
 
                         <div class="input-field col s6">
-                            <select id="modalidade" class="validate" asp-items="@(new SelectList(item.Modalidades, "Id", "Descricao"))">
+                            <select id="modalidade" class="validate" asp-items="@(new SelectList(item.Modalidades, "Id", "TipoModalidade"))">
                             </select>
                             <label for="unidade">Modalidade</label>
                         </div>
@@ -186,7 +186,7 @@
                             @Html.DisplayFor(modelItem => turma.Unidade.Descricao)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => turma.Modalidade.Descricao)
+                            @Html.DisplayFor(modelItem => turma.Modalidade.TipoModalidade)
                         </td>
                         <td>
                             <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@turma.Id', '@turma.Descricao', '@turma.Colaborador.Id',
@@ -255,7 +255,7 @@
                     </div>
 
                     <div class="input-field col s6">
-                        <select id="modalidadeEditar" class="validate" asp-items="@(new SelectList(item.Modalidades, "Id", "Descricao"))">
+                        <select id="modalidadeEditar" class="validate" asp-items="@(new SelectList(item.Modalidades, "Id", "TipoModalidade"))">
                             <option value="" disabled selected>Selecione uma nova modalidade</option>
                         </select>
                         <label for="unidadeEditar">Modalidade</label>

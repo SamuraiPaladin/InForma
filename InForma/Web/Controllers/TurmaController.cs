@@ -81,8 +81,8 @@ namespace Web.Controllers
                 horarioFinal = new TimeSpan(00, 00, 00);
             }
 
-            Turma.HorarioInicial = $"{horarioInicial.Hours}:{horarioInicial.Minutes}";
-            Turma.HorarioFinal = $"{horarioFinal.Hours}:{horarioFinal.Minutes}";
+            Turma.HorarioInicial = $"{horarioInicial.ToString(@"hh\:mm")}";
+            Turma.HorarioFinal = $"{horarioFinal.ToString(@"hh\:mm")}";
 
             return (horarioFinal - horarioInicial).Hours == 1 && (horarioFinal - horarioInicial).Minutes == 0;
         }

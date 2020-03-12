@@ -16,5 +16,6 @@ namespace Model.Entity
         public string Telefone { get; set;} 
         public Funcao Funcao { get; set;} 
         public int FuncaoId { get; set;} 
+        //public int? PessoaId { get; set;} 
     }
 }
