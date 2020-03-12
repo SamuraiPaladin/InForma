@@ -40,9 +40,9 @@ namespace Web.Controllers
         }
         private bool VerificaSeTemCampoVazioOuNulo(Unidade unidade)
         {
-            return string.IsNullOrEmpty(unidade.Bairro.Trim()) || string.IsNullOrEmpty(unidade.CEP.Trim()) || string.IsNullOrEmpty(unidade.Cidade.Trim()) || 
-                string.IsNullOrEmpty(unidade.Descricao.Trim()) || string.IsNullOrEmpty(unidade.Endereco.Trim()) || string.IsNullOrEmpty(unidade.Estado.Trim())
-                || string.IsNullOrEmpty(unidade.Numero.Trim()) || string.IsNullOrEmpty(unidade.Telefone.Trim());
+            return string.IsNullOrEmpty(unidade.Bairro) || string.IsNullOrEmpty(unidade.CEP) || string.IsNullOrEmpty(unidade.Cidade) || 
+                string.IsNullOrEmpty(unidade.Descricao) || string.IsNullOrEmpty(unidade.Endereco) || string.IsNullOrEmpty(unidade.Estado)
+                || string.IsNullOrEmpty(unidade.Numero) || string.IsNullOrEmpty(unidade.Telefone);
         }
         public JsonResult Editar(Unidade unidade, Unidade unidadeEditar)
         {
