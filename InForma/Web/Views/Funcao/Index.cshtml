@@ -52,28 +52,28 @@
         <div class="col s12">
             <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
             <a href="#" class="breadcrumb">Cadastro</a>
-            <a href="@Url.Action("Index", "Funcao")" class="breadcrumb"><strong>Função</strong></a>
+            <a href="@Url.Action("Index", "Funcao")" class="breadcrumb"><strong>Cargo</strong></a>
         </div>
     </div>
 </nav>
 
 <div class="row container">
     <div class="col s12 l12">
-        <a class="btn waves-effect waves-light modal-trigger right" href="#cadastrarCargo">Cadastrar Função</a>
+        <a class="btn waves-effect waves-light modal-trigger right" href="#cadastrarCargo">Cadastrar Cargo</a>
     </div>
 </div>
 
 <div id="cadastrarCargo" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4>Cadastrar Função</h4>
+            <h4>Cadastrar Cargo</h4>
         </div>
 
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioAdicionar">
                 <div class="input-field col s6">
                     <input placeholder="Ex:Recepcionista, contadora..." id="funcao" type="text" class="validate">
-                    <label for="funcao">Nome da Função</label>
+                    <label for="funcao">Nome do Cargo</label>
                 </div>
 
                 <div class="input-field col s6">
@@ -99,7 +99,7 @@
             <table class="highlight centered tabela">
                 <thead>
                     <tr>
-                        <th>Função</th>
+                        <th>Cargo</th>
                         <th>Descrição</th>
                         <th></th>
                     </tr>
@@ -124,14 +124,14 @@
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4>Editar Função 'tal'</h4>
+            <h4 id="editarCargoModal"></h4>
         </div>
 
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioEditar">
                 <div class="input-field col s6">
                     <input placeholder="Ex:Recepcionista, contadora..." id="funcaoEditar" type="text" class="validate">
-                    <label for="funcaoEditar">Nome da Função</label>
+                    <label for="funcaoEditar">Nome da Cargo</label>
                 </div>
 
                 <div class="input-field col s6">
@@ -154,13 +154,13 @@
 <div id="modalDeletar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4>Tem certeza que deseja deletar a Função 'tal'?</h4>
+            <h4 id="deletarCargoModal"></h4>
         </div>
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioDeletar">
                 <div class="input-field col s6">
                     <input id="funcaoDeletar" type="text" class="validate" placeholder="Ex:Recepcionista, contadora..." disabled>
-                    <label for="funcaoDeletar">Nome da Função</label>
+                    <label for="funcaoDeletar">Nome da Cargo</label>
                 </div>
 
                 <div class="input-field col s6">
@@ -215,10 +215,13 @@
                 document.getElementById("funcaoEditar").value = funcao;
                 document.getElementById("descricaoEditar").value = descricao;
                 document.getElementById("idEditar").value = id;
+                document.getElementById("editarCargoModal").innerText = "Editar Cargo " + funcao;
             } else {
                 document.getElementById("funcaoDeletar").value = funcao;
                 document.getElementById("descricaoDeletar").value = descricao;
                 document.getElementById("idDeletar").value = id;
+                document.getElementById("deletarCargoModal").innerText = "Tem certeza que deseja deletar a Cargo " + funcao + "?";
+
             }
         }
         function Editar(funcao, descricao) {

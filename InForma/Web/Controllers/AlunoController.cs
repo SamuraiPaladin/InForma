@@ -51,9 +51,7 @@ namespace Web.Controllers
         }
         public IActionResult Cadastrar()
         {
-            var viewModel = _service.ListaUnidadeEModalidade();
-
-            return View(viewModel);
+            return View();
         }
     }
 }

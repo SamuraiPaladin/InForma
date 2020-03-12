@@ -9,7 +9,6 @@ namespace Service.IService
     {
         bool Adicionar(T entidade);
         IList<T> ListaCompleta();
-        TurmaFormViewModel ListaUnidadeEModalidade();
         bool Atualizar(T entidade, T entidadeEditar);
         bool Deletar(T entidade);
     }
