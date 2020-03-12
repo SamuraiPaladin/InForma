@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Model.ViewModels.ColaboradorFormViewModel>
+@{
     ViewData["Title"] = "Colaborador";
 }
 
@@ -58,146 +59,147 @@
         </div>
     </div>
 </nav>
+@foreach (var item in Model)
+{
 
-<div class="row container">
-    <div class="col s12 l12">
-        <a href="#modalCadastrar" class="btn waves-effect waves-light modal-trigger right">Cadastrar Colaborador</a>
-    </div>
-</div>
-
-<div id="modalCadastrar" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4>Cadastrar Colaborador </h4>
-        </div>
-
-
+    <div class="row container">
         <div class="col s12 l12">
-            <form class="col s12 l12">
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomefunc" type="text" class="validate">
-                    <label for="nomefunc">Nome do Funcionário</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Souza, Silva..." id="sobrenome" type="text" class="validate">
-                    <label for="sobrenome">Sobrenome</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Analista, Recepcionista..." id="cargo" type="text" class="validate">
-                    <label for="cargo">Cargo</label>
-                </div>
-
-            </form>
+            <a href="#modalCadastrar" class="btn waves-effect waves-light modal-trigger right">Cadastrar Colaborador</a>
         </div>
-
-
     </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="">Cadastrar</a>
-    </div>
-</div>
+
+    <div id="modalCadastrar" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Cadastrar Unidade </h4>
+            </div>
 
 
-<div class="row container">
-    <div class="col s12 l12">
+            <div class="col s12 l12">
+                <form class="col s12 l12">
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomefunc" type="text" class="validate">
+                        <label for="nomefunc">Nome do Funcionário</label>
+                    </div>
 
-        <table class="highlight centered tabela">
-            <thead>
-                <tr>
-                    <th>Colaborador</th>
-                    <th>Cargo</th>
-                    <th></th>
-                </tr>
-            </thead>
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Souza, Silva..." id="sobrenome" type="text" class="validate">
+                        <label for="sobrenome">Sobrenome</label>
+                    </div>
 
-            <tbody>
-                <tr>
-                    <td>Natacao</td>
-                    <td>bla bla bla bla bla bla blas    </td>
-                    <td>
-                        <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                        <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modaExcluir"><i class="material-icons">delete_forever</i></a>
-                    </td>
-                </tr>
-            </tbody>
+                    <div class="input-field col s6">
+                        <select id="cargo" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
+                        </select>
+                        <label for="cargo">Cargo</label>
+                    </div>
+                </form>
+            </div>
 
-        </table>
 
-    </div>
-</div>
-
-<div id="modalEditar" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4>Editar Colaborador 'tal'</h4>
         </div>
-
-
-        <div class="col s12 l12">
-            <form class="col s12 l12">
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomefunc" type="text" class="validate">
-                    <label for="nomefunc">Nome do Funcionário</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Souza, Silva..." id="sobrenome" type="text" class="validate">
-                    <label for="sobrenome">Sobrenome</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Analista, Recepcionista..." id="cargo" type="text" class="validate">
-                    <label for="cargo">Cargo</label>
-                </div>
-
-            </form>
+        <div class="modal-footer">
+            <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="">Cadastrar</a>
         </div>
-
-
     </div>
-    <div class="modal-footer">
-        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="">Editar</a>
-    </div>
-</div>
-
-
-<div id="modaExcluir" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4>Tem certeza que deseja deletar o colaborador 'tal'?</h4>
-        </div>
-
-
-        <div class="col s12 l12">
-            <form class="col s12 l12">
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomefunc" type="text" class="validate" disabled>
-                    <label for="nomefunc">Nome do Funcionário</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Souza, Silva..." id="sobrenome" type="text" class="validate" disabled>
-                    <label for="sobrenome">Sobrenome</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Analista, Recepcionista..." id="cargo" type="text" class="validate" disabled>
-                    <label for="cargo">Cargo</label>
-                </div>
-
-            </form>
-        </div>
-
-
-    </div>
-    <div class="modal-footer">
-        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="">Deletar</a>
-    </div>
-</div>
-
-@section scripts{
-    <script src="js/main.js"></script>
 }
+
+    <div class="row container">
+        <div class="col s12 l12">
+
+            <table class="highlight centered tabela">
+                <thead>
+                    <tr>
+                        <th>Colaborador</th>
+                        <th>Cargo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Natacao</td>
+                        <td>bla bla bla bla bla bla blas    </td>
+                        <td>
+                            <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                            <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modaExcluir"><i class="material-icons">delete_forever</i></a>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+    <div id="modalEditar" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Editar Colaborador 'tal'</h4>
+            </div>
+
+
+            <div class="col s12 l12">
+                <form class="col s12 l12">
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomefunc" type="text" class="validate">
+                        <label for="nomefunc">Nome do Funcionário</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Souza, Silva..." id="sobrenome" type="text" class="validate">
+                        <label for="sobrenome">Sobrenome</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Analista, Recepcionista..." id="cargo" type="text" class="validate">
+                        <label for="cargo">Cargo</label>
+                    </div>
+
+                </form>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="">Editar</a>
+        </div>
+    </div>
+
+
+    <div id="modaExcluir" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Tem certeza que deseja deletar o colaborador 'tal'?</h4>
+            </div>
+
+
+            <div class="col s12 l12">
+                <form class="col s12 l12">
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomefunc" type="text" class="validate">
+                        <label for="nomefunc">Nome do Funcionário</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Souza, Silva..." id="sobrenome" type="text" class="validate">
+                        <label for="sobrenome">Sobrenome</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Analista, Recepcionista..." id="cargo" type="text" class="validate">
+                        <label for="cargo">Cargo</label>
+                    </div>
+
+                </form>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="">Deletar</a>
+        </div>
+    </div>
+
+    @section scripts{
+        <script src="js/main.js"></script>
+    }
