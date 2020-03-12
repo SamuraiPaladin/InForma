@@ -179,7 +179,7 @@
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4>Editar Unidade 'tal'</h4>
+            <h4 id="editarUnidadeDescricao"></h4>
         </div>
 
 
@@ -251,7 +251,7 @@
 <div id="modalDeletar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4>Tem certeza que deseja deletar a unidade 'tal'?</h4>
+            <h4 id="deletarUnidadeDescricao"></h4>
         </div>
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioDeletar">
@@ -346,7 +346,12 @@
             document.getElementById("bairro" + model).value = bairro;
             document.getElementById("cidade" + model).value = cidade;
             document.getElementById("estado" + model).value = estado;
+            if (model === "Editar") {
             document.getElementById("id" + model).value = id;
+            document.getElementById("editarUnidadeDescricao").innerText = "Editar Unidade " + descricao;
+            } else {
+                document.getElementById("deletarUnidadeDescricao").innerText = "Tem certeza que deseja deletar a Unidade " + descricao +"?";
+            }
         }
         function Deletar() {
             var unidade = {
@@ -364,7 +369,7 @@
                                  M.toast({ html: dados, classes: 'rounded orange' });
                              break;
                              case true:
-                                 M.toast({ html: 'Deletado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 M.toast({ html: 'Deletado com sucesso!!!',  classes: 'rounded green', completeCallback: function(){window.location.reload()} });
                                  break;
                              default:
                          }
@@ -436,7 +441,7 @@
                 })
             });
         }
-                function Adicionar() {
+         function Adicionar() {
             var unidade = {
                 Descricao: document.getElementById("descricao").value, Endereco: document.getElementById("endereco").value, Numero: document.getElementById("numero").value, CEP: document.getElementById("cep").value,
                 Telefone: document.getElementById("telefone").value, Bairro: document.getElementById("bairro").value, Cidade: document.getElementById("cidade").value, Estado: document.getElementById("estado").value};

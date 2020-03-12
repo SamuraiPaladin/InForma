@@ -39,7 +39,7 @@ namespace Web.Controllers
 
         private static bool VerificaSeTemCampoVazioOuNulo(Turma Turma)
         {
-            return string.IsNullOrWhiteSpace(Turma.Descricao.Trim());
+            return string.IsNullOrWhiteSpace(Turma.Descricao);
         }
 
         private static bool VerificaHorario(Turma Turma)
