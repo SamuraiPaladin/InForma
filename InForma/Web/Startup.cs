@@ -67,7 +67,7 @@ namespace Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Funcao}/{action=Index}/{id?}");
+                    pattern: "{controller=Principal}/{action=Index}/{id?}");
             });
         }
     }
