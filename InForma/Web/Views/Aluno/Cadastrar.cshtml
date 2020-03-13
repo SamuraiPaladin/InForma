@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="~/css/paginas/principal.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="clean">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                <a href="@Url.Action("Index", "Aluno")" class="breadcrumb">Aluno</a>
+                <a href="@Url.Action("Cadastrar", "Aluno")" class="breadcrumb">Cadastrar Aluno</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="col s12 l12">
+        <h4 class="flow-text">Cadastrar Aluno</h4>
+        <br><br>
+
+            <form class="col s12 l12">
+                <div class="input-field col s6">
+                    <input id="nome" type="text" class="validate">
+                    <label for="nome">Nome do Aluno</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 99.999.999-9" id="rg" type="text" class="validate" maxlength="12">
+                    <label for="rg">RG</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 999.999.999-99" id="cpf" type="text" class="validate" maxlength="14">
+                    <label for="cpf">CPF</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 46361345, 84512574..." id="telefone" type="text" class="validate">
+                    <label for="telefone">Telefone</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 08568520..." onblur="PesquisaCEP()" id="cep" type="text" class="validate">
+                    <label for="cep">CEP</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Av. Paulista..." id="endereco" type="text" class="validate">
+                    <label for="endereco">Endereco</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 4300..." id="numero" type="text" class="validate">
+                    <label for="numero">Numero</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairro" type="text" class="validate">
+                    <label for="bairro">Bairro</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Poá, Suzano..." id="cidade" type="text" class="validate">
+                    <label for="cidade">Cidade</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: SP, MG..." id="estado" type="text" class="validate">
+                    <label for="estado">Estado</label>
+                </div>
+
+                <div class="col s12 l12">
+                    <a class="waves-effect waves-light btn modal-trigger right" onclick="Adicionar()" style="background-color: #af2405;">cadastrar</a>
+                </div>
+
+                <div id="modalCadastroAluno" class="modal">
+                    <div class="modal-content">
+                        <h4 class="flow-text center">Aluno Cadastrado!</h4>
+                        <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"
+                           onclick="{redirect()}">sair</a>
+                    </div>
+                </div>
+
+            </form>
+
+    </div>
+
+    @section scripts{
+        <script>
+        function PesquisaCEP() {
+            let cep = document.getElementById('cep').value;
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("BuscaCep","Aluno")",
+                     data: { cep: cep },
+                     success: function (dados) {
+                         document.getElementById('bairro').value = dados.bairro;
+                         document.getElementById('endereco').value = dados.endereco ;
+                         document.getElementById('cidade').value = dados.cidade ;
+                         document.getElementById('estado').value = dados.estado ;
+                         }
+                })
+            });
+        }
+
+        function Adicionar() {
+            var aluno = {
+                Nome: document.getElementById("nome").value, RG: document.getElementById("rg").value, CPF: document.getElementById("cpf").value, Endereco: document.getElementById("endereco").value,
+                Numero: document.getElementById("numero").value, CEP: document.getElementById("cep").value, Telefone: document.getElementById("telefone").value,
+                Bairro: document.getElementById("bairro").value, Cidade: document.getElementById("cidade").value, Estado: document.getElementById("estado").value
+            };
+            debugger;
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Adicionar","Aluno")",
+                     data: { aluno: aluno},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+    }
+        </script>
+    }
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script src="~/js/main.js"></script>
+    <script src="~/js/tempo.js"></script>
+    <script src="~/js/site.js"></script>
+</body>
+</html>

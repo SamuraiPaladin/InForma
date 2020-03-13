@@ -12,7 +12,7 @@ namespace Web.Controllers
     public class AlunoController : Controller
     {
         private readonly IServiceAluno<Aluno> _service;
-      
+
         public AlunoController(IServiceAluno<Aluno> service)
         {
             _service = service;
@@ -52,6 +52,11 @@ namespace Web.Controllers
         public IActionResult Cadastrar()
         {
             return View();
+        }
+        public JsonResult BuscaCep(string cep)
+        {
+            var aluno = _service.BuscarCEP(cep);
+            return Json(aluno);
         }
     }
 }

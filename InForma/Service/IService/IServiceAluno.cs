@@ -1,5 +1,4 @@
-﻿using Model.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,5 +10,6 @@ namespace Service.IService
         IList<T> ListaCompleta();
         bool Atualizar(T entidade, T entidadeEditar);
         bool Deletar(T entidade);
+        T BuscarCEP(string cep);
     }
 }
