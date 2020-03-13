@@ -71,7 +71,7 @@
     <div id="modalCadastrar" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h4>Cadastrar Colaborador </h4>
+                <h4>Cadastrar Colaborador</h4>
             </div>
 
             <div class="col s12 l12">
@@ -168,7 +168,7 @@
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4>Editar Colaborador</h4>
+            <h4 id="editarColaboradorNome"></h4>
         </div>
         @foreach (var item in Model)
         {
@@ -210,7 +210,7 @@
 <div id="modalDeletar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4>Tem certeza que deseja deletar o colaborador?</h4>
+            <h4 id="deletarColaboradorNome"></h4>
         </div>
         @foreach (var item in Model)
         {
@@ -264,7 +264,13 @@
 
             document.getElementById("nome" + model).value = nome;
             document.getElementById("funcao" + model).value = funcao;
+ 
+            if (model === "Editar") {
             document.getElementById("id" + model).value = id;
+            document.getElementById("editarColaboradorNome").innerText = "Editar Colaborador " + nome;
+            } else {
+                document.getElementById("deletarColaboradorNome").innerText = "Tem certeza que deseja deletar o Colaborador " + nome +"?";
+            }
         }
 
         function Deletar() {

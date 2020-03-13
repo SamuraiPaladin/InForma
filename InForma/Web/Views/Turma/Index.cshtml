@@ -205,7 +205,7 @@
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4>Editar Turma</h4>
+            <h4 id="editarTurmaDescricao"></h4>
         </div>
         @foreach (var item in Model)
         {
@@ -287,7 +287,7 @@
 <div id="modalDeletar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4>Tem certeza que deseja deletar a turma?</h4>
+            <h4 id="deletarTurmaDescricao"></h4>
         </div>
         @foreach (var item in Model)
         {
@@ -393,7 +393,13 @@
             document.getElementById("horariofinal" + model).value = horariofinal;
             document.getElementById("unidade" + model).value = unidade;
             document.getElementById("modalidade" + model).value = modalidade;
+          
+            if (model === "Editar") {
             document.getElementById("id" + model).value = id;
+            document.getElementById("editarTurmaDescricao").innerText = "Editar " + descricao;
+            } else {
+                document.getElementById("deletarTurmaDescricao").innerText = "Tem certeza que deseja deletar " + descricao +"?";
+            }
         }
         function Deletar() {
             var turma = {
