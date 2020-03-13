@@ -1,7 +1,10 @@
 ﻿using Infra.IDAO;
 using Model.Entity;
 using Service.IService;
+using System;
 using System.Collections.Generic;
+using System.Text;
+using ViaCEP;
 
 namespace Service.Service
 {
@@ -43,6 +46,26 @@ namespace Service.Service
         public IList<Aluno> ListaCompleta()
         {
             return dAO.ListaCompleta();
+        }
+
+        public Aluno BuscarCEP(string cep)
+        {
+            try
+            {
+                var dadosCEP = ViaCEPClient.Search(cep);
+                return new Aluno()
+                {
+                    Bairro = dadosCEP.Neighborhood,
+                    Cidade = dadosCEP.City,
+                    CEP = dadosCEP.ZipCode,
+                    Endereco = dadosCEP.Street,
+                    Estado = dadosCEP.StateInitials
+                };
+            }
+            catch (AggregateException)
+            {
+                return new Aluno();
+            }
         }
     }
 }

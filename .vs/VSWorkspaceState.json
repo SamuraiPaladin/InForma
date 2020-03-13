@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\InForma"
+    "\\InForma",
+    "\\InForma\\Web",
+    "\\InForma\\Web\\Views",
+    "\\InForma\\Web\\Views\\Aluno"
   ],
-  "SelectedNode": "\\InForma\\InForma.sln",
+  "SelectedNode": "\\InForma\\Web\\Startup.cs",
   "PreviewInSolutionExplorer": false
 }

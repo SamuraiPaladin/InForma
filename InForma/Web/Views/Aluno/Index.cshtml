@@ -1,7 +1,519 @@
-﻿
+﻿@model IList<Model.Entity.Aluno>;
+
 @{
     ViewData["Title"] = "Aluno";
 }
 
-<h1>Index</h1>
+<head>
+    <style>
+        nav.clean {
+            background: none;
+            box-shadow: none;
+        }
 
+            nav.clean .breadcrumb {
+                color: black;
+            }
+
+                nav.clean .breadcrumb:before {
+                    color: rgba(0, 0, 0, 0.7);
+                }
+
+        .breadcrumb {
+            color: black;
+            font-size: 15px;
+        }
+
+        .btn-flat {
+            background-color: #af2405;
+            color: #fff
+        }
+
+        .btn {
+            background-color: #af2405;
+        }
+
+            .btn:hover {
+                background-color: #7c1a04;
+            }
+        /* INPUT COLOR */
+        .input-field input:focus + label {
+            color: #af2405 !important;
+        }
+
+        .row .input-field input:focus {
+            border-bottom: 1px solid #af2405 !important;
+            box-shadow: 0 1px 0 0 #af2405 !important
+        }
+    </style>
+</head>
+
+<nav class="clean container">
+    <div class="nav-wrapper">
+        <div class="col s12">
+            <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+            <a href="#" class="breadcrumb">Cadastro</a>
+            <a href="@Url.Action("Index", "Aluno")" class="breadcrumb"><strong>Aluno</strong></a>
+        </div>
+    </div>
+</nav>
+
+<div class="row container">
+    <a href="#modaCadastrar" class="btn waves-effect waves-light right modal-trigger">Cadastrar Aluno</a>
+
+    <div id="modaCadastrar" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Cadastrar Aluno </h4>
+            </div>
+
+            <div class="col s12 l12">
+                <form class="col s12 l12" id="formularioEditar">
+                    <div class="input-field col s6">
+                        <input id="nome" type="text" class="validate" maxlength="20" placeholder="Nome...">
+                        <label for="nome">Nome do Aluno</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: 99.999.999-9" id="rg" type="text" class="validate" maxlength="12">
+                        <label for="rg">RG</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: 999.999.999-99" id="cpf" type="text" class="validate" maxlength="14">
+                        <label for="cpf">CPF</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: 46361345, 84512574..." id="telefone" type="text" class="validate" maxlength="11">
+                        <label for="telefone">Telefone</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: 08568520..." onblur="PesquisaCEP()" id="cep" type="number" class="validate" maxlength="8">
+                        <label for="cep">CEP</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Av. Paulista..." id="endereco" type="text" class="validate" maxlength="45" disabled>
+                        <label for="endereco">Endereco</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: 4300..." id="numero" type="number" class="validate" maxlength="5">
+                        <label for="numero">Numero</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairro" type="text" class="validate" maxlength="30" disabled>
+                        <label for="bairro">Bairro</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Poá, Suzano..." id="cidade" type="text" class="validate" maxlength="30" disabled>
+                        <label for="cidade">Cidade</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: SP, MG..." id="estado" type="text" class="validate" disabled>
+                        <label for="estado">Estado</label>
+                    </div>
+
+                    <div id="modalCadastroAluno" class="modal">
+                        <div class="modal-content">
+                            <h4 class="flow-text center">Aluno Cadastrado!</h4>
+                            <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="Adicionar()">sair</a>
+                        </div>
+                    </div>
+                    <input id="idEditar" style="display: none;" />
+                </form>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+            <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
+        </div>
+    </div>
+
+</div>
+
+@if (Model.Count > 0)
+{
+    <table class="table highlight centered container ">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Rg</th>
+                <th>Cpf</th>
+                <th>Endereço</th>
+                <th>Número</th>
+                <th>CEP</th>
+                <th>Telefone</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.Nome</td>
+                <th>@item.RG</th>
+                <th>@item.CPF</th>
+                <td>@item.Endereco</td>
+                <td>@item.Numero</td>
+                <td>@item.CEP</td>
+                <td>@item.Telefone</td>
+                <td>@item.Bairro</td>
+                <td>@item.Cidade</td>
+                <td>@item.Estado</td>
+                <td>
+                    <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.Id', '@item.Nome','@item.RG','@item.CPF', '@item.Endereco',
+        '@item.Numero', '@item.CEP','@item.Telefone', '@item.Bairro', '@item.Cidade', '@item.Estado', 'Editar')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                    <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.Id', '@item.Nome', '@item.RG','@item.CPF', '@item.Endereco',
+        '@item.Numero', '@item.CEP','@item.Telefone', '@item.Bairro', '@item.Cidade', '@item.Estado', 'Deletar')"><i class="material-icons">delete_forever</i></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+<div id="modalEditar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 id="editarAlunoNome"></h4>
+        </div>
+
+
+        <div class="col s12 l12">
+            <form class="col s12 l12" id="formularioEditar">
+                <div class="input-field col s6">
+                    <input id="nomeEditar" type="text" class="validate" maxlength="20" placeholder="Nome...">
+                    <label for="nomeEditar">Nome do Aluno</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 99.999.999-9" id="rgEditar" type="text" class="validate" maxlength="12">
+                    <label for="rgEditar">RG</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 999.999.999-99" id="cpfEditar" type="text" class="validate" maxlength="14">
+                    <label for="cpfEditar">CPF</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 46361345, 84512574..." id="telefoneEditar" type="number" class="validate" maxlength="11">
+                    <label for="telefoneEditar">Telefone</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 08568520..." onblur="PesquisaCEPEditar()" id="cepEditar" type="number" class="validate" maxlength="8">
+                    <label for="cepEditar">CEP</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Av. Paulista..." id="enderecoEditar" type="text" class="validate" disabled>
+                    <label for="enderecoEditar">Endereco</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 4300..." id="numeroEditar" type="number" class="validate" maxlength="8">
+                    <label for="numeroEditar">Numero</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairroEditar" type="text" class="validate" maxlength="30" disabled>
+                    <label for="bairroEditar">Bairro</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Poá, Suzano..." id="cidadeEditar" type="text" class="validate" maxlength="30" disabled>
+                    <label for="cidadeEditar">Cidade</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: SP, MG..." id="estadoEditar" type="text" class="validate" disabled>
+                    <label for="estadoEditar">Estado</label>
+                </div>
+
+                <div id="modalCadastroAluno" class="modal">
+                    <div class="modal-content">
+                        <h4 class="flow-text center">Aluno Cadastrado!</h4>
+                        <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                    </div>
+                </div>
+                <input id="idEditar" style="display: none;" />
+            </form>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
+    </div>
+</div>
+
+<div id="modalDeletar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 id="deletarAlunoNome"></h4>
+        </div>
+        <div class="col s12 l12">
+            <form class="col s12 l12" id="formularioDeletar">
+                <div class="input-field col s6">
+                    <input id="nomeDeletar" type="text" class="validate" readonly disabled>
+                    <label for="nomeDeletar">Nome do Aluno</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 99.999.999-9" id="rgDeletar" type="text" class="validate" maxlength="12">
+                    <label for="rgDeletar">RG</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 999.999.999-99" id="cpfDeletar" type="text" class="validate" maxlength="14">
+                    <label for="cpfDeletar">CPF</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Av. Paulista..." id="enderecoDeletar" type="text" class="validate" readonly disabled>
+                    <label for="enderecoDeletar">Endereco</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 46361345, 84512574..." id="telefoneDeletar" type="text" class="validate" readonly disabled>
+                    <label for="telefoneDeletar">Telefone</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 08568520..." onblur="PesquisaCEP()" id="cepDeletar" type="text" class="validate" readonly disabled>
+                    <label for="cepDeletar">CEP</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 4300..." id="numeroDeletar" type="text" class="validate" readonly disabled>
+                    <label for="numeroDeletar">Numero</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairroDeletar" type="text" class="validate" readonly disabled>
+                    <label for="bairroDeletar">Bairro</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Poá, Suzano..." id="cidadeDeletar" type="text" class="validate" readonly disabled>
+                    <label for="cidadeDeletar">Cidade</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: SP, MG..." id="estadoDeletar" type="text" class="validate" readonly disabled>
+                    <label for="estadoDeletar">Estado</label>
+                </div>
+
+                <div id="modalCadastroAluno" class="modal">
+                    <div class="modal-content">
+                        <h4 class="flow-text center">Aluno Cadastrado!</h4>
+                        <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                    </div>
+                </div>
+                <input id="idEditar" style="display: none;" />
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
+
+    </div>
+</div>
+@section scripts{
+    <script src="js/main.js"></script>
+    <script>
+        let valorId;
+        let valorNome;
+        let valorRG;
+        let valorCPF;
+        let valorEndereco;
+        let valorNumero;
+        let valorCep;
+        let valorTelefone;
+        let valorBairro;
+        let valorCidade;
+        let valorEstado;
+
+        function EditarModal(id, nome, rg, cpf, endereco, numero, cep, telefone, bairro, cidade, estado, model) {
+            valorId = id;
+            valorNome = nome;
+            valorRG = rg;
+            valorCPF = cpf;
+            valorEndereco = endereco;
+            valorNumero = numero;
+            valorCep = cep;
+            valorTelefone = telefone;
+            valorBairro = bairro;
+            valorCidade = cidade;
+            valorEstado = estado;
+            document.getElementById("nome" + model).value = nome;
+            document.getElementById("rg" + model).value = rg;
+            document.getElementById("cpf" + model).value = cpf;
+            document.getElementById("endereco" + model).value = endereco;
+            document.getElementById("numero" + model).value = numero;
+            document.getElementById("cep" + model).value = cep;
+            document.getElementById("telefone" + model).value = telefone;
+            document.getElementById("bairro" + model).value = bairro;
+            document.getElementById("cidade" + model).value = cidade;
+            document.getElementById("estado" + model).value = estado;
+            if (model === "Editar") {
+            document.getElementById("id" + model).value = id;
+            document.getElementById("editarAlunoNome").innerText = "Editar Aluno " + nome;
+            } else {
+                document.getElementById("deletarAlunoNome").innerText = "Tem certeza que deseja deletar o Aluno " + nome +"?";
+            }
+        }
+
+        function Deletar() {
+            var Aluno = {
+                Id: valorId, Nome: valorNome, RG: valorRG, CPF: valorCPF, Endereco: valorEndereco, Numero: valorNumero, CEP: valorCep, Telefone: valorTelefone, Bairro: valorBairro
+                , Cidade: valorCidade, Estado: valorEstado};
+            $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Deletar","Aluno")",
+                     data: { aluno: aluno},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Deletado com sucesso!!!',  classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             default:
+                         }
+                }
+            });
+        });
+        }
+
+        function Editar() {
+            var Aluno = {
+                Id: valorId, Nome: valorNome, RG: valorRG, CPF: valorCPF, Endereco: valorEndereco, Numero: valorNumero, CEP: valorCep, Telefone: valorTelefone, Bairro: valorBairro
+                , Cidade: valorCidade, Estado: valorEstado};
+            var alunoEditar = {
+                Id: document.getElementById("idEditar").value, Nome: document.getElementById("nomeEditar").value, RG: document.getElementById("rgEditar").value, CPF: document.getElementById("cpfEditar").value,
+                Endereco: document.getElementById("enderecoEditar").value, Numero: document.getElementById("numeroEditar").value, CEP: document.getElementById("cepEditar").value,
+                Telefone: document.getElementById("telefoneEditar").value, Bairro: document.getElementById("bairroEditar").value, Cidade: document.getElementById("cidadeEditar").value,
+                Estado: document.getElementById("estadoEditar").value
+            };
+            $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Editar","Aluno")",
+                     data: { aluno: aluno, alunoEditar: alunoEditar },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Editado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+        }
+        function PesquisaCEPEditar() {
+            let cep = document.getElementById('cepEditar').value;
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("BuscaCep","Aluno")",
+                     data: { cep: cep },
+                     success: function (dados) {
+                         document.getElementById('bairroEditar').value = dados.bairro;
+                         document.getElementById('enderecoEditar').value = dados.endereco ;
+                         document.getElementById('cidadeEditar').value = dados.cidade ;
+                         document.getElementById('estadoEditar').value = dados.estado ;
+                         }
+                })
+            });
+        }
+                function PesquisaCEP() {
+            let cep = document.getElementById('cep').value;
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("BuscaCep","Aluno")",
+                     data: { cep: cep },
+                     success: function (dados) {
+                         document.getElementById('bairro').value = dados.bairro;
+                         document.getElementById('endereco').value = dados.endereco ;
+                         document.getElementById('cidade').value = dados.cidade ;
+                         document.getElementById('estado').value = dados.estado ;
+                         }
+                })
+            });
+        }
+
+         function Adicionar() {
+            var Aluno = {
+                Nome: document.getElementById("nome").value, RG: document.getElementById("rg").value, CPF: document.getElementById("cpf").value, Endereco: document.getElementById("endereco").value,
+                Numero: document.getElementById("numero").value, CEP: document.getElementById("cep").value, Telefone: document.getElementById("telefone").value,
+                Bairro: document.getElementById("bairro").value, Cidade: document.getElementById("cidade").value, Estado: document.getElementById("estado").value
+            };
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Adicionar","Aluno")",
+                     data: { aluno: Aluno},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+        }
+        $(document).ready(function(){
+          $('.modal').modal();
+        });
+    </script>
+
+}
